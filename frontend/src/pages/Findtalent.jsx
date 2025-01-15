@@ -144,9 +144,9 @@ const FindTalent = () => {
       </aside>
 
       <main className="w-full lg:w-fit ml-[25%]">
-        <div className="bg-white p-6 rounded-lg shadow-md mb-8 fixed w-[calc(75%-13rem)] z-10">
-          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center mb-4">
-            <div className="relative w-full md:w-1/2">
+        <div className="bg-white p-6 rounded-lg shadow-md mb-8 fixed w-[calc(75%-8rem)] z-10">
+          <div className="">
+            <div className="relative w-[75%] ">
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
@@ -162,11 +162,11 @@ const FindTalent = () => {
                   }}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
-                  <FaTimes />
+                  <FaTimes className='top-1/2'/>
                 </button>
               )}
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mt-5">
               {selectedFilters.map(filter => (
                 <div key={`${filter.type}-${filter.value}`} className="bg-blue-100 text-blue-800 rounded-full px-3 py-1 text-sm font-medium flex items-center">
                   {filter.value}
