@@ -65,11 +65,13 @@ const SignUp = async (req, res) => {
 
 const JobsPost = async (req,res) => { 
     try{
-    const {title,description} = req.body;
+    const {title,content,name,position} = req.body;
 
     const newJob =  new Skill({ 
         title,
-        description
+        content,
+        name,
+        position
     })
     
     const parseJob = Joblist.safeParse(newJob);

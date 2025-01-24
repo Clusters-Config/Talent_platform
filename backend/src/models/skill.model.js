@@ -7,13 +7,17 @@ const JobSchema = new mongo({
         type: String,
         required:true
      },
-     description:{ 
+     content:{ 
          type: String,
          required:true
      },
-     ratings:{ 
+     name:{ 
         type: Number,
         default:0
+     },
+     position:{ 
+         type: Number,
+         default:0
      }
 },{timestamps:true})
 
