@@ -11,7 +11,7 @@ const Main = () => {
   return (
     <>
        {data.map((post) => (
-         <Post title={post.title} content={post.content} position={post.position} organization={post.name} />
+         <Post title={post.title}  position={post.position} organization={post.name} />
        ))}
     </>
   );
