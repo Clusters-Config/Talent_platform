@@ -12,12 +12,12 @@ const JobSchema = new mongo({
          required:true
      },
      name:{ 
-        type: Number,
-        default:0
+        type: String,
+        required:true
      },
      position:{ 
-         type: Number,
-         default:0
+         type: String,
+         required:true
      }
 },{timestamps:true})
 

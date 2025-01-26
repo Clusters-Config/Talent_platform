@@ -15,7 +15,9 @@ const Registerlist = z.object({
 
 const Joblist  = z.object({ 
     title: z.string(),
-    description: z.string()
+    content: z.string(),
+    name: z.string(),
+    position: z.string(),
 })
 
 export { Loginlist , Registerlist , Joblist }

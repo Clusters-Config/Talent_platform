@@ -7,8 +7,8 @@ const router = Router();
 router.post('/login',SignIn)
 router.post('/signup',SignUp)
 router.get('/network')
-router.get('/getjob',authMiddleware,JobsGet)
-router.post('/postjob',authMiddleware,JobsPost);
+router.get('/getjob',JobsGet)
+router.post('/postjob',JobsPost);
 //router.update('/account/details/:username')
 
 router.get('/')

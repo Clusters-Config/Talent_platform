@@ -73,6 +73,7 @@ const JobsPost = async (req,res) => {
         name,
         position
     })
+    console.log(newJob)
     
     const parseJob = Joblist.safeParse(newJob);
     console.log(parseJob)
