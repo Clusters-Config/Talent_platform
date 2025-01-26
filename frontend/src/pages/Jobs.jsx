@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState,  } from 'react';
 import Jobskeleton from '../components/Jobskeleton';
 import useJob from '../hooks/useJob';
 import SideBar from '../components/Sidebar';
