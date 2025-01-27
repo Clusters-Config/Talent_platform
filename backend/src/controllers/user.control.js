@@ -1,10 +1,7 @@
-import { Register,Network, Skill } from '../exports.js'
+import { Register, Skill } from '../exports.js'
 import jwt from 'jsonwebtoken'
 import { Loginlist,Joblist } from '../types.js'
 
-const Home = () => { 
-    //logic
-}
 
 const SignIn = async (req, res) => { 
     try{ 
@@ -111,17 +108,8 @@ catch(err) {
     })
 }
 }
-const AccDetails = (req,res) =>{ 
-    //logic
-}
-
-const AccUpdate = (req,res) => { 
-    //logic
-}
-
 
 export{ 
-    Home,
     SignIn,
     SignUp,
     JobsPost,

@@ -7,6 +7,8 @@ import bodyParser from 'body-parser';
 import  SignUpRoute  from './routes/user.route.js'
 import  SignInRoute  from './routes/user.route.js'
 import  JobsPost  from './routes/user.route.js'
+import { postNetwork , getNetwork } from './controllers/network.control.js';
+
 
 dotenv.config({ 
     path:'.env'
@@ -21,6 +23,8 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use('/',SignUpRoute)
 app.use('/',SignInRoute)
 app.use('/',JobsPost)
+app.use('/',postNetwork)
+app.use('/',getNetwork)
 
 DbConnect()
 .then(()=>{
