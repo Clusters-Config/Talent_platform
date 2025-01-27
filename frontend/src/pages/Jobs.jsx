@@ -27,7 +27,7 @@ const Jobs = () => {
       <div>
         {data.map((post) => (
           <button className='mt-2 mb-2' key={post.id} onClick={() => handleJobClick(post)}>
-            <Jobskeleton title={post.title} content={post.content} position={post.position} organization={post.name} />
+            <Jobskeleton title={post.title} content={post.content} position={post.position} organisation={post.name} />
           </button>
         ))}
       </div>
