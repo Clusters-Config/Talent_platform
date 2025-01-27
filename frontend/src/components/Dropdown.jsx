@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import LogoutModal from "./LogoutModal";
 import { Link } from "react-router-dom";
+import Userimage from "../assets/user.jpg";
 
 const Dropdown = () => {
     const [visible, setVisible] = useState(false);
@@ -30,13 +31,14 @@ const Dropdown = () => {
     return (
         <div className="relative" id="profileDropdown">
             <button id="profileButton" className="flex items-center" onClick={handleClick}>
+                <img className="w-10 h-10 mb-3 rounded-full shadow-lg" src={Userimage} alt="profile"/>
                 <span className="text-gray-700 hidden md:inline">John Doe</span>
             </button>
             <div id="dropdownMenu" ref={dropdownRef} className={`${visible ? 'block' : 'hidden'} space-y-4 absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg`}>
                 <Link to="/profile" target="_self" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</Link>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={handleLogoutClick}>Logout</a>
             </div>
-            {modalVisible && <LogoutModal setVisible={setModalVisible} />} ``
+            {modalVisible && <LogoutModal setVisible={setModalVisible} />}
         </div>
     )
 }
