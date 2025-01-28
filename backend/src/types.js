@@ -25,4 +25,13 @@ const Networklist = z.object({
     employment: z.string(),
 })
 
-export { Loginlist , Registerlist , Joblist , Networklist }
+const Talentlist = z.object({
+    name: z.string(),
+    label: z.array(z.string()),
+    role: z.string(),
+    level: z.string(),
+    avail: z.string(),
+    location: z.string(),
+})
+
+export { Loginlist , Registerlist , Joblist , Networklist , Talentlist }
