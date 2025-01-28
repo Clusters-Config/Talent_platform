@@ -7,7 +7,10 @@ import bodyParser from 'body-parser';
 import  SignUpRoute  from './routes/user.route.js'
 import  SignInRoute  from './routes/user.route.js'
 import  JobsPost  from './routes/user.route.js'
-import { postNetwork , getNetwork } from './controllers/network.control.js';
+import  postNetwork   from './routes/user.route.js';
+import getNetwork from './routes/user.route.js';
+import  postTalent  from './routes/user.route.js';
+import  getTalent  from './routes/user.route.js';
 
 
 dotenv.config({ 
@@ -25,6 +28,8 @@ app.use('/',SignInRoute)
 app.use('/',JobsPost)
 app.use('/',postNetwork)
 app.use('/',getNetwork)
+app.use('/',postTalent)
+app.use('/',getTalent)
 
 DbConnect()
 .then(()=>{
