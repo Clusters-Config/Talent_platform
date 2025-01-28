@@ -26,7 +26,7 @@ export default function SwipeableTemporaryDrawer({ open, toggleDrawer, jobDetail
           <ListItemText primary={`Position: ${jobDetails.position}`} />
         </ListItem>
         <ListItem>
-          <ListItemText primary={`Organization: ${jobDetails.organization}`} />
+          <ListItemText primary={`Organization: ${jobDetails.name}`} />
         </ListItem>
         <ListItem>
           <ListItemText primary={`Content: ${jobDetails.content}`} />
