@@ -110,9 +110,25 @@ catch(err) {
 }
 }
 
+
+const SignOut = async (req,res) =>{ 
+    try { 
+        res.json({ 
+            msg:"User Signed Out",
+            granted:false
+        })
+    }
+    catch(err){ 
+        res.json({ 
+            msg:"User cannot be signed out"
+        })
+    }
+}
+
 export{ 
     SignIn,
     SignUp,
     JobsPost,
-    JobsGet
+    JobsGet,
+    SignOut
 }

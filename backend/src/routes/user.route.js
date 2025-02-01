@@ -1,6 +1,6 @@
 //signin,register,home,account
 import { Router } from 'express'
-import  { SignUp ,SignIn,JobsPost, JobsGet } from '../controllers/user.control.js'
+import  { SignUp ,SignIn,JobsPost, JobsGet, SignOut } from '../controllers/user.control.js'
 import { postNetwork , getNetwork } from '../controllers/network.control.js'
 import { getTalent, postTalent } from '../controllers/talent.control.js'
 import { authMiddleware }  from '../middlewares/auth.js'
@@ -8,6 +8,7 @@ const router = Router();
 
 router.post('/login',SignIn)
 router.post('/signup',SignUp)
+router.post('/logout',SignOut)
 router.get('/network')
 router.get('/getjob',JobsGet)
 router.post('/postjob',JobsPost);

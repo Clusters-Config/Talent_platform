@@ -11,6 +11,7 @@ import  postNetwork   from './routes/user.route.js';
 import getNetwork from './routes/user.route.js';
 import  postTalent  from './routes/user.route.js';
 import  getTalent  from './routes/user.route.js';
+import { SignOut } from './controllers/user.control.js';
 
 
 dotenv.config({ 
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 app.use('/',SignUpRoute)
 app.use('/',SignInRoute)
+app.use('/',SignOut)
 app.use('/',JobsPost)
 app.use('/',postNetwork)
 app.use('/',getNetwork)
