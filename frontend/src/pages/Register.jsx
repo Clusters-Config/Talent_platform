@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import Button from "../components/Button";
 import  axios from "axios";
 import { useNavigate } from 'react-router-dom';
+
 const Register =() =>{ 
     const navigate =useNavigate()
     const [firstname,setfirstname] = useState('')
@@ -27,7 +28,7 @@ const Register =() =>{
            console.log(response.data.token)
            const jwt=localStorage.setItem("token",`Bearer ${response.data.token}`)
               setRegister(true)
-              navigate('/')
+              navigate('/login')
         })
         .catch((err)=>{ 
             console.log("Error in the login")

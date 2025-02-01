@@ -11,9 +11,6 @@ const ExpSchema = new mongo({
         type: String,
         required:true,
     },
-    description:{ 
-        type: String
-    }
 },{timestamps:true})
 
 

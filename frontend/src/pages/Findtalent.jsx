@@ -6,7 +6,7 @@ const candidates = [
     id: 1,
     name: 'John Doe',
     headline: 'Software Engineer',
-    skills: ['JavaScript', 'React', 'Node.js', 'Testing', 'Agile'],
+    skills: ['JavaScript', 'React', 'Node.js ', 'Testing', 'Agile'],
     location: 'Remote',
     experience: 'Senior',
     availability: 'Full-time',

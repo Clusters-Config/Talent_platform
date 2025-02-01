@@ -1,10 +1,7 @@
-import { Register,Network, Skill } from '../exports.js'
+import { Register, Skill } from '../exports.js'
 import jwt from 'jsonwebtoken'
 import { Loginlist,Joblist } from '../types.js'
 
-const Home = () => { 
-    //logic
-}
 
 const SignIn = async (req, res) => { 
     try{ 
@@ -29,6 +26,7 @@ const SignIn = async (req, res) => {
         res.status(200).json({
             message:"User Signed In",
             token:token,
+            username:username,
             granted:true
         })
 
@@ -65,12 +63,15 @@ const SignUp = async (req, res) => {
 
 const JobsPost = async (req,res) => { 
     try{
-    const {title,description} = req.body;
+    const {title,content,name,position} = req.body;
 
     const newJob =  new Skill({ 
         title,
-        description
+        content,
+        name,
+        position
     })
+    console.log(newJob)
     
     const parseJob = Joblist.safeParse(newJob);
     console.log(parseJob)
@@ -108,19 +109,26 @@ catch(err) {
     })
 }
 }
-const AccDetails = (req,res) =>{ 
-    //logic
-}
 
-const AccUpdate = (req,res) => { 
-    //logic
-}
 
+const SignOut = (req,res) =>{ 
+    try { 
+        res.json({ 
+            msg:"User Signed Out",
+            granted:false
+        })
+    }
+    catch(err){ 
+        res.json({ 
+            msg:"User cannot be signed out"
+        })
+    }
+}
 
 export{ 
-    Home,
     SignIn,
     SignUp,
     JobsPost,
-    JobsGet
+    JobsGet,
+    SignOut
 }

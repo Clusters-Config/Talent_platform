@@ -9,11 +9,21 @@ export default {
     flowbite.content(),
   ],
   theme: {
-    extend: {},
+    extend: {
+      
+    },
     colors:{
       background:'#121212'
-    }
+    },
+    screens: {
+      'sm': { 'max': '680px' },
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
   },
+ 
   plugins: [
     flowbite.plugin(),
   ],

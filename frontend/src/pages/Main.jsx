@@ -1,15 +1,21 @@
-import React from 'react';
 import Post from '../components/Post';
+import useJob from '../hooks/useJob';
+
+
 
 const Main = () => {
+     const data = useJob();
+     console.log(data);
+
   return (
     <>
-      <Post title="Hiring Designers" content="This is the first post." name="FunWorld" position="designer"/>
-      <Post title="Hiring Designers" content="Yet another post!" name="FunWorld" position="designer"/>
-      <Post title="Hiring Designers" content="And one more for good measure." name="FunWorld" position="designer"/>
-      <Post title="Hiring Designers" content="This is the first post." name="FunWorld" position="designer"/>
-      </>
+       {data.map((post,index) => (
+         <Post key={index} title={post.title}  position={post.position} name={post.name} />
+       ))}
+    </>
   );
 };
+
+
 
 export default Main;

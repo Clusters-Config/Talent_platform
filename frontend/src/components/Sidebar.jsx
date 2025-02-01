@@ -4,11 +4,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
 export default function SwipeableTemporaryDrawer({ open, toggleDrawer, jobDetails }) {
   const list = () => (
@@ -26,7 +22,7 @@ export default function SwipeableTemporaryDrawer({ open, toggleDrawer, jobDetail
           <ListItemText primary={`Position: ${jobDetails.position}`} />
         </ListItem>
         <ListItem>
-          <ListItemText primary={`Organization: ${jobDetails.organization}`} />
+          <ListItemText primary={`Organization: ${jobDetails.name}`} />
         </ListItem>
         <ListItem>
           <ListItemText primary={`Content: ${jobDetails.content}`} />
@@ -40,7 +36,7 @@ export default function SwipeableTemporaryDrawer({ open, toggleDrawer, jobDetail
 
   return (
     <SwipeableDrawer
-      anchor='left'
+      anchor='right'
       open={open}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
