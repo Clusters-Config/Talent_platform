@@ -111,7 +111,7 @@ catch(err) {
 }
 
 
-const SignOut = async (req,res) =>{ 
+const SignOut = (req,res) =>{ 
     try { 
         res.json({ 
             msg:"User Signed Out",
