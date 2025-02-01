@@ -9,7 +9,20 @@ export default {
     flowbite.content(),
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        slideColor: {
+          '0%': { 'background-size': '100% 0' },
+          '100%': { 'background-size': '100% 100%' },
+        },
+      },
+      animation: {
+        slideColor: 'slideColor 0.5s forwards',
+      },
+      backgroundImage: {
+        'gradient-to-top-red': 'linear-gradient(to top, red 0%, red 100%)',
+      },
+    },
     colors:{
       background:'#121212'
     },
@@ -19,6 +32,11 @@ export default {
       'lg': '1024px',
       'xl': '1280px',
       '2xl': '1536px',
+    },
+  },
+  variants: {
+    extend: {
+      backgroundSize: ['hover'],
     },
   },
   plugins: [

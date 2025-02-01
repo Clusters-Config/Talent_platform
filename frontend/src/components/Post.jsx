@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
@@ -19,10 +19,10 @@ const Post = ({ content,name, position,title }) => {
       </svg>
     </div>
     <div className="flex font-bold aleo-regular flex-col gap-1">
-    <div className="h-2.5  p-2 w-48 mb-4 sm:mx-3">
+    <div className="h-auto  p-2 w-48 sm:mx-3">
       {title}
     </div>
-    <div className="h-2 mb-2.5 mx-4 sm:p-4">
+    <div className="h-auto mb-2.5 mx-4 sm:p-3">
      {content}
     </div>
     <div className="flex items-center gap- mx-4 mt-5">
@@ -30,17 +30,17 @@ const Post = ({ content,name, position,title }) => {
         <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
       </svg>
       <div>
-        <div className=" bg-gray-200 font-bold rounded-full dark:bg-gray-700 px-2 mb-2  ">
+        <div className="w-[57vh] bg-gray-200 font-bold rounded-full dark:bg-gray-700 px-2 mb-2 sm:text-[16px] sm:h-5 sm:w-[30vh]">
           {name}
         </div>
-        <div className="w-48 h-6 px-2 font-bold bg-gray-200 rounded-full dark:bg-gray-700 ">
+        <div className=" px-2 font-bold bg-gray-200 rounded-full dark:bg-gray-700 sm:text-[14px] sm:w-[33vh] sm:h-5">
           {position}
         </div>
       </div>
     </div>
       <div
-      className='flex justify-between mx-4 mt-5 sm:mt-10'>
-        <FavoriteBorderIcon className="text-gray-200  dark:text-gray-700 cursor-pointer" onClick={setLike} />
+      className='flex justify-between mx-4 mt-5 w-auto h-auto sm:mt-10'>
+        <FavoriteIcon className="text-gray-200 hover:text-red-600 transition-colors duration-300  dark:text-gray-700 cursor-pointer" onClick={setLike} />
         <ChatBubbleIcon className="text-gray-200  dark:text-gray-700 cursor-pointer" onClick={setComment} />
         <SendRoundedIcon className="text-gray-200  dark:text-gray-700 cursor-pointer" onClick={setShare}/>
       </div>
