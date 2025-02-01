@@ -27,7 +27,7 @@ const Register =() =>{
            console.log(response.data.token)
            const jwt=localStorage.setItem("token",`Bearer ${response.data.token}`)
               setRegister(true)
-              navigate('/')
+              navigate('/login')
         })
         .catch((err)=>{ 
             console.log("Error in the login")

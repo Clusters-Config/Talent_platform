@@ -19,7 +19,7 @@ const Navbar =  () =>{
                 Network</Link>
                 <Link to="/Notifications" className="text-gray-700 hover:text-indigo-600"><i className="fas fa-bell mr-1"></i>
                 Notifications</Link>
-                <Dropdown/>
+                {<Dropdown/>}
             </div>
             </div>
     </nav>

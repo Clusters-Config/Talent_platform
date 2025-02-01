@@ -20,5 +20,3 @@ const NetworkSchema = new mongo({
 const Network = mongoose.model('Network',NetworkSchema)
 
 export default Network
-
-
