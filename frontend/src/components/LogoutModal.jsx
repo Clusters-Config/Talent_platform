@@ -1,12 +1,32 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LogoutModal = ({ setVisible }) => { 
+    const navigate = useNavigate();
     const modalRef = useRef(null);
 
     const handleClick = () => { setVisible(false); }; 
 
+    async function logout () { 
+        try {
+            const response = await axios.post('http://localhost:3001/logout');
+            console.log(response);
+            console.log(response.data);
+            if(response.data.granted === false) {
+                console.log("User not logged out");
+                 localStorage.removeItem('token');
+                 localStorage.removeItem('username');
+                 navigate('/login');
+            }
+        } catch (err) {
+            console.log("An error occurred while logging out", err);
+        }
+    }
+
     const handleLogout = () => {
         // Logout logic here
+        logout();
         setVisible(false); 
     }
 

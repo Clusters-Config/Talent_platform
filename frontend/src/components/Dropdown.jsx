@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useRef } from "react";
 import LogoutModal from "./LogoutModal";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,20 +9,7 @@ function showUsername(){
     return localStorage.getItem('username')
 }
 
-function logout () { 
-    const response = axios.post('http://localhost:3001/logout')
-    response.then(()=>{ 
-        console.log("Logged out successfully")
-    })
-    .catch((err)=>{ 
-        console.log("An error occurred while logging out")
-    })
-    //if(response){
-      //  localStorage.removeItem('token')
-        //localStorage.removeItem('username')
-        //useNavigate().navigate('/login')
-    //}
-}
+
 
 const Dropdown = () => {
     const [username, setUsername] = useState(showUsername());
@@ -48,7 +34,6 @@ const Dropdown = () => {
     const handleLogoutClick = () => {
         setModalVisible(true); 
         setVisible(false); 
-        logout();
     };
 
     return (
