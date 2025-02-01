@@ -8,7 +8,7 @@ const Profile = () => {
             <div className="flex justify-center items-center mt-10">
             <img src="https://randomuser.me/api/portraits/men/10.jpg" width={`100px`} height={`100px`}/>
             </div>
-            </div>
+        </div>
     </>
   )
 }
