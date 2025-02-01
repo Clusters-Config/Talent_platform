@@ -3,7 +3,7 @@ import { useRef } from "react";
 import LogoutModal from "./LogoutModal";
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepPurple } from '@mui/material/colors';
 
 function showUsername(){ 
     return localStorage.getItem('username')
@@ -27,7 +27,7 @@ const Dropdown = () => {
         return () => { document.removeEventListener('mousedown', handleClickOutside); }; 
     }, []);
 
-    // Function to handle logout click
+    
     const handleLogoutClick = () => {
         setModalVisible(true); 
         setVisible(false); 
