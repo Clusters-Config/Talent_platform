@@ -3,7 +3,7 @@ import { useRef } from "react";
 import LogoutModal from "./LogoutModal";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
-import { deepPurple } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 
 function showUsername(){ 
     return localStorage.getItem('username')
@@ -39,7 +39,7 @@ const Dropdown = () => {
     return (
         <div className="relative sm:mt-3" id="profileDropdown">
             <button id="profileButton" className="flex items-center" onClick={handleClick}>
-            <Avatar sx={{ bgcolor: deepPurple[500] }}></Avatar>
+            <Avatar sx={{ bgcolor: blue[500] }}></Avatar>
                 <span className="text-gray-700 mx-2 inline">{username}</span>
             </button>
             <div id="dropdownMenu" ref={dropdownRef} className={`${visible ? 'block' : 'hidden'} space-y-4 absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg`}>
