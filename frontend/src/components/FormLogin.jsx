@@ -11,6 +11,7 @@ const FormLogin = ({children}) => {
     const navigate = useNavigate();
     const notify = () => toast("Login failed");
     const notify2 = () => toast("User does not exist");
+
     async function loginUser(event) {
 		event.preventDefault();
         axios.post("http://localhost:3001/login", {
@@ -28,6 +29,7 @@ const FormLogin = ({children}) => {
             } 
             if(response.data.granted){
                 localStorage.setItem("token", `Bearer ${response.data.token}`);
+                localStorage.setItem("username", response.data.username);
                 navigate("/");
             }
             else{

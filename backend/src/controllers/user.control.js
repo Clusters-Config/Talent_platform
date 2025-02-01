@@ -26,6 +26,7 @@ const SignIn = async (req, res) => {
         res.status(200).json({
             message:"User Signed In",
             token:token,
+            username:username,
             granted:true
         })
 
