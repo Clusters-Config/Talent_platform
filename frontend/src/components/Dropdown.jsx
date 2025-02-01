@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import LogoutModal from "./LogoutModal";
 import { Link } from "react-router-dom";
-import Userimage from "../assets/user.jpg";
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+
 import { deepOrange, deepPurple } from '@mui/material/colors';
 const Dropdown = () => {
     const [visible, setVisible] = useState(false);
