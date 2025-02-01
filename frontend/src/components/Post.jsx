@@ -11,7 +11,7 @@ const Post = ({ content,name, position,title }) => {
   return(
     <>
   
-  <div role="status" className="lg:max-w-[50rem] lg:p-5 sm:p-4 sm:max-w-96 sm:h-[28rem] lg:mx-96 lg:my-8 border border-gray-200 rounded shadow  dark:border-gray-700 sm:mx-5 sm:my-4" >
+  <div role="status" className="lg:max-w-[50rem] lg:p-5 sm:p-4 sm:max-w-96 sm:h-[28rem] lg:mx-96 lg:my-8 border border-gray-200 rounded shadow  dark:border-gray-700 dark:text-white sm:mx-5 sm:my-4" >
     <div className="flex items-center justify-center h-44 mb-4 bg-gray-300 rounded dark:bg-gray-700">
       <svg className="w-10 h-10 text-gray-200 dark:text-gray-600 sm:mt-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
         <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z" />
@@ -40,7 +40,7 @@ const Post = ({ content,name, position,title }) => {
     </div>
       <div
       className='flex justify-between mx-4 mt-5 w-auto h-auto sm:mt-10'>
-        <FavoriteIcon className="text-gray-200 hover:text-red-600 transition-colors duration-300  dark:text-gray-700 cursor-pointer" onClick={setLike} />
+        <FavoriteIcon className="text-gray-200 hover:text-red-600 dark:hover:text-red-600 transition-colors duration-300  dark:text-gray-700 cursor-pointer" onClick={setLike} />
         <ChatBubbleIcon className="text-gray-200  dark:text-gray-700 cursor-pointer" onClick={setComment} />
         <SendRoundedIcon className="text-gray-200  dark:text-gray-700 cursor-pointer" onClick={setShare}/>
       </div>

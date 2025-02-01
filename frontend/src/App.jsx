@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
+import { DarkThemeToggle, Flowbite } from "flowbite-react";
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import Layout from './wrappers/Layout';
@@ -18,7 +19,8 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <>
+    <> 
+    <Flowbite>
         <div>
           {/* Navbar Component */}
           {location.pathname !== '/profile' && location.pathname !=="/login" && location.pathname !=="/register" && <Navbar/>}
@@ -37,9 +39,10 @@ const App = () => {
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
+            <DarkThemeToggle className='relative ml-[198vh] mt-24 z-30'/>
           </Layout>
         </div>
-    
+      </Flowbite>
     </>
   )
 }
