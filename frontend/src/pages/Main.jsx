@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import Post from '../components/Post';
 import useJob from '../hooks/useJob';
 
