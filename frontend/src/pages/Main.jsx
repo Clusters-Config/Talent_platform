@@ -9,8 +9,8 @@ const Main = () => {
 
   return (
     <>
-       {data.map((post) => (
-         <Post title={post.title}  position={post.position} name={post.name} />
+       {data.map((post,index) => (
+         <Post key={index} title={post.title}  position={post.position} name={post.name} />
        ))}
     </>
   );
