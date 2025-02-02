@@ -33,7 +33,7 @@ const Navbar =  () =>{
 
     return (
         <>
-        <nav className="fixed top-0 left-0 right-0 bg-white shadow-md aleo-regular z-50 select-none sm:w-auto">
+        <nav className="fixed top-0 left-0 right-0 bg-white shadow-md aleo-regular z-50 select-none">
             <div className="container mx-auto px-6 py-3 flex justify-between items-center">
                 <Link to="/" className="text-4xl text-black font-semibold hover:text-indigo-600">TALENTMATCH</Link>
                 <span className="lg:hidden" onClick={handleShowMenu}>
