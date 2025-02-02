@@ -9,9 +9,9 @@ const generateDots = (count, width, height) => {
     size: Math.random() * 10 + 4,
     speed: Math.random() * 0.8 + 0.2,
     blur: Math.random() * 2 + 0.5,
-    followMouse: Math.random() < 0.1, // 30% of dots will follow the mouse
-    distance: Math.random() * 80 + 20, // Initial distance from the mouse
-    angle: Math.random() * Math.PI * 2, // Initial angle for random direction
+    followMouse: Math.random() < 0.1, 
+    distance: Math.random() * 80 + 20,
+    angle: Math.random() * Math.PI * 2, 
   }));
 };
 
