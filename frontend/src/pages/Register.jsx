@@ -1,56 +1,170 @@
-import { useState,useEffect } from 'react'
-import Button from "../components/Button";
-import  axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
-const Register =() =>{ 
-    const navigate =useNavigate()
-    const [firstname,setfirstname] = useState('')
-    const [lastname,setLastname] = useState('')
-    const [username,setUsername] = useState('')
-    const [password,setPassword] = useState('')
-    const [register,setRegister] = useState(false)
-    
-    function registerUser (){ 
+const SignupForm = () => {
+  const styles = {
+    body: {
+      margin: 0,
+      fontFamily: "Arial, sans-serif",
+      background: 'url("https://oreed.org/cdn/1619638329_6089b83993722/1684839216_646c9b3005ac6/1686037233_647ee2f15ed5c/1686037233_647ee2f15e870.png") no-repeat center center/cover',
+      height: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    container: {
+      width: "80%",
+      height: "90vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    box: {
+      width: "90%",
+      maxWidth: "700px",
+      height: "80%",
+      background: "rgba(255, 255, 255, 0.9)",
+      display: "flex",
+      borderRadius: "10px",
+      overflow: "hidden",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+    },
+    leftHalf: {
+      flex: 1,
+      background: 'url("https://oreed.org/cdn/1619638329_6089b83993722/1684839216_646c9b3005ac6/1686037233_647ee2f15ed5c/1686037233_647ee2f15e870.png") no-repeat center center/cover',
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      textAlign: "center",
+      color: "white",
+      padding: "20px",
+    },
+    leftHalfText: {
+      fontSize: "16px",
+      marginBottom: "10px",
+    },
+    rightHalf: {
+      flex: 1,
+      padding: "40px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "15px",
+    },
+    formTitle: {
+      fontSize: "24px",
+      marginBottom: "10px",
+      textAlign: "center",
+    },
+    inputGroup: {
+      display: "flex",
+      alignItems: "center",
+      position: "relative",
+    },
+    icon: {
+      position: "absolute",
+      left: "10px",
+      color: "#007BFF",
+      fontSize: "18px",
+    },
+    input: {
+      width: "100%",
+      padding: "10px 10px 10px 40px",
+      border: "1px solid #ccc",
+      borderRadius: "20px",
+      fontSize: "16px",
+      height:"35px",
+    },
+    button: {
+      height:"35px",
 
-        axios.post("http://localhost:3001/signup",{
-            firstname:firstname,
-            lastname:lastname,
-            username:username,
-            password:password
-        },{ 
-            headers:{
-               "Content-Type": "application/json",
-            }
-        })
-        .then((response)=>{
+      padding: "0px",
+      backgroundColor: "#007BFF",
+      color: "white",
+      border: "none",
+      borderRadius: "15px",
+      fontSize: "18px",
+      cursor: "pointer",
+      textTransform: "uppercase",
+    },
+    buttonHover: {
+      backgroundColor: "#0056b3",
+    },
+    divider: {
+      textAlign: "center",
+      fontSize: "14px",
+      margin: "10px 0",
+      color: "#555",
+      
+    },
+    googleButton: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "10px",
+      backgroundColor: "white",
+      color: "#555",
+      border: "1px solid #ccc",
+      borderRadius: "15px",
+      fontSize: "16px",
+      cursor: "pointer",
+      height:"35px",
 
-           console.log(response.data.token)
-           const jwt=localStorage.setItem("token",`Bearer ${response.data.token}`)
-              setRegister(true)
-              navigate('/login')
-        })
-        .catch((err)=>{ 
-            console.log("Error in the login")
-        })
-    }
-   useEffect(()=>{
-     registerUser()
-   },[])
-    return ( 
-        <>
-        <h1 className="text-2xl aleo-regular text-center">Register</h1>
-        <div className="flex flex-col items-center  mt-10 pl-16 p-5 border ">
-        <input className='m-4 rounded' type="text" onChange={(e)=>{setfirstname(e.target.value)}} placeholder="firstname"/>
-        <input className='m-2 rounded' type="text" onChange={(e)=>{setLastname(e.target.value)}} placeholder="lastname"/>
-        <input className='m-2 rounded' type="text" onChange={(e)=>{setUsername(e.target.value)}} placeholder="username"/>
-        <input className='m-2 rounded' type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="password"/>
-        {<Button title="Register" onClick={registerUser}/>}
+    },
+    googleIcon: {
+      fontSize: "20px",
+      marginRight: "10px",
+    },
+  };
+
+  return (
+    <div style={styles.body}>
+      <div style={styles.container}>
+        <div style={styles.box}>
+          <div style={styles.leftHalf}>
+            <h1>Welcome Back!</h1>
+            <p style={styles.leftHalfText}>
+              Join us and explore the amazing opportunities ahead to Sign Up
+            </p>
+          </div>
+          <div style={styles.rightHalf}>
+            <form style={styles.form}>
+              <h2 style={styles.formTitle}>Create Your Account</h2>
+              <div style={styles.inputGroup}>
+                <FaUser style={styles.icon} />
+                <input style={styles.input} type="text" placeholder="First Name" required />
+              </div>
+              <div style={styles.inputGroup}>
+                <FaUser style={styles.icon} />
+                <input style={styles.input} type="text" placeholder="Last Name" required />
+              </div>
+              <div style={styles.inputGroup}>
+                <FaEnvelope style={styles.icon} />
+                <input style={styles.input} type="email" placeholder="Email Address" required />
+              </div>
+              <div style={styles.inputGroup}>
+                <FaLock style={styles.icon} />
+                <input style={styles.input} type="password" placeholder="Password" required />
+              </div>
+              <button style={styles.button} type="submit">
+                Sign Up
+              </button>
+              <div style={styles.divider}>OR</div>
+              <button style={styles.googleButton} type="button">
+                <FcGoogle style={styles.googleIcon} /> Sign Up with Google
+              </button>
+            </form>
+          </div>
         </div>
-        </>
-    )
+      </div>
+    </div>
+  );
+};
 
-}
-
-
-export default Register;
+export default SignupForm;
