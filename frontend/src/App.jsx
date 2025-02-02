@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
+import React, { Suspense } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { DarkThemeToggle, Flowbite } from "flowbite-react";
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
