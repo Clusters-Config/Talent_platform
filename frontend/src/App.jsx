@@ -39,7 +39,7 @@ const App = () => {
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
-            <DarkThemeToggle className='relative ml-[198vh] mt-24 z-30'/>
+            <DarkThemeToggle className='fixed sm:ml-[21rem] ml-[190vh] mt-24 sm:mt-2 z-30'/>
           </Layout>
         </div>
       </Flowbite>
