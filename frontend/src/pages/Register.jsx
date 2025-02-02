@@ -41,6 +41,7 @@ const Register =() =>{
     return ( 
         
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
+            <Formback />
             <h1 className="text-2xl aleo-regular text-center">Register</h1>
             <div className="flex flex-col items-center  mt-10 pl-16 p-5 border ">
               <input className='m-4 rounded' type="text" onChange={(e)=>{setfirstname(e.target.value)}} placeholder="firstname"/>
