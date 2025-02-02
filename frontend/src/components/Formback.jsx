@@ -53,7 +53,7 @@ export default function AnimatedBackground() {
           const newY = dot.y + (targetY - dot.y) * lerpFactor;
 
           // Update the angle for random movement around the mouse
-          dot.angle += Math.random() * 0.05 - 0.025; // Small random change in angle
+          dot.angle += Math.random() * 0.05 - 0.027; // Small random change in angle
 
           return {
             ...dot,
