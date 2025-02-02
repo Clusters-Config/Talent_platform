@@ -5,11 +5,11 @@ import Formback from "../components/Formback";
 
 const Login = () => {
   return (
-    <Formback>
-      <div style={{ position: 'relative', zIndex: 2 }}>
+    
+      <div style={{ position: 'relative', zIndex: 1000 }}>
         <FormLogin children={<FormRegister />} />
       </div>
-    </Formback>
+    
   );
 };
 
