@@ -1,5 +1,5 @@
 import { Register } from '../exports.js';
-import User from '../models/user.model.js';
+import User from '../models/network.model.js';
 
 
 const connection = async (req, res) => {
