@@ -16,7 +16,7 @@ router.post('/postnetwork', postNetwork)
 router.get('/getnetwork', authMiddleware, getNetwork)
 router.post('/posttalent', postTalent)
 router.get('/gettalent', getTalent)
-router.patch('/connect', connect)
+router.patch('/connect/:id/:title', connect)
 
 router.get('/')
 

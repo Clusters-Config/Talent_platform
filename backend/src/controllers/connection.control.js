@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 
 const connect = async (req, res) => {
     try {
-        const { id ,title } = req.query;
+        const { id ,title } = req.params;
 
         console.log({ id, title }); 
         const networkData = await Experience.find({ title });
@@ -11,7 +11,7 @@ const connect = async (req, res) => {
 
         const updatedUser = await Register.findOneAndUpdate(
             { _id: ObjectId.createFromHexString(id) },
-            { $set: { connection: networkData } },
+            { $addToSet: { connection: { $each: networkData } } },
             { returnOriginal: false, runValidators: true }
         );
         console.log(updatedUser);   

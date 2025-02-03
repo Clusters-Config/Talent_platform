@@ -26,6 +26,7 @@ const SignIn = async (req, res) => {
         console.log(token)
 
         res.status(200).json({
+            id:user._id,
             message:"User Signed In",
             token:token,
             username:username,

@@ -1,11 +1,22 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Userimage from "../assets/user.jpg";
+
+import axios from "axios";
 import Button from "./Button";
-
-
+async function connection(name, id) {
+    try {
+        const response = await axios.patch(`http://localhost:3001/connect/${id}/${name}`);
+        console.log(name, id);
+        console.log(response.data);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 const NetworkCard = ({ name, domain }) => {
+ 
     const [visible, setVisible] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -54,39 +65,6 @@ const NetworkCard = ({ name, domain }) => {
                         <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                     </svg>
                 </button>
-                {/* <!-- Dropdown menu --> */}
-                <div
-                    id="dropdown"
-                    className={` ${visible ? "block" : "hidden"
-                        } z-10 text-base absolute list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700`}
-                >
-                    <ul className="py-2" aria-labelledby="dropdownButton">
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >
-                                Edit
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >
-                                Export Data
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >
-                                Delete
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div className="flex flex-col items-center pb-10 sm:pb-0">
                 <img
@@ -101,11 +79,11 @@ const NetworkCard = ({ name, domain }) => {
                     {domain}
                 </span>
                 <div className="flex mt-4 md:mt-6">
-                    <Button
-                      title="Add friend"
-                      onClick = {() => console.log('Add friend')}
-                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    />
+                <Button
+                  title="Add friend"
+                  onClick={() => connection(name,localStorage.getItem('id'))}
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                />
                     <Button
                        title="Message"
                         className="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"

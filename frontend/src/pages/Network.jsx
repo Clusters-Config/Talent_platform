@@ -7,25 +7,7 @@ const Network = () => {
   const data = useNet();
 
 
-async function connection (objectId) { 
-  try{
-    const response = axios.patch('http://localhost:5000/api/v1/connections', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        params:{ 
-            id: objectId,
-            title: data.title
-        },
-    }
-    )
-    console.log(response)
-  }
-  catch (error) {
-    console.error(error);
-  }
-}
+
   return (
     <>
     
