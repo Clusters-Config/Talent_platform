@@ -132,7 +132,7 @@ const FindTalent = () => {
 
   return (
     <div className="container my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row">
-      <aside className="w-max lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
+      <aside className="w-max sm:w-[200px] lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
         <h2 className="text-lg font-semibold mb-4 text-gray-800">Filters</h2>
         <div className="mb-4">
           <h3 className="text-md font-medium mb-2 text-gray-700">Experience</h3>
@@ -158,9 +158,9 @@ const FindTalent = () => {
         </div>
       </aside>
 
-      <main className="w-full lg:w-fit ml-[25%]">
-        <div className="bg-white p-6 rounded-lg shadow-md mb-8 fixed w-[calc(75%-8rem)] z-10">
-          <div className="">
+      <main className="w-full lg:w-fit ml-[25%] sm:mx-3">
+        <div className="bg-white p-6 sm:ml-2 sm:p-1 rounded-lg shadow-md sm:w-[calc(80%-3rem)] fixed w-[calc(75%-8rem)] z-10">
+          <div className=" flex sm:flex-col items-center">
             <div className="relative w-[75%] ">
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
@@ -168,7 +168,7 @@ const FindTalent = () => {
                 placeholder="Search by name, title or skills..."
                 value={searchTerm}
                 onChange={handleSearch}
-                className="w-full pl-10 pr-4 py-2  rounded focus:outline-none focus:ring-2 " />
+                className="w-full pl-10 pr-4 py-2 rounded focus:outline-none focus:ring-2 " />
               {searchTerm && (
                 <button
                   onClick={() => {
