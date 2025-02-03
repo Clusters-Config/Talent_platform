@@ -4,7 +4,11 @@ import { useState ,useEffect } from 'react';
 
 const fetchData = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/getjob');
+      const result = await axios.get('http://localhost:3001/getjob',{
+        headers:{ 
+          'Authorization':`Bearer ${localStorage.getItem('token')}`
+        }
+      });
       const jobData = result.data.msg; 
       return jobData;
     } catch (error) {

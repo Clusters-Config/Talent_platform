@@ -49,10 +49,10 @@ const Navbar =  () =>{
                             <HomeIcon className="mr-2" />
                             Home
                         </Link>
-                        <Link to="/login" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
+                        {!localStorage.getItem('token') && <Link to="/login" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <LoginIcon className="mr-2" />
                             Login
-                        </Link>
+                        </Link>}
                         <Link to="/findtalent" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <WorkIcon className="mr-2" />
                             Find Talent
@@ -76,7 +76,7 @@ const Navbar =  () =>{
 
                 <div className="lg:flex hidden lg:flex-row lg:justify-end lg:items-center">
                     <Link to="/" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Home</Link>
-                    <Link to="/login" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Login</Link>
+                   {!localStorage.getItem('token') && <Link to="/login" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Login</Link>}
                     <Link to="/findtalent" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Find Talent</Link>
                     <Link to="/jobs" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Jobs</Link>
                     <Link to="/network" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Network</Link>

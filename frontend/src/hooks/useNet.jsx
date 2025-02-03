@@ -3,7 +3,11 @@ import { useState ,useEffect } from 'react';
 
 const fetchNetwork = async () => { 
     try { 
-        const result =await axios.get('http://localhost:3001/getnetwork');
+        const result =await axios.get('http://localhost:3001/getnetwork',{ 
+            headers: { 
+                'Authorization':`Bearer ${localStorage.getItem('token')}`
+            }
+        });
         const networkData = result.data.msg; 
         return networkData;
 

@@ -43,6 +43,7 @@ async function fetchTalent () {
   const response = await axios.get("http://localhost:3001/gettalent")
   const talentData = response.data.msg;
   console.log(talentData);
+  return talentData;
   }
   catch(error){
     console.error(error);
@@ -56,7 +57,7 @@ const FindTalent = () => {
   const [experienceFilters, setExperienceFilters] = useState([]);
   const [availabilityFilters, setAvailabilityFilters] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const [filteredCandidates, setFilteredCandidates] = useState(candidates);
+  const [filteredCandidates, setFilteredCandidates] = useState(data);
 
   useEffect(() => {
     filterCandidates();
