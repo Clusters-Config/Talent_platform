@@ -7,7 +7,7 @@ const SignIn = async (req, res) => {
     try{ 
         const {username,password} = req.body;
         console.log({username,password})
-        const user = await Register.findOne({ username: username });
+        const user = await Register.findOne({ username: username,password:password });
         const parseUser = Loginlist.safeParse(user);
         
          console.log(parseUser)
@@ -18,6 +18,13 @@ const SignIn = async (req, res) => {
             navigate:false
         });
         return;
+        }
+        else if(!parsepword.success){
+            res.json({
+                message:"Password is incorrect",
+                navigate:false
+                });
+                return;
         }
 
         const token = jwt.sign({username},process.env.JWT_SECRET);

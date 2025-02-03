@@ -36,7 +36,9 @@ const Navbar =  () =>{
         <nav className="fixed top-0 left-0 right-0 bg-white shadow-md aleo-regular z-50 select-none">
             <div className="container mx-auto px-6 py-3 flex justify-between items-center">
                 <Link to="/" className="text-4xl text-black font-semibold hover:text-indigo-600">TALENTMATCH</Link>
-                <span className="lg:hidden" onClick={handleShowMenu}><MenuRoundedIcon/></span>
+                <span className="lg:hidden" onClick={handleShowMenu}>
+                    <MenuRoundedIcon className="sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />
+                </span>
 
                 <div ref={MenuRef} className={`lg:hidden fixed top-0 right-0 bg-white shadow-md p-4 w-64 z-10 transition-all duration-300 ${showMenu ? 'translate-x-0' : 'translate-x-full'}`}>
                     <button className="absolute top-4 right-4" onClick={handleShowMenu}>
@@ -47,10 +49,10 @@ const Navbar =  () =>{
                             <HomeIcon className="mr-2" />
                             Home
                         </Link>
-                        <Link to="/login" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
+                        {!localStorage.getItem('token') && <Link to="/login" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <LoginIcon className="mr-2" />
                             Login
-                        </Link>
+                        </Link>}
                         <Link to="/findtalent" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <WorkIcon className="mr-2" />
                             Find Talent
@@ -74,7 +76,7 @@ const Navbar =  () =>{
 
                 <div className="lg:flex hidden lg:flex-row lg:justify-end lg:items-center">
                     <Link to="/" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Home</Link>
-                    <Link to="/login" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Login</Link>
+                   {!localStorage.getItem('token') && <Link to="/login" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Login</Link>}
                     <Link to="/findtalent" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Find Talent</Link>
                     <Link to="/jobs" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Jobs</Link>
                     <Link to="/network" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Network</Link>

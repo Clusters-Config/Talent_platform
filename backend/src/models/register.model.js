@@ -19,7 +19,6 @@ const RegisterSchema = new mongo({
         max:8,
         required:true,
     },
-    
 },{timestamps:true})
 
 

@@ -1,10 +1,10 @@
-import React, { Suspense, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
-import { DarkThemeToggle, Flowbite } from "flowbite-react";
+import React, { Suspense } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
+import { DarkThemeToggle } from "flowbite-react";
 
 const Login = React.lazy(() => import('./pages/Login'));
 const Register = React.lazy(() => import('./pages/Register'));
@@ -20,11 +20,10 @@ const App = () => {
 
   return (
     <> 
-    <Flowbite>
+    
         <div>
-          {/* Navbar Component */}
-          {location.pathname !== '/profile' && location.pathname !=="/login" && location.pathname !=="/register" && <Navbar/>}
-
+          {location.pathname !== '/profile' && location.pathname !== "/login" && location.pathname !== "/register" && <Navbar />}
+         
 
           <Layout>
             {/* Routing between pages */}
@@ -39,10 +38,15 @@ const App = () => {
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
-            <DarkThemeToggle className='relative ml-[198vh] mt-24 z-30'/>
+            
           </Layout>
+          <div className="fixed top-[40rem] right-10 sm:right-4 z-50">
+            <DarkThemeToggle 
+              style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)' }}
+            />
+          </div>
         </div>
-      </Flowbite>
+      
     </>
   )
 }

@@ -3,9 +3,6 @@ import Jobskeleton from '../components/Jobskeleton';
 import useJob from '../hooks/useJob';
 import SideBar from '../components/Sidebar';
 
-
-
-
 const Jobs = () => {
   const data  = useJob();
   const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -1,126 +1,89 @@
-import React from 'react';
-import styled from 'styled-components';
+import { motion, useAnimationFrame } from "framer-motion";
+import { useState, useEffect } from "react";
 
-const Formback = ({ children }) => {
-  return (
-    <StyledWrapper>
-      {children}
-    </StyledWrapper>
-  );
+const generateDots = (count, width, height) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: Math.random() * 10 + 4,
+    speed: Math.random() * 0.8 + 0.2,
+    blur: Math.random() * 2 + 0.5,
+    followMouse: Math.random() < 0.1, 
+    distance: Math.random() * 80 + 20,
+    angle: Math.random() * Math.PI * 2, 
+  }));
 };
 
-const StyledWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    #0000 0,
-    #0000 2px,
-    hsl(0 0 4%) 2px
-  );
-  background-size: 8px 8px;
-  animation: hi 150s linear infinite;
+export default function AnimatedBackground() {
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  const [mousePosition, setMousePosition] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
 
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    backdrop-filter: blur(1em) brightness(6);
-    background-image: radial-gradient(
-      circle at 50% 50%,
-      #0000 0,
-      #0000 2px,
-      hsl(0 0 4%) 2px
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+    };
+    const handleMouseMove = (event) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  const [dots, setDots] = useState(() => generateDots(40, dimensions.width, dimensions.height));
+
+  useAnimationFrame(() => {
+    setDots((prevDots) =>
+      prevDots.map((dot) => {
+        if (dot.followMouse) {
+          // Calculate the target position of the dot in a circular area around the mouse
+          const targetX = mousePosition.x + Math.cos(dot.angle) * dot.distance;
+          const targetY = mousePosition.y + Math.sin(dot.angle) * dot.distance;
+
+          // Gradually move the dot towards the target position for smooth transitions
+          const lerpFactor = 0.1; // Smoothness factor, adjust for smoother/slower movement
+          const newX = dot.x + (targetX - dot.x) * lerpFactor;
+          const newY = dot.y + (targetY - dot.y) * lerpFactor;
+
+          // Update the angle for random movement around the mouse
+          dot.angle += Math.random() * 0.05 - 0.027; // Small random change in angle
+
+          return {
+            ...dot,
+            x: newX,
+            y: newY,
+          };
+        }
+        // Move other dots naturally
+        return { ...dot, y: (dot.y + dot.speed) % dimensions.height };
+      })
     );
-    background-size: 8px 8px;
-  }
+  });
 
-  @keyframes hi {
-    0% {
-      background-position:
-        0px 220px,
-        3px 220px,
-        151.5px 337.5px,
-        25px 24px,
-        28px 24px,
-        176.5px 150px,
-        50px 16px,
-        53px 16px,
-        201.5px 91px,
-        75px 224px,
-        78px 224px,
-        226.5px 350.5px,
-        100px 19px,
-        103px 19px,
-        251.5px 121px,
-        125px 120px,
-        128px 120px,
-        276.5px 187px,
-        150px 31px,
-        153px 31px,
-        301.5px 120.5px,
-        175px 235px,
-        178px 235px,
-        326.5px 384.5px,
-        200px 121px,
-        203px 121px,
-        351.5px 228.5px,
-        225px 224px,
-        228px 224px,
-        376.5px 364.5px,
-        250px 26px,
-        253px 26px,
-        401.5px 105px,
-        275px 75px,
-        278px 75px,
-        426.5px 180px;
-    }
-
-    to {
-      background-position:
-        0px 6800px,
-        3px 6800px,
-        151.5px 6917.5px,
-        25px 13632px,
-        28px 13632px,
-        176.5px 13758px,
-        50px 5416px,
-        53px 5416px,
-        201.5px 5491px,
-        75px 17175px,
-        78px 17175px,
-        226.5px 17301.5px,
-        100px 5119px,
-        103px 5119px,
-        251.5px 5221px,
-        125px 8428px,
-        128px 8428px,
-        276.5px 8495px,
-        150px 9876px,
-        153px 9876px,
-        301.5px 9965.5px,
-        175px 13391px,
-        178px 13391px,
-        326.5px 13540.5px,
-        200px 14741px,
-        203px 14741px,
-        351.5px 14848.5px,
-        225px 18770px,
-        228px 18770px,
-        376.5px 18910.5px,
-        250px 5082px,
-        253px 5082px,
-        401.5px 5161px,
-        275px 6375px,
-        278px 6375px,
-        426.5px 6480px;
-    }
-  }
-`;
-
-export default Formback;
+  return (
+    <div className="absolute inset-0 -z-10 w-full h-full overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <div className="absolute w-full h-full backdrop-blur-lg bg-white/20 dark:bg-gray-900/30" />
+      {dots.map((dot) => (
+        <motion.div
+          key={dot.id}
+          className="absolute rounded-full bg-blue-300 dark:bg-blue-500 opacity-70 dark:opacity-60"
+          style={{
+            width: dot.size,
+            height: dot.size,
+            top: dot.y,
+            left: dot.x,
+            filter: `blur(${dot.blur}px)`,
+            boxShadow: `0 0 ${dot.blur * 2}px rgba(0, 0, 255, 0.3)`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
