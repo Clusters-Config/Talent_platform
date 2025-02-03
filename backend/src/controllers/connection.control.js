@@ -1,20 +1,15 @@
-import { Register } from '../exports.js';
-import User from '../models/network.model.js';
+import { Profile , Network } from '../exports.js';
+
 
 
 const connection = async (req, res) => {
     try {
-        const { networkData } = req.body; 
-        const conn = Register;
-        const newConn = new conn({ ...networkData });
-
-        // Save connection to database
-        await newConn.save();
-
-        // Update user model with connection data
-        await User.updateOne(
-            { _id: req.user._id },
-            { $push: { connections: newConn._id, networkData: networkData } }
+        const networkData = await Network.find();
+        console.log(networkData);
+        
+        const newConn = await Profile.updateOne(
+            { _id: req.body.profileId },
+            { $set: { network: networkData } }
         );
 
         res.status(200).json({
