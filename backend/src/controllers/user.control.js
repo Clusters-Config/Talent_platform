@@ -19,13 +19,6 @@ const SignIn = async (req, res) => {
         });
         return;
         }
-        else if(!parsepword.success){
-            res.json({
-                message:"Password is incorrect",
-                navigate:false
-                });
-                return;
-        }
 
         const token = jwt.sign({username},process.env.JWT_SECRET);
         console.log(token)

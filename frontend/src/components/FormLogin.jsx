@@ -11,6 +11,7 @@ const FormLogin = ({children}) => {
     const navigate = useNavigate();
     const notify = () => toast("Login failed");
     const notify2 = () => toast("User does not exist");
+    const notify3 =()=> toast("Username or Password is incorrect")
 
     async function loginUser(event) {
 		event.preventDefault();
@@ -24,23 +25,27 @@ const FormLogin = ({children}) => {
         })
         .then((response) => {
             console.log(response.data);
-            if (username === '' || password === '') {
-                alert("Please enter your username and password");
-            } 
-            if(response.data.granted){
-                localStorage.setItem("token", `Bearer ${response.data.token}`);
-                localStorage.setItem("username", response.data.username);
-                navigate("/");
-            }
-            else{
-                notify2();
+            if (username !== '' || password !== '') {
+                if (response.data.granted) {
+                    localStorage.setItem("token", `Bearer ${response.data.token}`);
+                    localStorage.setItem("username", response.data.username);
+                    navigate("/");
+                }
+                else if (response.data.username != username || response.data.password != password) {
+                    notify3();
+                }
+                else {
+                    notify2();
+                }
+            } else {
+                toast("Please enter your username and password");
             }
         })
-        .catch((error) => {
-           notify();
-        });
-        
-	}
+            .catch((error) => {
+                notify();
+            });
+
+    }
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen z-40">
