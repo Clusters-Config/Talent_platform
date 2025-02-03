@@ -5,7 +5,7 @@ const Jobskeleton= ({ content,position,organisation}) => {
 
   return(
     <div>
-      <div role="status" className="p-4 mx-[17rem] my-[0.7rem] border border-gray-200 rounded shadow md:p-6 dark:border-gray-700">
+      <div role="status" className="p-4 mx-[17rem] sm:mx-[1rem] my-[0.7rem] border border-gray-200 rounded shadow md:p-6 dark:border-gray-700">
           <div className="flex font-bold w-auto flex-col">
                 <div className="h-auto aleo-semibold text-2xl p-2 w-60 text-start ">
                   {position}
