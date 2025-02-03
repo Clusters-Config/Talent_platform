@@ -9,11 +9,10 @@ const router = Router();
 router.post('/login',SignIn)
 router.post('/signup',SignUp)
 router.post('/logout',SignOut)
-router.get('/network')
-router.get('/getjob',JobsGet)
+router.get('/getjob',authMiddleware,JobsGet)
 router.post('/postjob',JobsPost);
 router.post('/postnetwork',postNetwork)
-router.get('/getnetwork',getNetwork)
+router.get('/getnetwork',authMiddleware,getNetwork)
 router.post('/posttalent',postTalent)
 router.get('/gettalent',getTalent)
 //router.update('/account/details/:username')

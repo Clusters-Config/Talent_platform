@@ -19,6 +19,10 @@ const RegisterSchema = new mongo({
         max:8,
         required:true,
     },
+    connection:{ 
+        type:Array,
+        default:[]
+    }
     
 },{timestamps:true})
 
