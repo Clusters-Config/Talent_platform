@@ -19,6 +19,10 @@ const RegisterSchema = new mongo({
         max:8,
         required:true,
     },
+    connection:{ 
+        type:[mongo.Types.ObjectId.Mixed],
+        ref:'Experience',
+    }
 },{timestamps:true})
 
 
