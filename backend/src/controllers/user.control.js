@@ -7,7 +7,7 @@ const SignIn = async (req, res) => {
     try{ 
         const {username,password} = req.body;
         console.log({username,password})
-        const user = await Register.findOne({ username: username });
+        const user = await Register.findOne({ username: username,password:password });
         const parseUser = Loginlist.safeParse(user);
         
          console.log(parseUser)
