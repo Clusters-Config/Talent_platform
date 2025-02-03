@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
+import axios from 'axios';
 
 const candidates = [
   {
@@ -37,7 +38,20 @@ const candidates = [
   },
 ];
 
+async function fetchTalent () { 
+  try{
+  const response = await axios.get("http://localhost:3001/gettalent")
+  const talentData = response.data.msg;
+  console.log(talentData);
+  }
+  catch(error){
+    console.error(error);
+  }
+
+}
+
 const FindTalent = () => {
+  const [data,setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [experienceFilters, setExperienceFilters] = useState([]);
   const [availabilityFilters, setAvailabilityFilters] = useState([]);
@@ -50,6 +64,7 @@ const FindTalent = () => {
 
   useEffect(() => {
     filterCandidates();
+    fetchTalent()
   }, []);
 
   const handleFilterSelect = (filterType, filterValue) => {
