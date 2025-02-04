@@ -27,6 +27,7 @@ const FormLogin = ({children}) => {
             console.log(response.data);
             if (username !== '' || password !== '') {
                 if (response.data.granted) {
+                    localStorage.setItem("id", response.data.id);   
                     localStorage.setItem("token", `Bearer ${response.data.token}`);
                     localStorage.setItem("username", response.data.username);
                     navigate("/");

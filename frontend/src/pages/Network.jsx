@@ -6,6 +6,8 @@ import NetworkCard from '../components/NetworkCard'
 const Network = () => {
   const data = useNet();
 
+
+
   return (
     <>
     
