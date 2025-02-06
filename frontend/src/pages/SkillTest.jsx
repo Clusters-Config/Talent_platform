@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 
 const staticQuestions = [
   {
@@ -33,6 +33,7 @@ const SkillTest = () => {
   const [progress, setProgress] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60);
   const [showResult, setShowResult] = useState(false);
+  const navigate =useNavigate()
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -46,11 +47,14 @@ const SkillTest = () => {
     };
     fetchQuestions();
 
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
   }, []);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : navigate("/")));
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, [timeLeft,navigate],1000);
 
   const handleNext = () => {
     if (selectedOption === questions[currentQuestion].answer) {
