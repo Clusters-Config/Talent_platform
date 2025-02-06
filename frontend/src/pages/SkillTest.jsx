@@ -31,9 +31,10 @@ const SkillTest = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(15);
   const [showResult, setShowResult] = useState(false);
-  const navigate =useNavigate()
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -46,15 +47,22 @@ const SkillTest = () => {
       }
     };
     fetchQuestions();
-
   }, []);
+
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : navigate("/")));
+      if (timeLeft > 0) {
+        setTimeLeft((prevTime) => prevTime - 1);
+      } else {
+        setShowPopup(true);
+        setTimeout(() => {
+          navigate("/");
+        }, 5000);
+      }
     }, 1000);
-    
+
     return () => clearInterval(timer);
-  }, [timeLeft,navigate],1000);
+  }, [timeLeft, navigate]);
 
   const handleNext = () => {
     if (selectedOption === questions[currentQuestion].answer) {
@@ -72,6 +80,17 @@ const SkillTest = () => {
   if (showResult) {
     return (
       <motion.div className="flex flex-col items-center p-6 max-w-lg mx-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        {showPopup && (
+          <div
+            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+            style={{ zIndex: 1000 }}
+          >
+            <div className="bg-white rounded-lg p-6 shadow-lg w-96">
+              <h3 className="text-center text-lg font-bold text-blue-600">Test Completed!</h3>
+              <p className="text-center mt-4 text-lg">Your score will be displayed on the next page.</p>
+            </div>
+          </div>
+        )}
         <div className="w-full p-6 shadow-lg rounded-xl border border-blue-500 bg-blue-50">
           <h3 className="text-center text-xl font-bold text-blue-600">Test Completed!</h3>
           <p className="text-center mt-4 text-lg">Your Score: {score} / {questions.length}</p>
@@ -117,6 +136,17 @@ const SkillTest = () => {
           {currentQuestion === questions.length - 1 ? "Submit" : "Next"}
         </button>
       </div>
+      {showPopup && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+          style={{ zIndex: 1000 }}
+        >
+          <div className="bg-white rounded-lg p-6 shadow-lg w-96">
+            <h3 className="text-center text-lg font-bold text-blue-600">Test Completed!</h3>
+            <p className="text-center mt-4 text-lg">Your score will be displayed on the next page.</p>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 };
