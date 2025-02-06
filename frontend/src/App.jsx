@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
+
 import { DarkThemeToggle } from "flowbite-react";
 
 const Login = React.lazy(() => import('./pages/Login'));
@@ -12,6 +13,7 @@ const Findtalent = React.lazy(() => import('./pages/Findtalent'));
 const Jobs = React.lazy(() => import('./pages/Jobs'));
 const Network = React.lazy(() => import('./pages/Network'));
 const Notifications = React.lazy(() => import('./pages/Notifications'));
+const SkillTest = React.lazy(() => import('./pages/SkillTest'));
 
 
 const App = () => {
@@ -22,7 +24,8 @@ const App = () => {
     <> 
     
         <div>
-          {location.pathname !== '/profile' && location.pathname !== "/login" && location.pathname !== "/register" && <Navbar />}
+          {location.pathname !== '/profile' && location.pathname !== "/login" && location.pathname !== "/register" &&
+          location.pathname !== "/skilltest" && <Navbar />}
          
 
           <Layout>
@@ -36,6 +39,7 @@ const App = () => {
               <Route path="/network" element={<Suspense ><Network /></Suspense>} />
               <Route path="/notifications" element={<Suspense ><Notifications /></Suspense>} />
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
+              <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
             
