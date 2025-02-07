@@ -5,6 +5,7 @@ const ChatModule = () => {
     const [messages, setMessages] = useState([])
     const [inputValue, setInputValue] = useState("")
     console.log(messages)
+    
     useEffect(() =>{ 
         const msg = new WebSocket('ws://localhost:8080')
         msg.onopen = () => { 
@@ -38,11 +39,16 @@ const ChatModule = () => {
                 Send
             </button>
             <div className="mt-4">
-                {messages.map((message, index) => (
-                    <div key={index} className="p-2 bg-gray-200 rounded-md mb-2">
-                        {message}
-                    </div>
-                ))}
+                {messages.map((message, index) => {
+                    return (
+                        <div key={index} className="p-2 bg-gray-200 rounded-md mb-2">
+                            {message}
+                        </div>
+                    )
+                })}
+                    {/* <div className="p-2 bg-gray-200 rounded-md mb-2">
+                        {messages}
+            </div> */}
         </div>
     </div>
     )
