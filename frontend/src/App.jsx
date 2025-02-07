@@ -6,6 +6,7 @@ import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
 
 import { DarkThemeToggle } from "flowbite-react";
+import ChatModule from './components/ChatModule';
 
 const Login = React.lazy(() => import('./pages/Login'));
 const Register = React.lazy(() => import('./pages/Register'));
@@ -40,6 +41,7 @@ const App = () => {
               <Route path="/notifications" element={<Suspense ><Notifications /></Suspense>} />
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
+              <Route path='/chat' element={<Suspense><ChatModule/></Suspense>}></Route>
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
             
