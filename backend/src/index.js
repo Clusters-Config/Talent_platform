@@ -52,6 +52,10 @@ wss.on('connection',(ws)=>{
             }
         })
     })
+    
+    wss.on('close',()=>{
+        console.log('Connection closed')
+    })
 })
 DbConnect()
 .then(()=>{
