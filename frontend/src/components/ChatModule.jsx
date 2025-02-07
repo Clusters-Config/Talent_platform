@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 const ChatModule = () => {
     const [msg, setMsg] = useState(null)
     const [messages, setMessages] = useState([])
+    const [inputValue, setInputValue] = useState("")
+    console.log(messages)
     useEffect(() =>{ 
         const msg = new WebSocket('ws://localhost:8080')
         msg.onopen = () => { 
@@ -12,9 +14,10 @@ const ChatModule = () => {
         msg.onmessage = (event) => { 
             setMessages((prevMessages) => [...prevMessages, event.data])
         }
-        return(()=>{ 
-            msg.close()
-        })
+        msg.onclose = (err) => {   
+            console.log('Disconnected' + err)
+        }
+
 },[])
     return(
         <div className="p-4 bg-gray-100 rounded-lg shadow-md">
@@ -23,20 +26,26 @@ const ChatModule = () => {
                 <input 
                     type="text" 
                     placeholder="Enter your message" 
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    onChange={(e) => setMessages(e.target.value)}
+                    onChange={(e) => setInputValue(e.target.value)}
                 />
             </div>
             <button 
                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                 onClick={() => {
-                    console.log(messages)
+                    msg.send(inputValue)
                     msg.send(messages)
                 }}
             >
                 Send
             </button>
+            <div className="mt-4">
+                {messages.map((message, index) => (
+                    <div key={index} className="p-2 bg-gray-200 rounded-md mb-2">
+                        {message}
+                    </div>
+                ))}
         </div>
+    </div>
     )
 }
 

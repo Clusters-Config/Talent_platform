@@ -42,11 +42,11 @@ const wss  =  new WebSocketServer({
     port:8080
 })
 
-wss.on('connection',(socket)=>{
+wss.on('connection',(ws)=>{
     console.log('New Connection')
-    socket.on('message',(msg, isbinary)=>{
+    ws.on('message',(msg, isbinary)=>{
         console.log(msg)
-        ws.clients.forEach(client =>{
+        wss.clients.forEach(client =>{
             if(client.readyState === WebSocket.OPEN){
                 client.send(msg,{binary:isbinary})
             }
