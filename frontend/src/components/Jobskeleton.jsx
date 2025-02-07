@@ -10,7 +10,7 @@ const Jobskeleton= ({ content,position,organisation}) => {
                 <div className="h-auto aleo-semibold text-2xl p-2 w-60 text-start ">
                   {position}
                 </div>
-                <div className="h-auto aleo-regular mb-2.5 mx-2 text-justify">
+                <div className="h-auto aleo-regular text-ellipsis mb-2.5 mx-2 text-justify">
                   {content}
                 </div>
                 <div className="flex flex-row-reverse w-auto mx-4 mt-3">
