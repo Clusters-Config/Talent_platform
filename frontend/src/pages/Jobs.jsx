@@ -17,9 +17,12 @@ const Jobs = () => {
   return (
     <div>
       <div>
-        {data.map((post,_) => (
-          <div className='flex gap-4'>
-          <button className='mt-2 mb-2 ' key={_} onClick={() => handleJobClick(post)}>
+        {data.map((post,index) => (
+          <div className='flex gap-1 flex-wrap sm:mx-2 sm:p-2'> 
+          <button className='mt-2 mb-2 ' key={index} onClick={() => handleJobClick(post)}>
+            <Jobskeleton title={post.title} content={post.content} position={post.position} organisation={post.name} />
+          </button>
+          <button className='mt-2 mb-2 ' key={index} onClick={() => handleJobClick(post)}>
             <Jobskeleton title={post.title} content={post.content} position={post.position} organisation={post.name} />
           </button>
           </div>
