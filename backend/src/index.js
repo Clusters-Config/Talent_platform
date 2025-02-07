@@ -3,6 +3,7 @@ import  DbConnect  from '../src/db/connect.db.js'
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import WebSocket,{WebSocketServer} from 'ws';
 
 import  SignUpRoute  from './routes/user.route.js'
 import  SignInRoute  from './routes/user.route.js'
@@ -35,6 +36,23 @@ app.use('/',postTalent)
 app.use('/',getTalent)
 app.use('/',connect)
 
+
+//websocket server 
+const wss  =  new WebSocketServer({
+    port:8080
+})
+
+wss.on('connection',(socket)=>{
+    console.log('New Connection')
+    socket.on('message',(msg, isbinary)=>{
+        console.log(msg)
+        ws.clients.forEach(client =>{
+            if(client.readyState === WebSocket.OPEN){
+                client.send(msg,{binary:isbinary})
+            }
+        })
+    })
+})
 DbConnect()
 .then(()=>{
     app.listen(process.env.PORT || 3000,() =>{ 
