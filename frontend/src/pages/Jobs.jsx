@@ -1,35 +1,38 @@
+import React from 'react';
 import { useState } from 'react';
-import Jobskeleton from '../components/Jobskeleton';
+import JobsModal from '../components/JobsModal';
+import Jobskeleton from "../components/Jobskeleton"
 import useJob from '../hooks/useJob';
-import SideBar from '../components/Sidebar';
 
 const Jobs = () => {
-  const data  = useJob();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const data = useJob();
+  const [modalVisible, setModalVisible] = useState(false);
   const [selectedJob, setSelectedJob] = useState({});
-
- 
-  const toggleSidebar = (open) => () => {
-    setSidebarOpen(open);
-  };
 
   const handleJobClick = (job) => {
     setSelectedJob(job);
-    setSidebarOpen(true);
+    setModalVisible(true);
   };
 
   return (
-    <>
-      <SideBar open={sidebarOpen} toggleDrawer={toggleSidebar} jobDetails={selectedJob} />
+    <div>
       <div>
-        {data.map((post) => (
-          <button className='mt-2 mb-2' key={post.id} onClick={() => handleJobClick(post)}>
+        {data.map((post,_) => (
+          <button className='mt-2 mb-2' key={_} onClick={() => handleJobClick(post)}>
             <Jobskeleton title={post.title} content={post.content} position={post.position} organisation={post.name} />
           </button>
         ))}
       </div>
-    </>
+      {modalVisible && (
+        <JobsModal
+          modalVisible={modalVisible}
+          jobDetails={selectedJob}
+          setModalVisible={setModalVisible}
+        />
+      )}
+    </div>
   );
-}
+};
 
 export default Jobs;
+

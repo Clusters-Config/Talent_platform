@@ -18,15 +18,15 @@ const fetchData = async () => {
   };
 
 const useJob = () => {
-    const [jobdata, setData] = useState([]);
-    console.log(jobdata);
+    const [jobData, setData] = useState([]);
+    console.log(jobData);
     useEffect(() => { 
-      fetchData().then((data) => {
-        setData(data);
+      fetchData().then((jobData) => {
+        setData(jobData);
       });
     }, []);
 
-    return jobdata;
+    return jobData;
 }
 
 export default useJob;
