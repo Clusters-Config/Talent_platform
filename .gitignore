@@ -5,3 +5,5 @@ docker.log
 # Ignore MongoDB logs
 mongod.log
 mongo.log
+
+mongo/*
