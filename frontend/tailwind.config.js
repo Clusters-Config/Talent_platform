@@ -13,7 +13,8 @@ export default {
       
     },
     colors:{
-      background:'#121212'
+      background:'#121212',
+      primary:'#3F83F8'
     },
     screens: {
       'sm': { 'max': '680px' },
