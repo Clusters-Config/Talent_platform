@@ -1,0 +1,7 @@
+# Ignore Docker logs
+docker-compose*.log
+docker.log
+
+# Ignore MongoDB logs
+mongod.log
+mongo.log
