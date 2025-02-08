@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "nodemon src/index.js",
-    "come": "node index.js",
+    "come": "node src/index.js",
     "lint": "eslint"
   },
   "keywords": [],

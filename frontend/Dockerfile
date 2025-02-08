@@ -1,4 +1,4 @@
-FROM node:latest as build-stage
+FROM node:latest as build-app
 
 WORKDIR /app
 
@@ -10,12 +10,15 @@ COPY . .
 
 RUN npm run build
 
-# production stage
+
 
 FROM nginx:latest
+
 WORKDIR /usr/share/nginx/html
+
 RUN rm -rf ./*
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+COPY --from=build-app /app/dist /usr/share/nginx/html
 
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,44 @@
+version: "3"
+services:
+  frontend:
+    image: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/app
+    networks:
+      - backend-network
+    depends_on:
+      - backend
+
+  backend:
+    image: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mongodb
+    networks:
+      - backend-network
+
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_URL: mongodb://mongo:27017/talent_match
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo:/data/db
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    driver: bridge
