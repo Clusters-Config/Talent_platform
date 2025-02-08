@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaSearch, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaTimes,FaFilter } from 'react-icons/fa';
 import axios from 'axios';
 
 const candidates = [
@@ -58,6 +58,7 @@ const FindTalent = () => {
   const [availabilityFilters, setAvailabilityFilters] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [filteredCandidates, setFilteredCandidates] = useState(data);
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     filterCandidates();
@@ -67,6 +68,10 @@ const FindTalent = () => {
     filterCandidates();
     fetchTalent()
   }, []);
+
+  const toggleFilters = () => {
+    setShowFilters(prev => !prev);
+  };
 
   const handleFilterSelect = (filterType, filterValue) => {
     setSelectedFilters(prevFilters => {
@@ -133,7 +138,9 @@ const FindTalent = () => {
 
   return (
     <div className="container my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row">
-      <aside className="w-max sm:w-[200px] lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
+
+      {/* Aside Large Screen */}
+      <aside className="w-max sm:w-[200px] sm:hidden lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
         <h2 className="text-lg font-semibold mb-4 text-gray-800">Filters</h2>
         <div className="mb-4">
           <h3 className="text-md font-medium mb-2 text-gray-700">Experience</h3>
@@ -158,11 +165,12 @@ const FindTalent = () => {
           </div>
         </div>
       </aside>
-
+      
+      {/* Main Content */}
       <main className="w-full lg:w-fit ml-[25%] sm:mx-3">
         <div className="bg-white p-6 sm:ml-2 sm:p-1 rounded-lg shadow-md sm:w-[calc(80%-3rem)] fixed w-[calc(75%-8rem)] z-10">
           <div className=" flex sm:flex-col items-center">
-            <div className="relative w-[75%] ">
+            <div className="relative w-[80%] sm:flex sm:justify-around">
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
@@ -178,10 +186,44 @@ const FindTalent = () => {
                   }}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
-                  <FaTimes className='top-1/2'/>
+                  <FaTimes className='top-1/2' />
                 </button>
               )}
+              <button className='text-gray-400 lg:hidden ml-5' onClick={toggleFilters}><FaFilter/></button>
             </div>
+
+            {/* Aside for Small screens */}
+            {showFilters &&
+              <aside className="w-max sm:w-[200px] lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
+                <div className='flex justify-between'>
+                  <h2 className="text-lg font-semibold mb-4 text-gray-800">Filters</h2>
+                  <span onClick={() => setShowFilters(false)}><FaTimes /></span>
+                </div>
+                <div className="mb-4">
+                  <h3 className="text-md font-medium mb-2 text-gray-700">Experience</h3>
+                  <div>
+                    {['Entry', 'Mid', 'Senior'].map(exp => (
+                      <label key={exp} className="inline-flex items-center mr-4 mb-2">
+                        <input type="checkbox" value={exp} checked={experienceFilters.includes(exp)} onChange={() => handleExperienceChange(exp)} className="form-checkbox h-5 w-5 text-white-600 rounded-full" />
+                        <span className="ml-2 text-gray-700">{exp} Level</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-md font-medium mb-2 text-gray-700">Availability</h3>
+                  <div>
+                    {['Full-time', 'Part-time', 'Contract'].map(avail => (
+                      <label key={avail} className="inline-flex items-center mr-4 mb-2">
+                        <input type="checkbox" value={avail} checked={availabilityFilters.includes(avail)} onChange={() => handleAvailabilityChange(avail)} className="form-checkbox h-5 w-5 text-white-600 rounded-full" />
+                        <span className="ml-2 text-gray-700">{avail}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </aside>}
+
+            {/* Selected filters shown below the search bar */}
             <div className="flex flex-wrap gap-2 mt-5">
               {selectedFilters.map(filter => (
                 <div key={`${filter.type}-${filter.value}`} className="bg-blue-100 text-blue-800 rounded-full px-3 py-1 text-sm font-medium flex items-center">
@@ -192,10 +234,11 @@ const FindTalent = () => {
                 </div>
               ))}
             </div>
-          </div>  
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-[15%] pt-calc(6rem+1.5rem)] pr-20">
+        {/* Candidate Card */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-[15%] sm:mt-[25%] pt-calc(6rem+1.5rem)] pr-20">
           {filteredCandidates.map((candidate) => (
             <div key={candidate.id} className="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col">
               <div className="p-6 flex flex-col h-full">

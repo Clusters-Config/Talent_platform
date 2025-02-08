@@ -65,6 +65,9 @@ const Navbar =  () =>{
                             <PeopleIcon className="mr-2" />
                             Network
                         </Link>
+                        <Link to='/chat' className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">    
+                            Chat
+                        </Link>
                         <Link to="/Notifications" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <NotificationsIcon className="mr-2" />
                             Notifications
@@ -80,6 +83,7 @@ const Navbar =  () =>{
                     <Link to="/findtalent" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Find Talent</Link>
                     <Link to="/jobs" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Jobs</Link>
                     <Link to="/network" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Network</Link>
+                    <Link to='/chat' className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Chat</Link>
                     <Link to="/Notifications" className="text-gray-700 hover:text-indigo-600 block py-2 lg:mr-4">Notifications</Link>
                     <div className="lg:flex lg:flex-row lg:justify-end lg:items-center">
                         <Dropdown/>
