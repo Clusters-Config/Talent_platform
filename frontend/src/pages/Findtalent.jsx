@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FaSearch, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaTimes,FaFilter } from 'react-icons/fa';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 
 const candidates = [
@@ -58,6 +60,7 @@ const FindTalent = () => {
   const [availabilityFilters, setAvailabilityFilters] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [filteredCandidates, setFilteredCandidates] = useState(data);
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     filterCandidates();
@@ -67,6 +70,10 @@ const FindTalent = () => {
     filterCandidates();
     fetchTalent()
   }, []);
+
+  const toggleFilters = () => {
+    setShowFilters(prev => !prev);
+  };
 
   const handleFilterSelect = (filterType, filterValue) => {
     setSelectedFilters(prevFilters => {
@@ -86,6 +93,13 @@ const FindTalent = () => {
     } else if (filterToRemove.type === 'availability') {
       setAvailabilityFilters(prev => prev.filter(val => val !== filterToRemove.value));
     }
+    filterCandidates();
+  };
+
+  const handleRemoveAllFilters = () => {
+    setSelectedFilters([]);
+    setExperienceFilters([]);
+    setAvailabilityFilters([]);
     filterCandidates();
   };
 
@@ -129,11 +143,14 @@ const FindTalent = () => {
     }
     handleFilterSelect('availability', value);
   };
+  
 
 
   return (
     <div className="container my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row">
-      <aside className="w-max sm:w-[200px] lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
+
+      {/* Aside Large Screen */}
+      <aside className="w-max sm:w-[200px] sm:hidden lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
         <h2 className="text-lg font-semibold mb-4 text-gray-800">Filters</h2>
         <div className="mb-4">
           <h3 className="text-md font-medium mb-2 text-gray-700">Experience</h3>
@@ -158,30 +175,41 @@ const FindTalent = () => {
           </div>
         </div>
       </aside>
-
+      
+      {/* Main Content */}
       <main className="w-full lg:w-fit ml-[25%] sm:mx-3">
-        <div className="bg-white p-6 sm:ml-2 sm:p-1 rounded-lg shadow-md sm:w-[calc(80%-3rem)] fixed w-[calc(75%-8rem)] z-10">
-          <div className=" flex sm:flex-col items-center">
-            <div className="relative w-[75%] ">
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search by name, title or skills..."
-                value={searchTerm}
-                onChange={handleSearch}
-                className="w-full pl-10 pr-4 py-2 rounded focus:outline-none focus:ring-2 " />
-              {searchTerm && (
-                <button
-                  onClick={() => {
-                    setSearchTerm('');
-                    filterCandidates();
-                  }}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  <FaTimes className='top-1/2'/>
-                </button>
-              )}
+        <div className="bg-white p-6 sm:ml-2 sm:p-1 rounded-lg shadow-lg sm:w-[calc(90%-3rem)] fixed w-[calc(75%-8rem)] z-10">
+          <div className=" flex sm:flex-col justify-center place-items-center ">
+            <div className="relative w-[80%] sm:w-[95%] sm:flex  sm:items-center sm:gap-3">
+              <div>
+                <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by name, title or skills..."
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  className="w-full pl-10 pr-4 py-2 rounded focus:outline-none focus:ring-2 " />
+              </div>
+              
+                {searchTerm && (
+                  <button
+                    onClick={() => {
+                      setSearchTerm('');
+                      filterCandidates();
+                    }}
+                    className="absolute right-3 sm:right-11 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    <CloseIcon className='top-1/2 left-5' />
+                  </button>
+                )}
+             
+              <div className='lg:hidden'>
+                <button className='text-gray-400' onClick={toggleFilters}><FilterListIcon /></button>
+              </div>
             </div>
+           
+
+            {/* Selected filters shown below the search bar */}
             <div className="flex flex-wrap gap-2 mt-5">
               {selectedFilters.map(filter => (
                 <div key={`${filter.type}-${filter.value}`} className="bg-blue-100 text-blue-800 rounded-full px-3 py-1 text-sm font-medium flex items-center">
@@ -192,24 +220,55 @@ const FindTalent = () => {
                 </div>
               ))}
             </div>
-          </div>  
+          </div>
+              {/* Aside for Small screens */}
+              {showFilters &&
+                <aside className="w-fit lg:w-1/6 lg:hidden bg-white p-6 rounded-lg mb-6 lg:mb-0 lg:mr-6 lg:h-[calc(100vh-5rem)] overflow-y-auto">
+                  <div className='flex justify-between items-center mb-4'>
+                    <h2 className="text-lg font-semibold  text-gray-800">Filters</h2>
+                    <div className='hover:bg-blue-200 rounded-3xl' onClick={handleRemoveAllFilters}> Clear Filters<CloseIcon /></div>
+                  </div>
+                  <div className="mb-4">
+                    <h3 className="text-md font-medium mb-2 text-gray-700">Experience</h3>
+                    <div>
+                      {['Entry', 'Mid', 'Senior'].map(exp => (
+                        <label key={exp} className="inline-flex items-center mr-4 mb-2">
+                          <input type="checkbox" value={exp} checked={experienceFilters.includes(exp)} onChange={() => handleExperienceChange(exp)} className="form-checkbox h-5 w-5 text-white-600 rounded-full" />
+                          <span className="ml-2 text-gray-700">{exp} Level</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-md font-medium mb-2 text-gray-700">Availability</h3>
+                    <div>
+                      {['Full-time', 'Part-time', 'Contract'].map(avail => (
+                        <label key={avail} className="inline-flex items-center mr-4 mb-2">
+                          <input type="checkbox" value={avail} checked={availabilityFilters.includes(avail)} onChange={() => handleAvailabilityChange(avail)} className="form-checkbox h-5 w-5 text-white-600 rounded-full" />
+                          <span className="ml-2 text-gray-700">{avail}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </aside>}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-[15%] pt-calc(6rem+1.5rem)] pr-20">
+        {/* Candidate Card */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[15%] sm:mt-[25%] pt-calc(6rem+1.5rem)] sm:pr-4 lg:pr-20 ">
           {filteredCandidates.map((candidate) => (
-            <div key={candidate.id} className="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col">
-              <div className="p-6 flex flex-col h-full">
+            <div key={candidate.id} className="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-xl transition duration-300 flex flex-col">
+              <div className="p-6 sm:p-2 flex flex-col h-full sm:h-fit">
                 <div className="flex items-center mb-4">
-                  <img src={candidate.imageUrl} alt={candidate.name} className="w-12 h-12 rounded-full mr-4 object-cover" />
+                  <img src={candidate.imageUrl} alt={candidate.name} className="w-12 h-12 sm:w-8 sm:h-8 rounded-full mr-4 object-cover" />
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-800">{candidate.name}</h2>
-                    <h3 className="text-gray-600 text-sm">{candidate.headline}</h3>
+                    <h2 className="text-xl font-semibold sm:text-[18px] text-gray-800">{candidate.name}</h2>
+                    <h3 className="text-gray-600 sm:text-[14px] text-sm">{candidate.headline}</h3>
                   </div>
                 </div>
 
-                <div className="mb-4 flex flex-wrap gap-2">
+                <div className="mb-4 flex flex-wrap gap-2 sm:hidden">
                   {candidate.skills.map((skill) => (
-                    <span key={skill} className="inline-block bg-blue-100 text-blue-800 rounded-full px-3 py-1 text-sm font-medium mr-2 mb-1">
+                    <span key={skill} className="inline-block bg-blue-100 text-blue-800 rounded-full px-3 py-1 text-sm sm:text-[10px] font-medium mr-2 mb-1">
                       {skill}
                     </span>
                   ))}
@@ -218,12 +277,12 @@ const FindTalent = () => {
                 <div className="flex-grow mb-4">
                   <p className="text-gray-700 mb-1 text-sm">Experience: <span className="font-medium">{candidate.experience}</span></p>
                   <p className="text-gray-700 mb-1 text-sm">Availability: <span className="font-medium">{candidate.availability}</span></p>
-                  <p className="text-gray-700 text-sm">{candidate.summary}</p>
+                  <p className="text-gray-700 text-sm sm:line-clamp-3">{candidate.summary}</p>
                 </div>
               </div>
 
-              <div className="bg-gray-50 p-4 border-t border-gray-200 mt-auto">
-                <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
+              <div className="bg-gray-50 p-4 sm:p-6 border-t border-gray-200 mt-auto">
+                <button className="w-full  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
                   View Profile
                 </button>
               </div>
