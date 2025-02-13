@@ -21,7 +21,16 @@ dotenv.config({
 })
 
 const app = express();
-app.use(cors())
+app.use(()=>{ 
+    if(process.env.NODE_ENV === 'development'){
+        app.use(cors({
+            origin:process.env.CLIENT_URL
+        }))
+    }
+    else{ 
+        app.use(cors())
+    }
+})
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
