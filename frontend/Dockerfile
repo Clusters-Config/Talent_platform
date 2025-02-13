@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+ARG NODE_ENV=production
+
 RUN npm run build
 
 
