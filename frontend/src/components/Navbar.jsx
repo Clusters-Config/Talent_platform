@@ -8,7 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import WorkIcon from '@mui/icons-material/Work';
 import PeopleIcon from '@mui/icons-material/People';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 const Navbar =  () =>{ 
     const [showMenu, setShowMenu] = useState(false);
     const MenuRef =useRef(null);

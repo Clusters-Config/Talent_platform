@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
-
+import Analytics from "./pages/Analytics";
 import { DarkThemeToggle } from "flowbite-react";
 import ChatModule from './components/ChatModule';
 
@@ -15,6 +15,7 @@ const Jobs = React.lazy(() => import('./pages/Jobs'));
 const Network = React.lazy(() => import('./pages/Network'));
 const Notifications = React.lazy(() => import('./pages/Notifications'));
 const SkillTest = React.lazy(() => import('./pages/SkillTest'));
+
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/login" element={<Suspense><Login /></Suspense>} />
+              
               <Route path="/register" element={<Suspense><Register/></Suspense>}/>
               <Route path="/findtalent" element={<Suspense ><Findtalent /></Suspense>} />
               <Route path="/jobs" element={<Suspense ><Jobs /></Suspense>} />
