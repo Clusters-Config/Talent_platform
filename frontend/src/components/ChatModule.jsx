@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
+
 
 const ChatModule = () => {
     const [msg, setMsg] = useState(null)
@@ -20,38 +22,49 @@ const ChatModule = () => {
         }
 
 },[])
-    return(
-        <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-4">Chat Module</h1>
+    
+    return (
+        <motion.div 
+            className="p-6 bg-gray-100 rounded-lg shadow-lg max-w-md mx-auto sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="mb-4">
                 <input 
                     type="text" 
                     placeholder="Enter your message" 
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                 />
             </div>
             <button 
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="w-full px-4 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300"
                 onClick={() => {
-                    msg.send(inputValue)
+                    if (msg && inputValue.trim()) {
+                        msg.send(inputValue)
+                        setInputValue("")
+                    }
                 }}
             >
                 Send
             </button>
-            <div className="mt-4">
-                {messages.map((message, index) => {
-                    return (
-                        <div key={index} className="p-2 bg-gray-200 rounded-md mb-2">
-                            {message}
-                        </div>
-                    )
-                })}
-                    {/* <div className="p-2 bg-gray-200 rounded-md mb-2">
-                        {messages}
-            </div> */}
-        </div>
-    </div>
-    )
+            <div className="mt-6 space-y-4">
+                {messages.map((message, index) => (
+                    <motion.div 
+                        key={index} 
+                        className="p-4 bg-gray-200 rounded-md shadow-sm"
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        {message}
+                    </motion.div>
+                ))}
+            </div>
+        </motion.div>
+    );
 }
 
 export default ChatModule;
