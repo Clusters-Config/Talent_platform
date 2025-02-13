@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 
 import { DarkThemeToggle } from "flowbite-react";
 import ChatModule from './components/ChatModule';
@@ -26,7 +27,7 @@ const App = () => {
     
         <div>
           {location.pathname !== '/profile' && location.pathname !== "/login" && location.pathname !== "/register" &&
-          location.pathname !== "/skilltest" && <Navbar />}
+          location.pathname !== "/skilltest" && location.pathname !=="/home" && <Navbar />}
          
 
           <Layout>
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
               <Route path='/chat' element={<Suspense><ChatModule/></Suspense>}></Route>
+              <Route path='/home' element={<Home/>}></Route>
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
             
