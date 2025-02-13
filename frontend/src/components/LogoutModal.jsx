@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,8 @@ const LogoutModal = ({ setVisible }) => {
                 console.log("User not logged out");
                  localStorage.removeItem('token');
                  localStorage.removeItem('username');
+                 localStorage.removeItem('id');
+                 console.log(localStorage);
                  navigate('/login');
             }
         } catch (err) {
