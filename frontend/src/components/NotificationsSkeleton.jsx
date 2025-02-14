@@ -1,6 +1,7 @@
 import React from 'react';
 
 const NotificationsSkeleton = () => {
+    const NotificationData = Array(5).fill(null);
    
 return (
     <>
