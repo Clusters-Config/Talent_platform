@@ -63,7 +63,7 @@
   background-repeat: no-repeat;
   width: 100%;
   height: 80vh;
-  background-attachment: fixed;
+  background-attachment: local;
   filter: contrast(0.9);
   filter:brightness(0.85);
   

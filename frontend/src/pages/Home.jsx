@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import Heroimage from "../assets/Hero-bg.jpg";
+import wavesvg from "../assets/wave-ef.svg"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Home = () => {
     <>
       <div className=" bg-gray-900 text-white ">
       <Navbar customClasses={`${colour ? "text-gray-900":"text-white"} z-20 fixed top-0 -left-5 right-0 ${navBg ?'backdrop-blur-sm':"bg-gray-900"} transiton-colours
-      text-lg text-800 transition-colors translate-x-5 duration-700 ease-in-out `} />
+      text-lg text-800 transition-colors translate-x-5 duration-500 ease-in-out uppercase`} />
       
         {/* Hero Section */}
         <section className="container py-20 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
@@ -47,6 +48,7 @@ const Home = () => {
             </div>
             
           </div>
+          <img src={wavesvg} alt="wave" className='w-full -mt-16' />
         </section>
 
         {/* Services Section */}
