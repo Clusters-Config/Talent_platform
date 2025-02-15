@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="max-w-screen-2xl bg-gray-900 text-white ">
+      <div className=" bg-gray-900 text-white ">
       <Navbar customClasses={`${colour ? "text-gray-900":"text-white"} z-20 fixed top-0 -left-5 right-0 ${navBg ?'backdrop-blur-sm':"bg-gray-900"} transiton-colours
       text-lg text-800 transition-colors translate-x-5 duration-700 ease-in-out `} />
       
@@ -35,13 +35,13 @@ const Home = () => {
         <section className="container py-20 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
         
 
-          <div className="grid grid-cols-1 lg:grid-cols-1 w-fit text-center gap-8 p-10  overlay items-center rounded-lg ">
+          <div className="grid grid-cols-1 sm:mt-32 lg:grid-cols-1 w-auto sm:p-2  text-center gap-8 p-10 items-center rounded-lg ">
             <div>
-              <h1 className="text-5xl font-bold mb-4 text-gray-800 text-[72px] ">Connect with Professionals in your industry</h1>
-              <p className="text-lg mb-8 text-gray-700">
+              <h1 className="text-5xl sm:text-[48px] font-bold mb-4 text-gray-800 text-[72px] ">Connect with Professionals in your industry</h1>
+              <p className="text-lg mb-8 sm:mb-4 sm:text[10px] text-gray-700 sm:mt-14">
                 Connect with skilled professionals and discover exciting job opportunities.
               </p>
-              <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full" onClick={()=>navigate('/login')}>
+              <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full " onClick={()=>navigate('/login')}>
                 Get Started
               </button>
             </div>
