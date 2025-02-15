@@ -36,8 +36,8 @@ const Navbar =  ({customClasses}) =>{
         <>
         <nav className={classnames(customClasses || "fixed text-black top-0 left-0 right-0 bg-white shadow-md aleo-regular z-50 select-none")}>
             {/* Navbar for sm screen */}
-            <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-                <Link to="/" className="text-4xl font-semibold hover:text-indigo-600">WORKINTY</Link>
+            <div className="container mx-0 px-6 py-3 flex justify-between items-center">
+                <Link to="/" className="text-4xl font-bold hover:text-indigo-600">WORKINTY</Link>
                 <span className="lg:hidden" onClick={handleShowMenu}>
                     <MenuRoundedIcon className="sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />
                 </span>
@@ -80,7 +80,7 @@ const Navbar =  ({customClasses}) =>{
                 </div>
 
                 {/* Navbar for lg screen */}
-                <div className="lg:flex hidden lg:flex-row lg:justify-end lg:items-center">
+                <div className="lg:flex hidden lg:flex-row lg:justify-between lg:items-center">
                     <Link to="/" className=" hover:text-indigo-600 block py-2 lg:mr-4">Home</Link>
                     {(!localStorage.getItem('token') && <Link to="/login" className=" hover:text-indigo-600 block py-2 lg:mr-4">Login</Link>)}
                     <Link to="/findtalent" className=" hover:text-indigo-600 block py-2 lg:mr-4">Find Talent</Link>
