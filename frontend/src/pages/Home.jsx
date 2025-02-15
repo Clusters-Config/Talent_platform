@@ -41,7 +41,7 @@ const Home = () => {
               <p className="text-lg mb-8 text-gray-700">
                 Connect with skilled professionals and discover exciting job opportunities.
               </p>
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full" onClick={()=>navigate('/login')}>
+              <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full" onClick={()=>navigate('/login')}>
                 Get Started
               </button>
             </div>
