@@ -43,7 +43,7 @@ const App = () => {
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
               <Route path='/chat' element={<Suspense><ChatModule/></Suspense>}></Route>
-              <Route path='/home' element={<Home/>}></Route>
+              <Route path='/home' element={<Suspense><Home/></Suspense>}></Route>
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
             
