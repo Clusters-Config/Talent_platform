@@ -29,15 +29,15 @@ const Home = () => {
 
   return (
     <>
-      <div className=" bg-gray-900 text-white ">
+      <div className=" bg-bground text-white ">
       <Navbar customClasses={`${colour ? "text-gray-900":"text-white"} z-20 fixed top-0 -left-5 right-0 ${navBg ?'backdrop-blur-sm':"bg-gray-900"} transiton-colours
-      text-lg text-800 transition-colors translate-x-5 duration-500 ease-in-out uppercase`} />
+      text-lg text-800 transition-colors translate-x-5 duration-500 ease-in-out `} />
       
         {/* Hero Section */}
-        <section className="container py-20 mb-20 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
+        <section className="container py-20 mb-20 sm:mb-0 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
         
 
-          <div className="grid grid-cols-1 sm:mt-24 lg:grid-cols-1 w-auto sm:p-2  text-center gap-8 p-10 items-center rounded-lg ">
+          <div className="grid grid-cols-1 sm:mt-24 lg:grid-cols-1 w-auto sm:p-2  text-center gap-8 p-8 items-center rounded-lg ">
             <div>
               <h1 className="text-5xl sm:text-[48px] font-bold mb-4 text-gray-800 text-[72px] ">Connect with Professionals in your industry</h1>
               <p className="text-lg mb-8 sm:mb-4 sm:text[10px] text-gray-700 sm:mt-14">
@@ -49,7 +49,7 @@ const Home = () => {
             </div>
             <Marquee/>
           </div>
-          <img src={wavesvg} alt="wave" className='w-full -mt-24 sm:mt-[5.3rem]' />
+          <img src={wavesvg} alt="wave" className='w-full -mt-20 sm:mt-[5.3rem]' />
         </section>
 
         {/* Services Section */}

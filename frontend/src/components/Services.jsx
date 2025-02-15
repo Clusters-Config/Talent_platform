@@ -36,7 +36,7 @@ const ServicePage = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2"
+              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center transition-transform duration-700 transform hover:-translate-y-2"
             >
               <div className="mb-4">{service.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800">{service.title}</h3>
