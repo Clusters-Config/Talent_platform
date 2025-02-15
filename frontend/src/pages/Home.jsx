@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import Heroimage from "../assets/Hero-bg.jpg";
-import wavesvg from "../assets/wave-ef.svg"
+import wavesvg from "../assets/wave-effect.svg"
+import Marquee from '../components/Marquee';
+import Services from "../components/Services"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [colour ]);
+  });
 
   return (
     <>
@@ -33,10 +34,10 @@ const Home = () => {
       text-lg text-800 transition-colors translate-x-5 duration-500 ease-in-out uppercase`} />
       
         {/* Hero Section */}
-        <section className="container py-20 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
+        <section className="container py-20 mb-20 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
         
 
-          <div className="grid grid-cols-1 sm:mt-32 lg:grid-cols-1 w-auto sm:p-2  text-center gap-8 p-10 items-center rounded-lg ">
+          <div className="grid grid-cols-1 sm:mt-24 lg:grid-cols-1 w-auto sm:p-2  text-center gap-8 p-10 items-center rounded-lg ">
             <div>
               <h1 className="text-5xl sm:text-[48px] font-bold mb-4 text-gray-800 text-[72px] ">Connect with Professionals in your industry</h1>
               <p className="text-lg mb-8 sm:mb-4 sm:text[10px] text-gray-700 sm:mt-14">
@@ -46,14 +47,14 @@ const Home = () => {
                 Get Started
               </button>
             </div>
-            
+            <Marquee/>
           </div>
-          <img src={wavesvg} alt="wave" className='w-full -mt-16' />
+          <img src={wavesvg} alt="wave" className='w-full -mt-24 sm:mt-[5.3rem]' />
         </section>
 
         {/* Services Section */}
-        <section className="container py-12">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+        <section className="container">
+          {/* <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
           <div className="grid grid-cols-1 m-4 md:grid-cols-3 gap-8">
             <div className="bg-gray-800 p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-bold mb-2">Talent Sourcing</h3>
@@ -67,7 +68,9 @@ const Home = () => {
               <h3 className="text-xl font-bold mb-2">Career Development</h3>
               <p>Enhance your career with our development resources.</p>
             </div>
-          </div>
+          </div> */}
+
+          <Services/>
         </section>
 
         {/* Footer */}

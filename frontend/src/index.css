@@ -72,3 +72,60 @@
 .hero-sec-shadow{
   filter: hue-rotate(45%)
 }
+
+/* Marquee slider */
+
+/* Marquee Wrapper */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+ 
+  padding: 10px 0;
+}
+
+/* Marquee Scrolling Content */
+.marquee {
+  display: flex;
+  gap: 12px;
+  animation: marquee-scroll 8s linear infinite;
+}
+
+/* Marquee Item (Rounded Pills) */
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 50px;
+  background: #fff;
+  color: #000;
+  font-weight: 500;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  flex-shrink: 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Active Item (Dark Background) */
+.marquee-item:hover {
+  background: black;
+  color: white;
+}
+
+/* Icon Styling */
+.marquee-item svg {
+  font-size: 18px;
+}
+
+/* Smooth Loop Animation */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
