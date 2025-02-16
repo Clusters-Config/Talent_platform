@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { FaCog, FaBullhorn, FaCode, FaGlobe } from "react-icons/fa";
+import { FaCog, FaBullhorn, FaCode, FaGlobe, FaAddressCard, FaWaveSquare, FaAffiliatetheme } from "react-icons/fa";
 
 const categories = [
   { name: "Engineering", icon: <FaCog /> },
   { name: "Marketing", icon: <FaBullhorn /> },
   { name: "Development", icon: <FaCode /> },
   { name: "Digital", icon: <FaGlobe /> },
+  { name: "Consultancy", icon: <FaAddressCard/>},
+  { name: "Social Media", icon: <FaWaveSquare/>},
+  { name: "Hardware", icon: <FaAffiliatetheme/>}
 ];
 
 const Marquee = () => {

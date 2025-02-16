@@ -90,7 +90,7 @@
 .marquee {
   display: flex;
   gap: 12px;
-  animation: marquee-scroll 8s linear infinite;
+  animation: marquee-scroll 12s linear infinite;
 }
 
 /* Marquee Item (Rounded Pills) */
@@ -126,6 +126,6 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-40%);
   }
 }
