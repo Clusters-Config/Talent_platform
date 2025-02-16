@@ -47,7 +47,7 @@ const Profile = () => {
             className="rounded-full w-32 h-32 border-2 border-gray-300"
           />
           <div className="ml-4">
-            <h2 className="text-3xl font-bold">{user.name}</h2>
+            <h2 className="text-3xl font-bold">{localStorage.getItem("username")}</h2>
             <p className="text-gray-600">{user.headline}</p>
             <p className="text-gray-600">{user.location}</p>
           </div>
