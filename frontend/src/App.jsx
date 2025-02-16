@@ -48,11 +48,11 @@ const App = () => {
             </Routes>
             
           </Layout>
-          {/* <div className="fixed top-[40rem] right-10 sm:right-4 z-50">
+          <div className="fixed top-[37rem] right-20 sm:right-4 z-50">
             <DarkThemeToggle 
               style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)' }}
             />
-          </div> */}
+          </div>
         </div>
       
     </>

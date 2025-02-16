@@ -25,9 +25,9 @@ const SITEMAP = [
 const Footer = () => {
   return (
     <>
-    <footer className="static w-full bottom-0 ">
-      <div className=" w-full max-w-7xl px-8">
-        <div className=" grid w-full grid-cols-1 gap-8 items-center py-12 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="static w-full bottom-0">
+      <div className="w-full px-10">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-8 items-center pl-6 sm:pl-12 py-12 md:grid-cols-2 lg:grid-cols-4">
           {SITEMAP.map(({ title, links }, key) => (
             <div key={key} className="w-full items-center">
               <Typography
@@ -52,12 +52,12 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
+        <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between lg:flex-row lg:justify-between">
           <Typography
             variant="small"
-            className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
+            className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0 lg:mb-0"
           >
-            &copy; {currentYear} <a href="https://material-tailwind.com/">Material Tailwind</a>. All
+            &copy; {currentYear} <a href="">Hirizone</a>. All
             Rights Reserved.
           </Typography>
           <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
