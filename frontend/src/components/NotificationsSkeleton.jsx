@@ -1,22 +1,8 @@
 import React from 'react';
 
 const NotificationsSkeleton = () => {
-    const NotificationData =[
-       {title:"Liked your post", content:"Hello connections..............."},
-       {title:"Commented to your post", content:"Hello connections..............."},
-       {title:"Liked your post", content:"Hello connections..............."},
-       {title:"Posted a job role", content:"Hello connections..............."},
-       {title:"Liked your post", content:"Hello connections..............."},
-       {title:"Liked your post", content:"Hello connections..............."},
-       {title:"Liked your post", content:"Hello connections..............."},
-       {title:"Commented to your post", content:"Hello connections..............."},
-       {title:"Liked your post", content:"Hello connections..............."},
-       {title:"Posted a job role", content:"Hello connections..............."},
-       {title:"Liked your post", content:"Hello connections..............."},
-       {title:"Liked your post", content:"Hello connections..............."},
-       
-       
-    ]
+    const NotificationData = Array(5).fill(null);
+   
 return (
     <>
     <div role="status" className="max-w-2xl mx-[30%] p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow dark:divide-gray-700 md:p-6 dark:border-gray-700">

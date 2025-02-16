@@ -4,7 +4,12 @@ import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
+ HEAD
 import Analytics from "./pages/Analytics";
+
+import Home from "./pages/Home";
+
+ 
 import { DarkThemeToggle } from "flowbite-react";
 import ChatModule from './components/ChatModule';
 
@@ -27,7 +32,7 @@ const App = () => {
     
         <div>
           {location.pathname !== '/profile' && location.pathname !== "/login" && location.pathname !== "/register" &&
-          location.pathname !== "/skilltest" && <Navbar />}
+          location.pathname !== "/skilltest" && location.pathname !=="/home" && <Navbar />}
          
 
           <Layout>
@@ -44,15 +49,16 @@ const App = () => {
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
               <Route path='/chat' element={<Suspense><ChatModule/></Suspense>}></Route>
+              <Route path='/home' element={<Suspense><Home/></Suspense>}></Route>
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
             
           </Layout>
-          <div className="fixed top-[40rem] right-10 sm:right-4 z-50">
+          {/* <div className="fixed top-[40rem] right-10 sm:right-4 z-50">
             <DarkThemeToggle 
               style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)' }}
             />
-          </div>
+          </div> */}
         </div>
       
     </>

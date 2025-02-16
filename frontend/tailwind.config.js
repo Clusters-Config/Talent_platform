@@ -10,11 +10,15 @@ export default {
   ],
   theme: {
     extend: {
-      
+      backgroundImage: {
+       
+        },
     },
     colors:{
       background:'#121212',
-      primary:'#3F83F8'
+      primary:'#3F83F8',
+      homeWhite:'#EFEFEF',
+      bground:'#0E1421'
     },
     screens: {
       'sm': { 'max': '680px' },

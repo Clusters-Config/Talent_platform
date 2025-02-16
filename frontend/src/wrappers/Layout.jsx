@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 const Layout = ({ children }) => {
   const location = useLocation();
 
-  const marginVisibility = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/profile"
+  const marginVisibility = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/profile" || location.pathname === "/home";
 
   return (
     <div>
