@@ -11,7 +11,7 @@ const SignupForm = () => {
       height: "100vh",
       display: "flex",
 
-      
+    
       justifyContent: "center",
       alignItems: "center",
     },
