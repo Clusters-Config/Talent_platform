@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import wavesvg from "../assets/wave-effect.svg"
 import Marquee from '../components/Marquee';
 import Services from "../components/Services"
+import NavHome from "../components/NavHome"
+import Resources from '../components/Resources';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,12 +31,13 @@ const Home = () => {
 
   return (
     <>
-      <div className=" bg-bground text-white ">
-      <Navbar customClasses={`${colour ? "text-gray-900":"text-white"} z-20 fixed top-0 -left-5 right-0 ${navBg ?'backdrop-blur-sm':"bg-gray-900"} transiton-colours
-      text-lg font-semibold transition-colors translate-x-5 duration-500 ease-in-out `} />
-      
+      <div className="bg-white dark:bg-bground text-white ">
+      {/* <Navbar customClasses={`${colour ? "text-white":"text-white"} z-50 fixed top-0 -left-5 right-0 ${navBg ?'backdrop-blur-lg':"bg-gray-900"} transiton-colours
+      text-lg font-semibold transition-colors translate-x-5 duration-500 ease-in-out `} /> */}
+      <NavHome customClasses={`${colour ? "text-white":"text-white"} z-50 fixed top-0 -left-5 right-0 ${navBg ?'backdrop-blur-lg':"bg-gray-900"} transiton-colours
+      text-lg font-semibold transition-colors translate-x-5 duration-500 ease-in-out`}  />
         {/* Hero Section */}
-        <section className="w-screen py-20 mb-20 sm:mb-0 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
+        <section className="w-screen py-20  sm:mb-0 bg-hero bg-cover bg-center sm:bg-center bg-no-repeat hero-sec-shadow">
           <div className="grid grid-cols-1 md:grid-cols-1 w-auto text-center gap-8 p-8 items-center rounded-lg ">
             <div>
               <h1 className="text-7xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-gray-800">Connect with Professionals in your industry</h1>
@@ -47,14 +50,17 @@ const Home = () => {
             </div>
             <Marquee/>
           </div>
-          <img src={wavesvg} alt="wave" className='w-full -mt-20 sm:-mt-10 md:-mt-16 lg:-mt-20' />
+          <img src={wavesvg} alt="wave" className='w-full -mt-20  sm:mt-[8.2rem]' />
         </section>
 
         {/* Services Section */}
-        <section className="container">
+        <section >
 
           <Services/>
         </section>
+
+        {/* Resources */}
+        <Resources/>
 
         {/* Footer */}
         <Footer />
