@@ -44,7 +44,7 @@ const Dropdown = () => {
     return (
         <div className="relative sm:mt-3" id="profileDropdown">
             <button id="profileButton" className="flex items-center" onClick={handleClick}>
-                <Avatar sx={{ bgcolor: blue[500] }}></Avatar>
+                <Avatar sx={{bgcolor: blue[500]}}></Avatar>
                 <span className={`sm:${userNameColor}  mx-2 inline`}>{username}</span>
             </button>
             <div id="dropdownMenu" ref={dropdownRef} className={`${visible ? 'block' : 'hidden'} space-y-4 absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg`}>

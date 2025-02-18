@@ -172,6 +172,63 @@ const Profile = () => {
             alt="Profile"
             style={styles.profileImage}
           />
+<<<<<<< HEAD
+=======
+          <div className="ml-4">
+            <h2 className="text-3xl font-bold">{localStorage.getItem("username")}</h2>
+            <p className="text-gray-600">{user.headline}</p>
+            <p className="text-gray-600">{user.location}</p>
+          </div>
+        </div>
+
+        {/* About Section */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold">About</h3>
+          <p className="text-gray-700 mt-2">{user.bio}</p>
+        </div>
+
+        {/* Experience Section */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold">Experience</h3>
+          {user.experience.map((job, index) => (
+            <div key={index} className="mt-2">
+              <h4 className="font-semibold">{job.title} at {job.company}</h4>
+              <p className="text-gray-600">{job.duration}</p>
+              <p className="text-gray-700">{job.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Education Section */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold">Education</h3>
+          {user.education.map((edu, index) => (
+            <div key={index} className="mt-2">
+              <h4 className="font-semibold">{edu.degree} from {edu.institution}</h4>
+              <p className="text-gray-600">Graduated in {edu.graduationYear}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Skills Section */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold">Skills</h3>
+          <ul className="list-disc list-inside mt-2 text-gray-700">
+            {user.skills.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Social Links Section */}
+        <div>
+          <h3 className="text-lg font-semibold">Connect with me</h3>
+          <div className="flex space-x-4 mt-2">
+            <a href={user.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">Twitter</a>
+            <a href={user.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">LinkedIn</a>
+            <a href={user.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">GitHub</a>
+          </div>
+>>>>>>> 3fea4f17accca10448e1f405f4b5c6d0fdfc4c08
         </div>
       </div>
 
