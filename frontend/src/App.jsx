@@ -6,6 +6,7 @@ import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 
+
 import { DarkThemeToggle } from "flowbite-react";
 import ChatModule from './components/ChatModule';
 
@@ -33,11 +34,12 @@ const App = () => {
           <Layout>
             {/* Routing between pages */}
             <Routes>
-              <Route path="/" element={<Main />} />
+              <Route path="/" element={<Jobs />} />
               <Route path="/login" element={<Suspense><Login /></Suspense>} />
               <Route path="/register" element={<Suspense><Register/></Suspense>}/>
               <Route path="/findtalent" element={<Suspense ><Findtalent /></Suspense>} />
-              <Route path="/jobs" element={<Suspense ><Jobs /></Suspense>} />
+              
+              <Route path="/community" element={<Main />} />
               <Route path="/network" element={<Suspense ><Network /></Suspense>} />
               <Route path="/notifications" element={<Suspense ><Notifications /></Suspense>} />
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
