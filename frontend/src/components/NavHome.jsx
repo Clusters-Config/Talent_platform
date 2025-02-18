@@ -82,7 +82,7 @@ const Navbar =  ({customClasses}) =>{
                     <Link to='/chat' className=" hover:text-indigo-600 block py-2 lg:mr-4">Community</Link>
                     <Link to="/Notifications" className=" hover:text-indigo-600 block py-2 lg:mr-4">Contact Us</Link>
                     <div className="lg:flex lg:flex-row lg:justify-end lg:items-center w-[80px] h-[40px] rounded-full bg-indigo-600 hover:bg-indigo-700  ">
-                    {(!localStorage.getItem('token') && <Link to="/login" className="block py-2 lg:mr-4">Login</Link>)}
+                    { <Link to="/login" className="block py-2 lg:mr-4">Login</Link>}
                     </div>
                 </div>
             </div>

@@ -228,7 +228,6 @@ const Profile = () => {
             <a href={user.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">LinkedIn</a>
             <a href={user.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">GitHub</a>
           </div>
->>>>>>> 3fea4f17accca10448e1f405f4b5c6d0fdfc4c08
         </div>
       </div>
 
