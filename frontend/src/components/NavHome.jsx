@@ -64,7 +64,7 @@ const Navbar =  ({customClasses}) =>{
                             <PeopleIcon className="mr-2" />
                             Community
                         </Link>
-                        <Link to='/notifications' className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">    
+                        <Link to='/opensource' className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">    
                             Community
                         </Link>
                         {!localStorage.getItem('token') && <Link to="/login" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
@@ -80,7 +80,7 @@ const Navbar =  ({customClasses}) =>{
                     <Link to="/network" className=" hover:text-indigo-600 block py-2 lg:mr-4">About</Link>
                     <Link to="/jobs" className=" hover:text-indigo-600 block py-2 lg:mr-4">Jobs</Link>
                     <Link to='/chat' className=" hover:text-indigo-600 block py-2 lg:mr-4">Community</Link>
-                    <Link to="/Notifications" className=" hover:text-indigo-600 block py-2 lg:mr-4">Contact Us</Link>
+                    <Link to="/opensource" className=" hover:text-indigo-600 block py-2 lg:mr-4">Contact Us</Link>
                     <div className="lg:flex lg:flex-row lg:justify-end lg:items-center w-[80px] h-[40px] rounded-full bg-indigo-600 hover:bg-indigo-700  ">
                     { <Link to="/login" className="block py-2 lg:mr-4">Login</Link>}
                     </div>

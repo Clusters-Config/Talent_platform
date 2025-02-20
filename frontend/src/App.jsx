@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
+import OpenSource from './pages/Opensource'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/ProfilePage";
 import Home from "./pages/Home";
@@ -10,12 +11,13 @@ import Home from "./pages/Home";
 import { DarkThemeToggle } from "flowbite-react";
 import ChatModule from './components/ChatModule';
 
+
 const Login = React.lazy(() => import('./pages/Login'));
 const Register = React.lazy(() => import('./pages/Register'));
 const Findtalent = React.lazy(() => import('./pages/Findtalent'));
 const Jobs = React.lazy(() => import('./pages/Jobs'));
 const Network = React.lazy(() => import('./pages/Network'));
-const Notifications = React.lazy(() => import('./pages/Notifications'));
+const Opensource = React.lazy(() => import('./pages/Opensource'));
 const SkillTest = React.lazy(() => import('./pages/SkillTest'));
 
 
@@ -41,7 +43,7 @@ const App = () => {
               
               <Route path="/community" element={<Main />} />
               <Route path="/network" element={<Suspense ><Network /></Suspense>} />
-              <Route path="/notifications" element={<Suspense ><Notifications /></Suspense>} />
+              <Route path="/opensource" element={<Suspense ><Opensource /></Suspense>} />
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
               <Route path='/chat' element={<Suspense><ChatModule/></Suspense>}></Route>
