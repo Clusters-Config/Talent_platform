@@ -66,9 +66,9 @@ const Navbar =  ({customClasses}) =>{
                         <Link to='/chat' className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">    
                             Chat
                         </Link>
-                        <Link to="/Notifications" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
+                        <Link to="/opensource" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <NotificationsIcon className="mr-2" />
-                            Notifications
+                            Opensource
                         </Link>
                         
                         {<Dropdown/>}
@@ -82,7 +82,7 @@ const Navbar =  ({customClasses}) =>{
                     <Link to="/findtalent" className=" hover:text-indigo-600 block py-2 lg:mr-4">Find Talent</Link>
                     <Link to="/network" className=" hover:text-indigo-600 block py-2 lg:mr-4">Network</Link>
                     <Link to='/chat' className=" hover:text-indigo-600 block py-2 lg:mr-4">Chat</Link>
-                    <Link to="/Notifications" className=" hover:text-indigo-600 block py-2 lg:mr-4">Notifications</Link>
+                    <Link to="/opensource" className=" hover:text-indigo-600 block py-2 lg:mr-4">OpenSource</Link>
                     <div className="lg:flex lg:flex-row lg:justify-end lg:items-center">
                         <Dropdown/>
                     </div>
