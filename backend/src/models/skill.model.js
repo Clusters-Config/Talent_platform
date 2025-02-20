@@ -18,6 +18,10 @@ const JobSchema = new mongo({
      position:{ 
          type: String,
          required:true
+     },
+     location:{
+        type:String,
+        required:true
      }
 },{timestamps:true})
 
