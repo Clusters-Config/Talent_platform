@@ -2,6 +2,9 @@
   font-family: Arial, sans-serif;
   max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f8ff; /* Light blue background */
+  border-radius: 10px;
 }
 
 .section {
@@ -27,6 +30,7 @@ textarea, input {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
 }
 
 .buttons {
@@ -41,8 +45,19 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 button:hover {
   background-color: #005bb5;
+}
+
+.experience-item,
+.education-item,
+.skill-item,
+.social-link-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
 }
