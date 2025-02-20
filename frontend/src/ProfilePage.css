@@ -1,0 +1,52 @@
+.profile-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.profile-section {
+  text-align: center;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.about-section,
+.experience-section,
+.education-section,
+.skills-section,
+.social-section {
+  margin-top: 20px;
+}
+
+.experience-item,
+.education-item {
+  margin-bottom: 15px;
+}
+
+.skills-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.skills-section li {
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.social-links a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #0077b5;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
