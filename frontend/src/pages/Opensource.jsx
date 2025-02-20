@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState,useEffect} from 'react'
 import axios from 'axios';
+import Loading from '../components/Loading'
 import {motion} from 'framer-motion'
 
 const OpenSource = () => {
@@ -24,7 +25,11 @@ const OpenSource = () => {
   fetchRepos();
 }, []);
 
-if (loading) return <div>Loading...</div>;
+if (loading) return (
+  <div className="flex items-center justify-center mb-10 min-h-screen">
+    <Loading type="balls" color="green" />
+  </div>
+);
 if (error) return <div>Error: {error}</div>;
 
 

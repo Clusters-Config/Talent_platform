@@ -19,11 +19,11 @@ const Jobs = () => {
       <div>
         {data.map((post,index) => (
           <div className='flex gap-1 flex-wrap sm:mx-2 sm:p-2'> 
-          <button className='mt-2 mb-2 ' key={index} onClick={() => handleJobClick(post)}>
-            <Jobskeleton title={post.title} content={post.content} position={post.position} organisation={post.name} />
+          <button className='mt-2 mb-2 '  onClick={() => handleJobClick(post)}>
+            <Jobskeleton key={index}title={post.title} content={post.content} position={post.position} organisation={post.name} />
           </button>
-          <button className='mt-2 mb-2 ' key={index} onClick={() => handleJobClick(post)}>
-            <Jobskeleton title={post.title} content={post.content} position={post.position} organisation={post.name} />
+          <button className='mt-2 mb-2 '  onClick={() => handleJobClick(post)}>
+            <Jobskeleton key={index} title={post.title} content={post.content} position={post.position} organisation={post.name} />
           </button>
           </div>
         ))}
