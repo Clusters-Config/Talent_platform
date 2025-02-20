@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProfilePage.css'; // Import your CSS file for styling
+import '../ProfilePage.css'; // Import your CSS file for styling
 
 const ProfilePage = () => {
   // Sample user data (replace with dynamic data from an API or state)
