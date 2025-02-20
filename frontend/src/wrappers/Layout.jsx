@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <div>
       <div>
         {/* Main Content Container */}
-        <main className={`${marginVisibility ? "" : "mt-[100px]"}`}>
+        <main className={`${marginVisibility ? "" : "mt-[100px]"} dark:bg-gray-900`}>
           {children} {/* This is where the actual posts will go */}
         </main>
       </div>
