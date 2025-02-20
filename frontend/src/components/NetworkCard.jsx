@@ -7,8 +7,10 @@ import Button from "./Button";
 async function connection(name, id) {
     try {
         const response = await axios.patch(`http://localhost:3001/connect/${id}/${name}`);
-        console.log(name, id);
-        console.log(response.data);
+        console.log({response});
+         if(response.data.message === 'Connection already exists'){
+            return alert('Connection already exists')
+        }
         return response;
     } catch (error) {
         console.error(error);

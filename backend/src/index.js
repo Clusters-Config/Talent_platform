@@ -13,7 +13,7 @@ import getNetwork from './routes/user.route.js';
 import  postTalent  from './routes/user.route.js';
 import  getTalent  from './routes/user.route.js';
 import { SignOut } from './controllers/user.control.js';
-import { connect } from './controllers/connection.control.js';
+import { connect ,disconnect } from './controllers/connection.control.js';
 
 
 dotenv.config({ 
@@ -35,6 +35,7 @@ app.use('/',getNetwork)
 app.use('/',postTalent)
 app.use('/',getTalent)
 app.use('/',connect)
+app.use('/',disconnect)
 
 
 //websocket server 
