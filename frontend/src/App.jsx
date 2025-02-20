@@ -6,9 +6,7 @@ import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 
-
 import { DarkThemeToggle } from "flowbite-react";
-import ChatModule from './components/ChatModule';
 
 
 const Login = React.lazy(() => import('./pages/Login'));
@@ -18,6 +16,7 @@ const Jobs = React.lazy(() => import('./pages/Jobs'));
 const Network = React.lazy(() => import('./pages/Network'));
 const Opensource = React.lazy(() => import('./pages/Opensource'));
 const SkillTest = React.lazy(() => import('./pages/SkillTest'));
+const DashBoard = React.lazy(() => import('./pages/Dashboard'));
 
 
 const App = () => {
@@ -43,6 +42,7 @@ const App = () => {
               <Route path="/common" element={<Main />} />
               <Route path="/community" element={<Suspense ><Network /></Suspense>} />
               <Route path="/opensource" element={<Suspense ><Opensource /></Suspense>} />
+              <Route path="/dashboard" element={<Suspense><DashBoard/></Suspense>} />
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
               <Route path='/home' element={<Suspense><Home/></Suspense>}></Route>

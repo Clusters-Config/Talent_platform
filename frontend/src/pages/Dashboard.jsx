@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Line } from 'react-chartjs-2';
-import 'chart.js/auto';
+import { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 
 const data = {
@@ -17,6 +17,20 @@ const data = {
 };
 
 const Dashboard = () => {
+    const chartRef = useRef(null);
+
+    useEffect(() => {
+        const ctx = chartRef.current.getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+            },
+        });
+    }, []);
+
     return (
         <motion.div 
             className="p-6 bg-gray-100 min-h-screen"
@@ -27,9 +41,10 @@ const Dashboard = () => {
             <h1 className="text-4xl font-bold mb-4">Dashboard</h1>
             <p className="text-lg mb-8">Welcome to the Dashboard!</p>
             <div className="bg-white p-6 rounded-lg shadow-md">
-                <Line data={data} />
+                <canvas ref={chartRef} />
             </div>
         </motion.div>
     );
 };
-export default Dashboard
+
+export default Dashboard;
