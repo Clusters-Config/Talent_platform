@@ -7,12 +7,25 @@ import Button from "./Button";
 async function connection(name, id) {
     try {
         const response = await axios.patch(`http://localhost:3001/connect/${id}/${name}`);
-        console.log({response});
-         if(response.data.message === 'Connection already exists'){
-            return alert('Connection already exists')
+        if(response.status === 200){
+            console.log('Connection successful');
+        }
+        else{ 
+            console.log('Connection failed');
         }
         return response;
     } catch (error) {
+        console.error(error);
+    }
+}
+
+async function disconnect(name, id) {
+    try{ 
+        const response = await axios.patch(`http://localhost:3001/disconnect/${id}/${name}`);
+        console.log({response});
+        return response;
+    }
+    catch(error){
         console.error(error);
     }
 }
@@ -36,6 +49,10 @@ const NetworkCard = ({ name, domain, onAddFriend }) => {
         onAddFriend(name);
     };
 
+    const handleRemoveFriend = (name) => {
+        disconnect(name, localStorage.getItem('id'));
+        setButtonText("Removed");
+    };
     const handleClickOutside = useCallback(
         (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -95,8 +112,8 @@ const NetworkCard = ({ name, domain, onAddFriend }) => {
                 />
                 <Button
                     title="Remove"
-                    onClick={() => handleAddFriend(name)}
-                    className="inline-flex p-3 w-20 h-10 sm:w-3 sm:h-9 items-center text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:focus:ring-blue-800"
+                    onClick={() => handleRemoveFriend(name)}
+                    className="inline-flex p-3 w-20 h-10 sm:w-3 sm:h-9 items-center text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 />
             </div>
 

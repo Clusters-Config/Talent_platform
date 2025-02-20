@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Search, Business, LocationOn, Work, FilterList } from "@mui/icons-material";
-import JobImg from "../assets/user.jpg"
-import { useNavigate } from "react-router-dom";
+import { Search } from "@mui/icons-material";
+import JobCard from "../components/JobCard";
+import axios from "axios";
+
 const categories = [
   "Management", "Development", "Digital", "Design", "Finance", "Engineering", "Marketing"
 ];
@@ -12,38 +13,38 @@ const staticJobs = [
   { title: "Human Resources Manager", company: "Lineo", location: "California", type: "Remote", category: "Management",content:"We are looking for a project manager to be responsible for handling our company's ongoing projects. You will be working closely with your team members to ensure that all project requirements, deadlines, and schedules are on track. Responsibilities include submitting project deliverables, preparing status reports, and establishing effective project communication plans as well as the proper execution of said plans." }
 ];
 
-function JobCard({ job }) {
-  const navigate = useNavigate();
-  return (
-    <div className="p-6 w-[370px] grid grid-flow-row gap-3 border rounded-xl shadow-md bg-white dark:bg-gray-800 hover:shadow-lg transition-all">
-      <h2 className="text-xl font-semibold text-blue-600 flex items-center gap-2">
-        <Work /> {job.title}
-        <img src={JobImg} alt="" className="w-12 h-12 ml-10" />
-      </h2>
-      <p className="text-sm text-gray-500  dark:text-gray-300 flex items-center gap-2">
-        <Business /> {job.company}
-      </p>
-      <p className="text-sm text-gray-500 dark:text-gray-300 flex items-center lg:line-clamp-3  gap-2">
-         {job.content}
-      </p>
-      <p className="mt-2 text-sm text-gray-700 dark:text-gray-300 flex items-center gap-2">
-        <LocationOn /> {job.location} - {job.type}
-      </p>
-      <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700" onClick={()=>navigate('/skilltest')}>Apply</button>
-    </div>
-  );
-}
 
+async function fetchData() {
+  try {
+    const result = await axios.get('http://localhost:3001/getjob',{
+      headers:{ 
+        'Authorization':`Bearer ${localStorage.getItem('token')}`
+      }
+    });
+    const jobData = result.data.msg;
+    console.log(jobData);
+    return jobData;
+  }
+  catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 export default function JobListings() {
   const [selectedCategory, setSelectedCategory] = useState("Management");
   const [searchTerm, setSearchTerm] = useState("");
   const [jobs, setJobs] = useState([]);
-
+  
   useEffect(() => {
-    fetch("/api/jobs")
-      .then((response) => response.json())
-      .then((data) => setJobs(data.length ? data : staticJobs))
-      .catch(() => setJobs(staticJobs));
+    async function loadJobs() {
+      const data = await fetchData();
+      console.log(data);
+      if (data) {
+        setJobs(data);
+        console.log(jobs);
+      } 
+    }
+    loadJobs();
   }, []);
 
   const filteredJobs = jobs.filter(
@@ -88,7 +89,9 @@ export default function JobListings() {
         </div>
         
         </div>
-
+        <div>
+          {jobs.map((job, index) => <JobCard key={index} job={job} />)}
+        </div>
         <div className="grid md:grid-cols-3 gap-6                                                                                                                           ">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((job, index) => <JobCard key={index} job={job} />)
