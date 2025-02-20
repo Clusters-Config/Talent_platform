@@ -186,11 +186,11 @@ const Findtalent = () => {
   // };
 
   return (
-    <div className="container my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row">
-      <aside className="w-max sm:w-[200px] sm:hidden lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
-        <h2 className="text-lg font-semibold mb-4 text-gray-800">Filters</h2>
+    <div className="container my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row dark:bg-gray-800">
+      <aside className="w-max  sm:w-[200px] sm:hidden dark:bg-gray-800 text-white lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
+        <h2 className="text-lg font-semibold mb-4 text-gray-700 dark:text-white">Filters</h2>
         <div className="mb-4">
-          <h3 className="text-md font-medium mb-2 text-gray-700">Experience</h3>
+          <h3 className="text-md font-medium mb-2 text-gray-700 dark:text-white">Experience</h3>
           <div>
             {['Entry', 'Mid', 'Senior'].map((exp) => (
               <label key={exp} className="inline-flex items-center mr-4 mb-2">
@@ -201,13 +201,13 @@ const Findtalent = () => {
                   onChange={() => handleExperienceChange(exp)}
                   className="form-checkbox h-5 w-5 text-white-600 rounded-full"
                 />
-                <span className="ml-2 text-gray-700">{exp} Level</span>
+                <span className="ml-2 text-gray-700 dark:text-white">{exp} Level</span>
               </label>
             ))}
           </div>
         </div>
         <div>
-          <h3 className="text-md font-medium mb-2 text-gray-700">Availability</h3>
+          <h3 className="text-md font-medium mb-2 text-gray-700 dark:text-white">Availability</h3>
           <div>
             {['Full-time', 'Part-time', 'Contract'].map((avail) => (
               <label key={avail} className="inline-flex items-center mr-4 mb-2">
@@ -218,15 +218,15 @@ const Findtalent = () => {
                   onChange={() => handleAvailabilityChange(avail)}
                   className="form-checkbox h-5 w-5 text-white-600 rounded-full"
                 />
-                <span className="ml-2 text-gray-700">{avail}</span>
+                <span className="ml-2 text-gray-700 dark:text-white">{avail}</span>
               </label>
             ))}
           </div>
         </div>
       </aside>
 
-      <main className="w-full lg:w-fit ml-[25%] sm:mx-3">
-        <div className="bg-white p-6 sm:ml-2 sm:p-1 rounded-lg shadow-lg sm:w-[calc(90%-3rem)] fixed w-[calc(75%-8rem)] z-10">
+      <main className="w-full lg:w-fit ml-[25%] sm:mx-3  dark:bg-gray-800">
+        <div className="bg-white dark:bg-gray-800 p-6 sm:ml-2 sm:p-1 rounded-lg shadow-lg sm:w-[calc(90%-3rem)] fixed w-[calc(75%-8rem)] z-10">
           <div className=" flex sm:flex-col justify-center place-items-center ">
             <SearchBar
               searchTerm={searchTerm}
