@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Search, Business, LocationOn, Work, FilterList } from "@mui/icons-material";
 import JobImg from "../assets/user.jpg"
-
+import { useNavigate } from "react-router-dom";
 const categories = [
   "Management", "Development", "Digital", "Design", "Finance", "Engineering", "Marketing"
 ];
@@ -13,6 +13,7 @@ const staticJobs = [
 ];
 
 function JobCard({ job }) {
+  const navigate = useNavigate();
   return (
     <div className="p-6 w-[370px] grid grid-flow-row gap-3 border rounded-xl shadow-md bg-white dark:bg-gray-800 hover:shadow-lg transition-all">
       <h2 className="text-xl font-semibold text-blue-600 flex items-center gap-2">
@@ -28,7 +29,7 @@ function JobCard({ job }) {
       <p className="mt-2 text-sm text-gray-700 dark:text-gray-300 flex items-center gap-2">
         <LocationOn /> {job.location} - {job.type}
       </p>
-      <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Apply</button>
+      <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700" onClick={()=>navigate('/skilltest')}>Apply</button>
     </div>
   );
 }
