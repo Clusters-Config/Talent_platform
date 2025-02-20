@@ -133,3 +133,19 @@ input[type="text"] {
 .save-btn:hover {
   background-color: #218838;
 }
+/* Add this to your existing CSS */
+.add-skill {
+  margin-top: 10px;
+}
+
+.add-skill input {
+  width: calc(100% - 100px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.add-skill button {
+  margin-left: 10px;
+}

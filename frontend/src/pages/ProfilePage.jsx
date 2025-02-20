@@ -17,7 +17,6 @@ const ProfilePage = () => {
         'Collaborated with cross-functional teams to deliver high-quality software.',
         'Implemented RESTful APIs for seamless integration with front-end systems.',
       ],
-      isEditing: false,
     },
     {
       id: 2,
@@ -28,7 +27,6 @@ const ProfilePage = () => {
         'Assisted in the development of a customer management system.',
         'Learned and applied best practices in software development.',
       ],
-      isEditing: false,
     },
   ]);
 
@@ -62,38 +60,21 @@ const ProfilePage = () => {
   const handleAddExperience = () => {
     const newExperience = {
       id: experience.length + 1,
-      title: '',
-      company: '',
-      duration: '',
-      details: [],
-      isEditing: true,
+      title: 'New Job Title',
+      company: 'New Company',
+      duration: 'New Duration',
+      details: ['Add details about this experience.'],
     };
     setExperience([...experience, newExperience]);
-  };
-
-  const handleEditExperience = (id) => {
-    setExperience(
-      experience.map((exp) =>
-        exp.id === id ? { ...exp, isEditing: true } : exp
-      )
-    );
-  };
-
-  const handleSaveExperience = (id, updatedExperience) => {
-    setExperience(
-      experience.map((exp) =>
-        exp.id === id ? { ...updatedExperience, isEditing: false } : exp
-      )
-    );
   };
 
   // Education Section Handlers
   const handleAddEducation = () => {
     const newEducation = {
       id: education.length + 1,
-      institution: '',
-      degree: '',
-      year: '',
+      institution: 'New Institution',
+      degree: 'New Degree',
+      year: 'New Year',
     };
     setEducation([...education, newEducation]);
   };
@@ -110,8 +91,8 @@ const ProfilePage = () => {
   const handleAddSocialLink = () => {
     const newSocialLink = {
       id: socialLinks.length + 1,
-      platform: '',
-      url: '',
+      platform: 'New Platform',
+      url: 'https://example.com',
     };
     setSocialLinks([...socialLinks, newSocialLink]);
   };
@@ -155,54 +136,13 @@ const ProfilePage = () => {
         <h2>Experience</h2>
         {experience.map((exp) => (
           <div key={exp.id} className="experience-item">
-            {exp.isEditing ? (
-              <div>
-                <input
-                  type="text"
-                  placeholder="Job Title"
-                  defaultValue={exp.title}
-                />
-                <input
-                  type="text"
-                  placeholder="Company"
-                  defaultValue={exp.company}
-                />
-                <input
-                  type="text"
-                  placeholder="Duration"
-                  defaultValue={exp.duration}
-                />
-                <button
-                  className="save-btn"
-                  onClick={() =>
-                    handleSaveExperience(exp.id, {
-                      ...exp,
-                      title: exp.title,
-                      company: exp.company,
-                      duration: exp.duration,
-                    })
-                  }
-                >
-                  Save
-                </button>
-              </div>
-            ) : (
-              <div>
-                <h3>{exp.title} - {exp.company}</h3>
-                <p>{exp.duration}</p>
-                <ul>
-                  {exp.details.map((detail, index) => (
-                    <li key={index}>{detail}</li>
-                  ))}
-                </ul>
-                <button
-                  className="edit-btn"
-                  onClick={() => handleEditExperience(exp.id)}
-                >
-                  Edit
-                </button>
-              </div>
-            )}
+            <h3>{exp.title} - {exp.company}</h3>
+            <p>{exp.duration}</p>
+            <ul>
+              {exp.details.map((detail, index) => (
+                <li key={index}>{detail}</li>
+              ))}
+            </ul>
           </div>
         ))}
         <button className="add-btn" onClick={handleAddExperience}>
@@ -232,15 +172,17 @@ const ProfilePage = () => {
             <span key={index} className="skill-tag">{skill}</span>
           ))}
         </div>
-        <input
-          type="text"
-          placeholder="Add a new skill"
-          value={newSkill}
-          onChange={(e) => setNewSkill(e.target.value)}
-        />
-        <button className="add-btn" onClick={handleAddSkill}>
-          Add Skill
-        </button>
+        <div className="add-skill">
+          <input
+            type="text"
+            placeholder="Add a new skill"
+            value={newSkill}
+            onChange={(e) => setNewSkill(e.target.value)}
+          />
+          <button className="add-btn" onClick={handleAddSkill}>
+            Add Skill
+          </button>
+        </div>
       </div>
 
       {/* Social Links Section */}
