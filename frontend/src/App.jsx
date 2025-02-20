@@ -27,7 +27,7 @@ const App = () => {
   return (
     <> 
     
-        <div className='bg-gray-900'>
+        <div>
           {location.pathname !== '/profile' && location.pathname !== "/login" && location.pathname !== "/register" &&
           location.pathname !== "/skilltest" && location.pathname !=="/home" && <Navbar />}
          
