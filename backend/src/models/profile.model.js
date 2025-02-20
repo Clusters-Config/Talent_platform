@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 
 const Schema = mongoose.Schema;
+
 const profileSchema = new Schema({ 
     username:{ 
         type:String,
@@ -13,4 +14,9 @@ const profileSchema = new Schema({
         required:true
     },
     
-})
+},{timestamps:true})
+
+
+const Profile = mongoose.model('Profile',profileSchema)
+
+export default Profile
