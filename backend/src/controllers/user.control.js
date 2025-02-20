@@ -66,7 +66,7 @@ const SignUp = async (req, res) => {
 
 const JobsPost = async (req,res) => { 
     try{
-    const {title,content,name,position} = req.body;
+    const {title,content,name,position,location} = req.body;
 
     const newJob =  new Skill({ 
         title,
