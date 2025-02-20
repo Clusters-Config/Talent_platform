@@ -15,7 +15,7 @@ const JobsModal = ({ modalVisible, jobDetails, setModalVisible }) => {
       <div
         className={`bg-gray-300 ${
           modalVisible ? "block" : "hidden"
-        } w-full h-full fixed top-0 bg-opacity-50 z-50`}
+        } w-auto h-auto max-lg-screen fixed top-0 bg-opacity-50 z-50`}
       >
         <div
           className={`bg-white sm:w-10/12 sm:mt-[-9rem] md:w-1/2 xl:w-6/12 lg:w-2/4  md:h-1/2 xl:h-[345px] lg:h-[390px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 rounded-lg shadow-lg sm:h-11/12 sm:top-1/2`}
