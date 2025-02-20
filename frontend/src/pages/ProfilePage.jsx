@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../ProfilePage.css'; // Import the CSS file for styling
+import './ProfilePage.css'; // Import the CSS file for styling
 
 const ProfilePage = () => {
   // Default data for each section
@@ -56,14 +56,16 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <h1>Profile Page</h1>
-
-      {/* User Profile Section */}
-      <div className="section">
-        <h2>User Profile</h2>
+      {/* Enhanced Profile Section */}
+      <div className="profile-section">
         <div className="profile-picture">
           <img src="https://via.placeholder.com/150" alt="Profile" />
-          <button>Change Picture</button>
+          <button className="change-picture-btn">Change Picture</button>
+        </div>
+        <div className="profile-info">
+          <h2>John Doe</h2>
+          <p>Software Engineer | Tech Corp</p>
+          <p>📍 San Francisco, CA</p>
         </div>
       </div>
 
@@ -76,8 +78,8 @@ const ProfilePage = () => {
           placeholder="Tell us about yourself..."
         />
         <div className="buttons">
-          <button>Save</button>
-          <button onClick={() => setAbout('')}>Cancel</button>
+          <button className="save-btn">Save</button>
+          <button className="cancel-btn" onClick={() => setAbout('')}>Cancel</button>
         </div>
       </div>
 
@@ -85,53 +87,53 @@ const ProfilePage = () => {
       <div className="section">
         <h2>Experience</h2>
         {experience.map(exp => (
-          <div key={exp.id} className="experience-item">
+          <div key={exp.id} className="content-item">
             <input type="text" placeholder="Job Title" defaultValue={exp.title} />
             <input type="text" placeholder="Company" defaultValue={exp.company} />
             <input type="text" placeholder="Duration" defaultValue={exp.duration} />
-            <button onClick={() => handleCancelExperience(exp.id)}>Cancel</button>
+            <button className="cancel-btn" onClick={() => handleCancelExperience(exp.id)}>Cancel</button>
           </div>
         ))}
-        <button onClick={handleAddExperience}>Add Experience</button>
+        <button className="add-btn" onClick={handleAddExperience}>Add Experience</button>
       </div>
 
       {/* Education Section */}
       <div className="section">
         <h2>Education</h2>
         {education.map(edu => (
-          <div key={edu.id} className="education-item">
+          <div key={edu.id} className="content-item">
             <input type="text" placeholder="Institution" defaultValue={edu.institution} />
             <input type="text" placeholder="Degree" defaultValue={edu.degree} />
             <input type="text" placeholder="Year" defaultValue={edu.year} />
-            <button onClick={() => handleCancelEducation(edu.id)}>Cancel</button>
+            <button className="cancel-btn" onClick={() => handleCancelEducation(edu.id)}>Cancel</button>
           </div>
         ))}
-        <button onClick={handleAddEducation}>Add Education</button>
+        <button className="add-btn" onClick={handleAddEducation}>Add Education</button>
       </div>
 
       {/* Skills Section */}
       <div className="section">
         <h2>Skills</h2>
         {skills.map(skill => (
-          <div key={skill.id} className="skill-item">
+          <div key={skill.id} className="content-item">
             <input type="text" placeholder="Skill" defaultValue={skill.skill} />
-            <button onClick={() => handleCancelSkill(skill.id)}>Cancel</button>
+            <button className="cancel-btn" onClick={() => handleCancelSkill(skill.id)}>Cancel</button>
           </div>
         ))}
-        <button onClick={handleAddSkill}>Add Skill</button>
+        <button className="add-btn" onClick={handleAddSkill}>Add Skill</button>
       </div>
 
       {/* Social Links Section */}
       <div className="section">
         <h2>Social Links</h2>
         {socialLinks.map(link => (
-          <div key={link.id} className="social-link-item">
+          <div key={link.id} className="content-item">
             <input type="text" placeholder="Platform" defaultValue={link.platform} />
             <input type="text" placeholder="URL" defaultValue={link.url} />
-            <button onClick={() => handleCancelSocialLink(link.id)}>Cancel</button>
+            <button className="cancel-btn" onClick={() => handleCancelSocialLink(link.id)}>Cancel</button>
           </div>
         ))}
-        <button onClick={handleAddSocialLink}>Add Social Link</button>
+        <button className="add-btn" onClick={handleAddSocialLink}>Add Social Link</button>
       </div>
     </div>
   );

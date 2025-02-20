@@ -1,27 +1,64 @@
-.profile-page {
+body {
+  margin: 0;
   font-family: Arial, sans-serif;
+  background-color: #f0f8ff; /* Light blue background */
+}
+
+.profile-page {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f8ff; /* Light blue background */
-  border-radius: 10px;
-}
-
-.section {
-  margin-bottom: 20px;
-  padding: 15px;
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
-  color: #333;
+.profile-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .profile-picture img {
   border-radius: 50%;
-  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.change-picture-btn {
+  padding: 8px 12px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.change-picture-btn:hover {
+  background-color: #005bb5;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 10px;
 }
 
 textarea, input {
@@ -40,24 +77,46 @@ textarea, input {
 
 button {
   padding: 10px 15px;
-  background-color: #0073e6;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
 }
 
-button:hover {
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #c82333;
+}
+
+.add-btn {
+  background-color: #0073e6;
+  color: white;
+}
+
+.add-btn:hover {
   background-color: #005bb5;
 }
 
-.experience-item,
-.education-item,
-.skill-item,
-.social-link-item {
+.content-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 4px;
+}
+
+.content-item input {
+  flex: 1;
 }
