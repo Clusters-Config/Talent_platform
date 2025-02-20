@@ -61,10 +61,7 @@ const Navbar =  ({customClasses}) =>{
                         </Link>
                         <Link to="/network" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <PeopleIcon className="mr-2" />
-                            Network
-                        </Link>
-                        <Link to='/chat' className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">    
-                            Chat
+                            Community
                         </Link>
                         <Link to="/opensource" className="text-gray-700 hover:text-indigo-600 py-2 flex items-center">
                             <NotificationsIcon className="mr-2" />
@@ -80,8 +77,7 @@ const Navbar =  ({customClasses}) =>{
                     <Link to="/" className=" hover:text-indigo-600 block py-2 lg:mr-4">Home</Link>
                     {(!localStorage.getItem('token') && <Link to="/login" className=" hover:text-indigo-600 block py-2 lg:mr-4">Login</Link>)}
                     <Link to="/findtalent" className=" hover:text-indigo-600 block py-2 lg:mr-4">Find Talent</Link>
-                    <Link to="/network" className=" hover:text-indigo-600 block py-2 lg:mr-4">Network</Link>
-                    <Link to='/chat' className=" hover:text-indigo-600 block py-2 lg:mr-4">Chat</Link>
+                    <Link to="/community" className=" hover:text-indigo-600 block py-2 lg:mr-4">Community</Link>
                     <Link to="/opensource" className=" hover:text-indigo-600 block py-2 lg:mr-4">OpenSource</Link>
                     <div className="lg:flex lg:flex-row lg:justify-end lg:items-center">
                         <Dropdown/>

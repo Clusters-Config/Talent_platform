@@ -40,12 +40,11 @@ const App = () => {
               <Route path="/register" element={<Suspense><Register/></Suspense>}/>
               <Route path="/findtalent" element={<Suspense ><Findtalent /></Suspense>} />
               
-              <Route path="/community" element={<Main />} />
-              <Route path="/network" element={<Suspense ><Network /></Suspense>} />
+              <Route path="/common" element={<Main />} />
+              <Route path="/community" element={<Suspense ><Network /></Suspense>} />
               <Route path="/opensource" element={<Suspense ><Opensource /></Suspense>} />
               <Route path="/profile" element={<Suspense><Profile/></Suspense>} />
               <Route path="/skilltest" element={<Suspense><SkillTest/></Suspense>} />
-              <Route path='/chat' element={<Suspense><ChatModule/></Suspense>}></Route>
               <Route path='/home' element={<Suspense><Home/></Suspense>}></Route>
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
