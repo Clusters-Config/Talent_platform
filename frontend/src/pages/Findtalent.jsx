@@ -186,7 +186,7 @@ const Findtalent = () => {
   // };
 
   return (
-    <div className="container my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row dark:bg-gray-800">
+    <div className="container  mx-auto px-4 lg:px-8 flex flex-col lg:flex-row dark:bg-gray-800">
       <aside className="w-max  sm:w-[200px] sm:hidden dark:bg-gray-800 text-white lg:w-1/6 bg-white p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
         <h2 className="text-lg font-semibold mb-4 text-gray-700 dark:text-white">Filters</h2>
         <div className="mb-4">

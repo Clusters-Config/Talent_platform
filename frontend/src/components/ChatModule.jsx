@@ -41,7 +41,7 @@ const ChatModule = () => {
                 />
             </div>
             <button 
-                className="w-full px-4 py-3 bg-green-900 text-white rounded-md hover:bg-green-700 transition duration-300"
+                className="w-full px-4 py-3  bg-blue-500 hover:bg-blue-700 text-white rounded-md transition duration-300"
                 onClick={() => {
                     if (msg && inputValue.trim()) {
                         msg.send(inputValue)
