@@ -70,7 +70,7 @@ const FormLogin = ({children}) => {
                 <Button
                  title='Login'
                     onClick={loginUser}
-                    className="bg-blue-500 text-white p-4 px-4 rounded w-full hover:bg-blue-600"
+                    className="bg-blue-500 text-white  p-4 px-4 rounded w-44 h-16 hover:bg-blue-600"
                 />
                  
                  {children}
