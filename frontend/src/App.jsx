@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import Layout from './wrappers/Layout';
-import Profile from "./pages/Profile";
+import Profile from "./pages/ProfilePage";
 import Home from "./pages/Home";
 
 
