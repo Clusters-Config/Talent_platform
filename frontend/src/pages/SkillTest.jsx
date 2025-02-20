@@ -1,37 +1,15 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // Import axios for API calls
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const staticQuestions = [
-  {
-    question: "What does HTML stand for?",
-    options: [
-      "Hyper Text Markup Language",
-      "Home Tool Markup Language",
-      "Hyperlinks and Text Markup Language",
-      "None of the above",
-    ],
-    answer: "Hyper Text Markup Language",
-  },
-  {
-    question: "Which CSS property controls the text size?",
-    options: ["font-style", "text-size", "font-size", "text-style"],
-    answer: "font-size",
-  },
-  {
-    question: "Which language runs in a web browser?",
-    options: ["Java", "C++", "Python", "JavaScript"],
-    answer: "JavaScript",
-  },
-];
-
-const SkillTest = () => {
+const SkillTest = ({ selectedJob }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(15);
+  const [timeLeft, setTimeLeft] = useState(60);
   const [showResult, setShowResult] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
@@ -39,15 +17,27 @@ const SkillTest = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        // const response = await axios.get("/api/skilltest"); // Fetch questions from API
-        // setQuestions(response.data.length > 0 ? response.data : staticQuestions);
-        setQuestions(staticQuestions);
+        const response = await axios.get("https://quizapi.io/api/v1/questions", {
+          params: {
+            apiKey: "oeKzLvfJvmOyOYdfQDStxcB18uy90r3jtLqv0SWR",
+            limit: 5,
+            category: "Linux",
+          },
+        });
+        const apiQuestions = response.data.map((q) => ({
+          question: q.question,
+          options: Object.values(q.answers).filter((answer) => answer !== null),
+          answer: Object.keys(q.correct_answers).filter(
+            (key) => q.correct_answers[key] === "true"
+          )[0],
+        }));
+        setQuestions(apiQuestions);
       } catch (error) {
-        setQuestions(staticQuestions);
+        console.error("Error fetching questions:", error);
       }
     };
     fetchQuestions();
-  }, []);
+  }, [selectedJob]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,7 +55,10 @@ const SkillTest = () => {
   }, [timeLeft, navigate]);
 
   const handleNext = () => {
-    if (selectedOption === questions[currentQuestion].answer) {
+    const correctAnswer = questions[currentQuestion].options[
+      questions[currentQuestion].answer.replace("answer_", "").charCodeAt(0) - 97
+    ];
+    if (selectedOption === correctAnswer) {
       setScore(score + 1);
     }
     setSelectedOption(null);
@@ -74,6 +67,7 @@ const SkillTest = () => {
       setProgress(((currentQuestion + 1) / questions.length) * 100);
     } else {
       setShowResult(true);
+      setTimeLeft(0)
     }
   };
 
