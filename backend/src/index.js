@@ -14,7 +14,7 @@ import  postTalent  from './routes/user.route.js';
 import  getTalent  from './routes/user.route.js';
 import { SignOut } from './controllers/user.control.js';
 import { connect ,disconnect } from './controllers/connection.control.js';
-import { createprofile } from './controllers/profile.control.js';
+import { createprofile , getProfile } from './controllers/profile.control.js';
 
 dotenv.config({ 
     path:'.env'
@@ -37,6 +37,7 @@ app.use('/',getTalent)
 app.use('/',connect)
 app.use('/',disconnect)
 app.use('/',createprofile)
+app.use('/',getProfile)
 
 
 //websocket server 

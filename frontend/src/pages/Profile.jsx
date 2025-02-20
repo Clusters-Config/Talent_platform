@@ -1,10 +1,34 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+async function fetchData(name) {
+  try {
+    const result = await axios.get(`http://localhost:3001/getProfile/${name}`)
+    const profileData = result.data.profile;
+    console.log(profileData);
+    return profileData;
+  }
+  catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 
 const ProfilePage = () => {
   // State for editable fields
+  const [data, setData] = useState([]);
+  console.log(data)
+  useEffect(()=>{ 
+    async function loadProfile() {
+      const data = await fetchData(localStorage.getItem('username'));
+      if (data) {
+        setData(data);
+      }
+    }
+    loadProfile();
+  },[])
   const [basicInfo, setBasicInfo] = useState({
-    name: "Alexander Weir",
+    name: data.name,
     title: "Web Designer",
     languages: "English",
     age: "32 Years",
@@ -12,7 +36,7 @@ const ProfilePage = () => {
     expectedSalary: "2500$",
   });
 
-  const [description, setDescription] = useState("David Matin - Web Developer");
+  const [description, setDescription] = useState(`${data.description}`);
 
   const [contactInfo, setContactInfo] = useState({
     phone: "+1 123 456 7890",
@@ -58,7 +82,7 @@ const ProfilePage = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <h2 className="text-xl font-bold">Alexander Weir</h2>
+          <h2 className="text-xl font-bold">{data.name}</h2>
           <p className="text-sm text-blue-200 dark:text-indigo-400">Web Designer</p>
         </div>
 

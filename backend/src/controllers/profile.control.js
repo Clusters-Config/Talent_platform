@@ -25,7 +25,9 @@ const getProfiles = async (req, res) => {
 
 const getProfile = async (req, res) => {
     try {
-        const profile = await Profile.findById(req.params.id);
+        const profile = await Profile.find({ 
+            name: req.params.name
+        });
         res.status(200).json({
             msg: "Profile found successfully",
             profile
