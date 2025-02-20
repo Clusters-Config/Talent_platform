@@ -5,7 +5,7 @@ import { postNetwork , getNetwork } from '../controllers/network.control.js'
 import { getTalent, postTalent } from '../controllers/talent.control.js'
 import { authMiddleware }  from '../middlewares/auth.js'
 import { connect, disconnect } from '../controllers/connection.control.js'
-
+import { createprofile } from '../controllers/profile.control.js'
 const router = Router();
 
 router.post('/signup', SignUp)
@@ -19,7 +19,8 @@ router.post('/posttalent', postTalent)
 router.get('/gettalent', getTalent)
 router.patch('/connect/:id/:title', connect)
 router.patch('/disconnect/:id/:title', disconnect)
+router.post('/createprofile', createprofile)
 
-router.get('/')
+
 
 export default router
