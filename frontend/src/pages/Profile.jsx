@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProfilePage.css'; // Import your CSS file for styling
+import './Profile.css'; // Import your CSS file for styling
 
 const ProfilePage = () => {
   const user = {
