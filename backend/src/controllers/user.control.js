@@ -72,7 +72,8 @@ const JobsPost = async (req,res) => {
         title,
         content,
         name,
-        position
+        position,
+        location
     })
     console.log(newJob)
     
