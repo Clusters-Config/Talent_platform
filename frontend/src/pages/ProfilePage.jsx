@@ -1,104 +1,123 @@
-import React from 'react';
-import '../ProfilePage.css'; // Import your CSS file for styling
+import React, { useState } from 'react';
+import './ProfilePage.css'; // Import the CSS file for styling
 
 const ProfilePage = () => {
-  // Sample user data (replace with dynamic data from an API or state)
-  const user = {
-    name: 'John Doe',
-    profilePicture: 'https://via.placeholder.com/150',
-    about: 'Experienced software developer with a passion for building scalable web applications.',
-    experience: [
-      {
-        company: 'Tech Corp',
-        position: 'Senior Software Engineer',
-        duration: 'Jan 2020 - Present',
-        description: 'Led a team of developers to build and maintain enterprise-level applications.',
-      },
-      {
-        company: 'Innovate Solutions',
-        position: 'Software Engineer',
-        duration: 'Jun 2016 - Dec 2019',
-        description: 'Developed and maintained web applications using React and Node.js.',
-      },
-    ],
-    education: [
-      {
-        institution: 'University of Tech',
-        degree: 'Bachelor of Science in Computer Science',
-        duration: '2012 - 2016',
-      },
-    ],
-    skills: ['React', 'JavaScript', 'Node.js', 'HTML', 'CSS', 'Python'],
-    socialLinks: {
-      linkedin: 'https://www.linkedin.com/in/johndoe',
-      github: 'https://github.com/johndoe',
-      twitter: 'https://twitter.com/johndoe',
-    },
+  const [about, setAbout] = useState('');
+  const [experience, setExperience] = useState([]);
+  const [education, setEducation] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [socialLinks, setSocialLinks] = useState([]);
+
+  const handleAddExperience = () => {
+    setExperience([...experience, { id: experience.length + 1, title: '', company: '', duration: '' }]);
+  };
+
+  const handleCancelExperience = (id) => {
+    setExperience(experience.filter(exp => exp.id !== id));
+  };
+
+  const handleAddEducation = () => {
+    setEducation([...education, { id: education.length + 1, institution: '', degree: '', year: '' }]);
+  };
+
+  const handleCancelEducation = (id) => {
+    setEducation(education.filter(edu => edu.id !== id));
+  };
+
+  const handleAddSkill = () => {
+    setSkills([...skills, { id: skills.length + 1, skill: '' }]);
+  };
+
+  const handleCancelSkill = (id) => {
+    setSkills(skills.filter(skill => skill.id !== id));
+  };
+
+  const handleAddSocialLink = () => {
+    setSocialLinks([...socialLinks, { id: socialLinks.length + 1, platform: '', url: '' }]);
+  };
+
+  const handleCancelSocialLink = (id) => {
+    setSocialLinks(socialLinks.filter(link => link.id !== id));
   };
 
   return (
-    <div className="profile-page">
-      {/* Profile Section */}
-      <div className="profile-section">
-        <img src={user.profilePicture} alt="Profile" className="profile-picture" />
-        <h1>{user.name}</h1>
+    <div className="profile-page" style={{ backgroundColor: '#e6f7ff', padding: '20px' }}>
+      <h1>Profile Page</h1>
+
+      {/* User Profile Section */}
+      <div className="section">
+        <h2>User Profile</h2>
+        <div className="profile-picture">
+          <img src="https://via.placeholder.com/150" alt="Profile" />
+          <button>Change Picture</button>
+        </div>
       </div>
 
       {/* About Section */}
-      <div className="about-section">
-        <h2>About Me</h2>
-        <p>{user.about}</p>
+      <div className="section">
+        <h2>About</h2>
+        <textarea
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
+          placeholder="Tell us about yourself..."
+        />
+        <div className="buttons">
+          <button>Save</button>
+          <button onClick={() => setAbout('')}>Cancel</button>
+        </div>
       </div>
 
       {/* Experience Section */}
-      <div className="experience-section">
+      <div className="section">
         <h2>Experience</h2>
-        {user.experience.map((exp, index) => (
-          <div key={index} className="experience-item">
-            <h3>{exp.position}</h3>
-            <h4>{exp.company}</h4>
-            <p>{exp.duration}</p>
-            <p>{exp.description}</p>
+        {experience.map(exp => (
+          <div key={exp.id} className="experience-item">
+            <input type="text" placeholder="Job Title" />
+            <input type="text" placeholder="Company" />
+            <input type="text" placeholder="Duration" />
+            <button onClick={() => handleCancelExperience(exp.id)}>Cancel</button>
           </div>
         ))}
+        <button onClick={handleAddExperience}>Add Experience</button>
       </div>
 
       {/* Education Section */}
-      <div className="education-section">
+      <div className="section">
         <h2>Education</h2>
-        {user.education.map((edu, index) => (
-          <div key={index} className="education-item">
-            <h3>{edu.degree}</h3>
-            <h4>{edu.institution}</h4>
-            <p>{edu.duration}</p>
+        {education.map(edu => (
+          <div key={edu.id} className="education-item">
+            <input type="text" placeholder="Institution" />
+            <input type="text" placeholder="Degree" />
+            <input type="text" placeholder="Year" />
+            <button onClick={() => handleCancelEducation(edu.id)}>Cancel</button>
           </div>
         ))}
+        <button onClick={handleAddEducation}>Add Education</button>
       </div>
 
       {/* Skills Section */}
-      <div className="skills-section">
+      <div className="section">
         <h2>Skills</h2>
-        <ul>
-          {user.skills.map((skill, index) => (
-            <li key={index}>{skill}</li>
-          ))}
-        </ul>
+        {skills.map(skill => (
+          <div key={skill.id} className="skill-item">
+            <input type="text" placeholder="Skill" />
+            <button onClick={() => handleCancelSkill(skill.id)}>Cancel</button>
+          </div>
+        ))}
+        <button onClick={handleAddSkill}>Add Skill</button>
       </div>
 
       {/* Social Links Section */}
-      <div className="social-section">
-        <h2>Connect with Me</h2>
-        <div className="social-links">
-          <a href={user.socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-          <a href={user.socialLinks.github} target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          <a href={user.socialLinks.twitter} target="_blank" rel="noopener noreferrer">
-            Twitter
-          </a>
-        </div>
+      <div className="section">
+        <h2>Social Links</h2>
+        {socialLinks.map(link => (
+          <div key={link.id} className="social-link-item">
+            <input type="text" placeholder="Platform" />
+            <input type="text" placeholder="URL" />
+            <button onClick={() => handleCancelSocialLink(link.id)}>Cancel</button>
+          </div>
+        ))}
+        <button onClick={handleAddSocialLink}>Add Social Link</button>
       </div>
     </div>
   );

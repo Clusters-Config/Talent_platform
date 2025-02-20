@@ -1,80 +1,48 @@
 .profile-page {
+  font-family: Arial, sans-serif;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #e6f7ff; /* Light blue background */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.profile-section {
-  text-align: center;
-  padding: 20px;
-  background-color: #ffffff; /* White background for profile section */
-  border-radius: 10px; /* Rounded corners */
-  margin-bottom: 20px; /* Space below the profile section */
+.section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.profile-picture {
-  width: 150px;
-  height: 150px;
+h1, h2 {
+  color: #333;
+}
+
+.profile-picture img {
   border-radius: 50%;
-  border: 3px solid #0077b5; /* Border around the profile picture */
+  margin-right: 10px;
 }
 
-.about-section,
-.experience-section,
-.education-section,
-.skills-section,
-.social-section {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #ffffff; /* White background for each section */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-.experience-item,
-.education-item {
-  margin-bottom: 15px;
+textarea, input {
+  width: 100%;
   padding: 10px;
-  border-left: 4px solid #0077b5; /* Left border for emphasis */
-  background-color: #f9f9f9; /* Light gray background for items */
-  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.skills-section ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex; /* Align skills in a row */
-  flex-wrap: wrap; /* Wrap skills to the next line if needed */
-  gap: 10px; /* Space between skills */
+.buttons {
+  display: flex;
+  gap: 10px;
 }
 
-.skills-section li {
-  display: inline-block;
-  background-color: #0077b5; /* Blue background for skills */
-  color: #ffffff; /* White text for skills */
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
+button {
+  padding: 10px 15px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.social-links {
-  display: flex; /* Align social links in a row */
-  gap: 15px; /* Space between social links */
-  justify-content: center; /* Center align social links */
-}
-
-.social-links a {
-  text-decoration: none;
-  color: #0077b5; /* Blue color for links */
-  font-weight: bold; /* Bold text for links */
-  transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-.social-links a:hover {
-  color: #0056b3; /* Darker blue on hover */
-  text-decoration: underline;
+button:hover {
+  background-color: #005bb5;
 }
