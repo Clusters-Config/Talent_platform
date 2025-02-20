@@ -7,6 +7,12 @@ import Button from "./Button";
 async function connection(name, id) {
     try {
         const response = await axios.patch(`http://localhost:3001/connect/${id}/${name}`);
+        if(response.status === 200){
+            console.log('Connection successful');
+        }
+        else{ 
+            console.log('Connection failed');
+        }
         return response;
     } catch (error) {
         console.error(error);
