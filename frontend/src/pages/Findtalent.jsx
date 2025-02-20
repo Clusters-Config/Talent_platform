@@ -5,7 +5,7 @@ import FilterList from '../components/FilterList';
 import SearchBar from '../components/SearchBar';
 import FilterAside from '../components/FilterAside';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
+import Loader from '../components/Loader';
 const candidates = [
   {
     id: 1,
@@ -259,7 +259,9 @@ const Findtalent = () => {
           {filteredCandidates.length === 0 && (
             <div className="text-center text-gray-500 col-span-full py-12">
               No candidates found.
-            </div>
+             <Loader
+             className=""/></div>
+           
           )}
         </div>
       </main>
