@@ -2,7 +2,6 @@ import React, { Suspense } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
-import OpenSource from './pages/Opensource'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";

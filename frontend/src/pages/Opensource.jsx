@@ -30,7 +30,7 @@ if (error) return <div>Error: {error}</div>;
  
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto border p-4">
       <h1 className="text-3xl font-bold mb-4 text-center">Open Source Projects</h1>
       <ul className="space-y-4">
         {repos.map(repo => (
