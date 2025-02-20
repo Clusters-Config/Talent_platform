@@ -3,6 +3,7 @@ import Userimage from "../assets/user.jpg";
 
 import axios from "axios";
 import Button from "./Button";
+
 async function connection(name, id) {
     try {
         const response = await axios.patch(`http://localhost:3001/connect/${id}/${name}`);

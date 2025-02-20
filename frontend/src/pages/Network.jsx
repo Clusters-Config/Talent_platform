@@ -1,7 +1,7 @@
 import React from 'react'
 import useNet from '../hooks/useNet'  
 import NetworkCard from '../components/NetworkCard'
-
+import ChatModule from '../components/ChatModule'
 
 const Network = () => {
   const data = useNet();
@@ -18,6 +18,8 @@ const Network = () => {
             domain={person.employment}
             />
         ))}
+        
+        <ChatModule/>
       </div>
     
     </>
