@@ -123,10 +123,10 @@ const Dashboard = () => {
   }, [skillTestResults]);
 
   return (
-    <div className="w-4/5 mx-auto font-sans">
+    <div className="w-1/2 mx-auto font-sans">
       <h1 className="text-center text-2xl font-bold mb-4">Skill Test Dashboard</h1>
-      <div className="flex justify-between">
-        <canvas id="skillTestChart" className="h-96 w-3/5"></canvas>
+      <div className="flex justify-evenly">
+        <canvas id="skillTestChart" className="h-96 -ml-[20rem] w-1/3"></canvas>
         <Leaderboard skillTestResults={skillTestResults} className="w-2/5 ml-5" />
       </div>
     </div>
