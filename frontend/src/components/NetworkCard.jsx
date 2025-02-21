@@ -108,12 +108,12 @@ const NetworkCard = ({ name, domain, onAddFriend }) => {
                 <Button
                     title={ buttonText }
                     onClick={() => handleAddFriend(name)}
-                    className="inline-flex w-20 h-10 sm:w-3 sm:h-9 items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="inline-flex w-28 h-10 sm:w-3 sm:h-9 items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 />
                 <Button
                     title="Remove"
                     onClick={() => handleRemoveFriend(name)}
-                    className="inline-flex p-3 w-20 h-10 sm:w-3 sm:h-9 items-center text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="inline-flex p-3 w-20 h-10 sm:w-3 sm:h-9 items-center text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300  dark:focus:ring-blue-800"
                 />
             </div>
 
