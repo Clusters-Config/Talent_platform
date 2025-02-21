@@ -38,4 +38,21 @@ const getProfile = async (req, res) => {
     }
 }
 
-export { createprofile, getProfiles, getProfile }
+const updateProfile = async (req, res) => {
+    try {
+        const { description, skills, level, experience, education } = req.body;
+        const profile = await Profile.findOneAndUpdate(
+            { name: req.params.name },
+            req.body,
+            { new: true }
+        );
+        if (!profile) {
+            return res.status(404).json({ message: "Profile not found" });
+        }
+        res.status(200).json({ message: "Profile updated successfully", profile });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export { createprofile, getProfiles, getProfile, updateProfile }

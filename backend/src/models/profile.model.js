@@ -20,13 +20,46 @@ const profileSchema = new Schema({
         type:String,
         required:true
     },
-    experience:{ 
+    experience:{
         type:[String],
         required:true
     },
-    education:{ 
+    education:{
         type:[String],
         required:true
+    },
+    title: {
+        type: String,
+    },
+    languages: {
+        type: String,
+    },
+    age: {
+        type: String,
+    },
+    currentSalary: {
+        type: String,
+    },
+    expectedSalary: {
+        type: String,
+    },
+    phone: {
+        type: String,
+    },
+    email: {
+        type: String,
+    },
+    country: {
+        type: String,
+    },
+    postcode: {
+        type: String,
+    },
+    city: {
+        type: String,
+    },
+    address: {
+        type: String,
     },
 },{timestamps:true})
 

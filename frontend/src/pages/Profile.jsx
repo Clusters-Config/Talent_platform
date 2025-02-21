@@ -15,36 +15,52 @@ async function fetchData(name) {
 }
 
 const ProfilePage = () => {
-  // State for editable fields
+
   const [data, setData] = useState([]);
   console.log(data)
   useEffect(()=>{ 
     async function loadProfile() {
       const data = await fetchData(localStorage.getItem('username'));
       if (data) {
+        console.log(data);
+        
         setData(data);
       }
     }
     loadProfile();
   },[])
   const [basicInfo, setBasicInfo] = useState({
-    name: data.name,
-    title: "Web Designer",
-    languages: "English",
-    age: "32 Years",
-    currentSalary: "2000$",
-    expectedSalary: "2500$",
+    name: "",
+    title: "",
+    languages: "",
+    age: "",
+    currentSalary: "",
+    expectedSalary: "",
   });
 
-  const [description, setDescription] = useState(`${data.description}`);
+  useEffect(() => {
+    if (data.length > 0) {
+      setBasicInfo({
+        name: data[0].name,
+        title: data[0].title,
+        languages: data[0].languages,
+        age: data[0].age,
+        currentSalary: data[0].currentSalary,
+        expectedSalary: data[0].expectedSalary,
+      });
+      setDescription(data[0].description);
+    }
+  }, [data]); 
+  
+  const [description, setDescription] = useState(``);
 
   const [contactInfo, setContactInfo] = useState({
-    phone: "+1 123 456 7890",
-    email: "info@example.com",
-    country: "Country Name",
-    postcode: "112233",
-    city: "London",
-    address: "New York City",
+    phone: "",
+    email: "",
+    country: "",
+    postcode: "",
+    city: "",
+    address: "",
   });
 
   const [isEditing, setIsEditing] = useState({
@@ -53,7 +69,6 @@ const ProfilePage = () => {
     contactInfo: false,
   });
 
-  // Handle input changes
   const handleChange = (section, field, value) => {
     if (section === "basicInfo") {
       setBasicInfo({ ...basicInfo, [field]: value });
@@ -64,7 +79,7 @@ const ProfilePage = () => {
     }
   };
 
-  // Toggle edit mode
+
   const toggleEdit = (section) => {
     setIsEditing({ ...isEditing, [section]: !isEditing[section] });
   };
@@ -95,14 +110,18 @@ const ProfilePage = () => {
         </nav>
       </div>
 
-      {/* Main Content */}
+    
       <div className="ml-64 flex-1 p-8">
-        {/* Basic Information Section */}
+    
         <EditableSection
           title="Basic Information"
           isEditing={isEditing.basicInfo}
           onEdit={() => toggleEdit("basicInfo")}
           onSave={() => toggleEdit("basicInfo")}
+          section="basicInfo"
+          basicInfo={basicInfo}
+          description={description}
+          contactInfo={contactInfo}
         >
           <EditableField
             label="Your Name"
@@ -148,6 +167,10 @@ const ProfilePage = () => {
           isEditing={isEditing.description}
           onEdit={() => toggleEdit("description")}
           onSave={() => toggleEdit("description")}
+          section="description"
+          basicInfo={basicInfo}
+          description={description}
+          contactInfo={contactInfo}
         >
           <EditableField
             label="Description"
@@ -164,6 +187,10 @@ const ProfilePage = () => {
           isEditing={isEditing.contactInfo}
           onEdit={() => toggleEdit("contactInfo")}
           onSave={() => toggleEdit("contactInfo")}
+          section="contactInfo"
+          basicInfo={basicInfo}
+          description={description}
+          contactInfo={contactInfo}
         >
           <EditableField
             label="Phone"
@@ -207,23 +234,38 @@ const ProfilePage = () => {
   );
 };
 
-// Reusable Editable Section Component
-const EditableSection = ({ title, isEditing, onEdit, onSave, children }) => (
-  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-    <div className="flex justify-between items-center mb-4">
-      <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
-      <button
-        onClick={isEditing ? onSave : onEdit}
-        className="bg-blue-500 dark:bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 dark:hover:bg-indigo-700 transition-all duration-300"
-      >
-        {isEditing ? "Save" : "Edit"}
-      </button>
-    </div>
-    {children}
-  </div>
-);
 
-// Reusable Editable Field Component
+const EditableSection = ({ title, isEditing, onEdit, onSave, children, section, basicInfo, description, contactInfo }) => {
+  const handleSave = async () => {
+    try {
+      await axios.patch(`http://localhost:3001/updateprofile/${localStorage.getItem('username')}`, {
+        ...basicInfo,
+        description,
+        ...contactInfo,
+      });
+      console.log("Profile updated successfully");
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+    onSave();
+  };
+
+  return (
+    <div className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
+        <button
+          onClick={isEditing ? handleSave : onEdit}
+          className="bg-blue-500 dark:bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 dark:hover:bg-indigo-700 transition-all duration-300"
+        >
+          {isEditing ? "Save" : "Edit"}
+        </button>
+      </div>
+      {children}
+    </div>
+  );
+};
+
 const EditableField = ({ label, value, isEditing, onChange, isTextArea }) => (
   <div className="mb-4">
     <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1">{label}</label>
@@ -258,7 +300,7 @@ const handleLogout = () => {
 const NavLink = ({ href, label }) => (
   <a
     href={href}
-    className="block text-lg text-blue-500 dark:text-indigo-600 font-medium hover:text-blue-600 dark:hover:text-indigo-300 hover:bg-blue-50 dark:hover:bg-indigo-700 p-2 rounded-lg transition-all duration-300"
+    className="block text-lg text-blue-500 dark:text-indigo-600 font-medium hover:text-blue-600 dark:hover:bg-blue-50 dark:hover:bg-indigo-700 p-2 rounded-lg transition-all duration-300"
   onClick={handleLogout}>
     {label}
   </a>

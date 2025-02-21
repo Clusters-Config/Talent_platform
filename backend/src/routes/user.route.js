@@ -19,9 +19,11 @@ router.post('/posttalent', postTalent)
 router.get('/gettalent', getTalent)
 router.patch('/connect/:id/:title', connect)
 router.patch('/disconnect/:id/:title', disconnect)
+import { updateProfile } from '../controllers/profile.control.js';
+
 router.post('/createprofile', createprofile)
 router.get('/getprofile/:name',getProfile)
-
+router.patch('/updateprofile/:name', updateProfile);
 
 
 export default router
