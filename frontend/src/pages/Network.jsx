@@ -41,12 +41,12 @@ const Network = () => {
 
   return (
     <>
-      <div className="container px- sm:px-5 flex sm:flex sm:justify-start gap-5 flex-wrap ">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Connect with Talents</h2>
-        <div className="network-cards-container w-[750px] bg-gray-100 rounded-lg shadow-md p-5 grid grid-cols-2 gap-4">
+      <div className="container px- sm:px-5 flex sm:flex sm:justify-start gap-5 flex-wrap dark:bg-gray-900"> 
+      <h2 className="text-2xl font-semibold mb-4 text-center mt-[60px] dark:bg-gray-900">Connect with Talents</h2>
+        <div className="network-cards-container w-[750px] bg-gray-100  dark:bg-gray-600 rounded-lg shadow-md p-5 grid grid-cols-2 gap-4 mt-[200px] ml-[-200px] ">
           
           {networkData && networkData.map((person, index) => (
-            <NetworkCard
+            <NetworkCard 
               key={index}
               name={person.title}
               domain={person.employment}
