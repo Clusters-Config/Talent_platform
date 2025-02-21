@@ -52,7 +52,7 @@ const CommunityChat = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-2xl font-semibold mb-4">Open Source Community Chat</h2>
+      <h2 className="text-2xl font-semibold mb-4 dark:text-gray-900 ">Open Source Community Chat</h2>
       <ul className="mb-4">
         {topics.map((topic) => (
           <li
@@ -82,7 +82,7 @@ const CommunityChat = () => {
             />
           </div>
           <button
-            className="w-full px-4 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300"
+            className="w-full px-4 py-3 bg-blue-500 dark:text-white text-white rounded-md hover:bg-blue-600 transition duration-300"
             onClick={sendMessage}
           >
             Send
