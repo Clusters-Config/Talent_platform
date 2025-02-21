@@ -1,7 +1,6 @@
 import React, { useState ,useEffect } from "react";
 import axios from "axios";
 
-
 async function fetchData(name) {
   try {
     const result = await axios.get(`http://localhost:3001/getProfile/${name}`)

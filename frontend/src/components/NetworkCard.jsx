@@ -69,7 +69,6 @@ const NetworkCard = ({ name, domain, onAddFriend }) => {
                 const userId = localStorage.getItem('id');
                 const response = await axios.get(`http://localhost:3001/connections/${userId}`);
                 const connections = Array.isArray(response.data) ? response.data : [];
-                // Check if the current profile is already connected
                 const isAlreadyConnected = connections.some((connection) => connection.name === name);
                 setIsConnected(isAlreadyConnected);
             } catch (error) {
