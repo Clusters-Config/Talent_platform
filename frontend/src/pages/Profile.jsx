@@ -242,6 +242,10 @@ const EditableSection = ({ title, isEditing, onEdit, onSave, children, section, 
         ...basicInfo,
         description,
         ...contactInfo,
+        skills: data[0].skills,
+        level: data[0].level,
+        experience: data[0].experience,
+        education: data[0].education,
       });
       console.log("Profile updated successfully");
     } catch (error) {
@@ -296,7 +300,6 @@ const handleLogout = () => {
   navigate("/login");
 };
 
-// Reusable NavLink Component
 const NavLink = ({ href, label }) => (
   <a
     href={href}

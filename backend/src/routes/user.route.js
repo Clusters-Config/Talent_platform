@@ -21,9 +21,13 @@ router.patch('/connect/:id/:title', connect)
 router.patch('/disconnect/:id/:title', disconnect)
 import { updateProfile } from '../controllers/profile.control.js';
 
+import { postSkillTestResult, getSkillTestResults } from '../controllers/skillTestResult.control.js';
+
 router.post('/createprofile', createprofile)
 router.get('/getprofile/:name',getProfile)
 router.patch('/updateprofile/:name', updateProfile);
 
+router.post('/skilltestresult', postSkillTestResult);
+router.get('/skilltestresults', getSkillTestResults);
 
 export default router
