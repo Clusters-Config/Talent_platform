@@ -51,12 +51,14 @@ const Dashboard = () => {
                 font: {
                   size: 16,
                   family: 'Arial, sans-serif',
-                  weight: 'bold'
+                  weight: 'bold',
+                  color: 'white'
                 }
               },
               ticks: {
                 font: {
-                  size: 14
+                  size: 14,
+                  color: 'white'
                 }
               }
             },
@@ -67,12 +69,14 @@ const Dashboard = () => {
                 font: {
                   size: 16,
                   family: 'Arial, sans-serif',
-                  weight: 'bold'
+                  weight: 'bold',
+                  color: 'white'
                 }
               },
               ticks: {
                 font: {
-                  size: 14
+                  size: 14,
+                  color: 'white'
                 }
               }
             }
@@ -84,7 +88,8 @@ const Dashboard = () => {
               labels: {
                 font: {
                   size: 14,
-                  family: 'Arial, sans-serif'
+                  family: 'Arial, sans-serif',
+                  color: 'white'
                 }
               }
             },
@@ -94,17 +99,20 @@ const Dashboard = () => {
               font: {
                 size: 20,
                 family: 'Arial, sans-serif',
-                weight: 'bold'
+                weight: 'bold',
+                color: 'white'
               }
             },
-             tooltip: {
+            tooltip: {
               backgroundColor: 'rgba(0, 0, 0, 0.8)',
               bodyFont: {
-                size: 14
+                size: 14,
+                color: 'white'
               },
               titleFont: {
                 size: 16,
-                weight: 'bold'
+                weight: 'bold',
+                color: 'white'
               },
               padding: 10
             }
@@ -123,12 +131,20 @@ const Dashboard = () => {
   }, [skillTestResults]);
 
   return (
-    <div className="w-1/2 mx-auto font-sans">
-      <h1 className="text-center text-2xl font-bold mb-4">Skill Test Dashboard</h1>
-      <div className="flex justify-evenly">
-        <canvas id="skillTestChart" className="h-96 -ml-[20rem] w-1/3"></canvas>
-        <Leaderboard skillTestResults={skillTestResults} className="w-2/5 ml-5" />
-      </div>
+    <div className="flex flex-col h-screen bg-white dark:bg-gray-900">
+      <header className="py-4 flex justify-between items-center bg-gray-100 dark:bg-gray-800">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Skill Test Dashboard</h1>
+      </header>
+      <main className="flex-1 bg-white dark:bg-gray-900">
+        <div className="flex justify-between items-center h-full bg-white dark:bg-gray-900">
+          <div className="ml-[1rem] w-7/12 rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800">
+            <canvas id="skillTestChart" className="h-[26rem] w-[26rem] bg-white dark:bg-gray-900"></canvas>
+          </div>
+          <div className="w-1/3 mr-[3rem] rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800">
+            <Leaderboard skillTestResults={skillTestResults} className="p-4 bg-white dark:bg-gray-900" />
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

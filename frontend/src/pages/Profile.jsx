@@ -55,7 +55,7 @@ const ProfilePage = () => {
   const [description, setDescription] = useState(``);
 
   const [contactInfo, setContactInfo] = useState({
-    phone: "+91 1234567890",
+    phone: "",
     email: "haridev@gmail.com",
     country: "India",
     postcode: "636008",
@@ -92,12 +92,12 @@ const ProfilePage = () => {
         <div className="text-center mb-8">
           <div className="w-24 h-24 bg-gray-200 dark:bg-gray-700 rounded-full mx-auto mb-4 overflow-hidden">
             <img
-              src="https://via.placeholder.com/150"
+              src="https://randomuser.me/api/portraits/men/9.jpg"
               alt="Profile"
               className="w-full h-full object-cover"
             />
           </div>
-          <h2 className="text-xl font-bold">{data.name}</h2>
+          <h2 className="text-xl font-bold">{basicInfo.name}</h2>
           <p className="text-sm text-blue-200 dark:text-indigo-400">Web Designer</p>
         </div>
 
@@ -297,7 +297,7 @@ const EditableField = ({ label, value, isEditing, onChange, isTextArea }) => (
 const NavLink = ({ href, label }) => (
   <a
     href={href}
-    className="block text-lg text-blue-500 dark:text-indigo-600 font-medium hover:text-blue-600 dark:hover:bg-blue-50 dark:hover:bg-indigo-700 p-2 rounded-lg transition-all duration-300"
+    className="block text-lg text-blue-500 dark:text-indigo-600 font-medium hover:text-blue-600 dark:hover:bg-blue-50 p-2 rounded-lg transition-all duration-300"
   >
     {label}
   </a>

@@ -35,7 +35,7 @@ const OpenSource = () => {
 
   return (
     <div className="container mx-auto p-6 bg-gray-100 rounded-lg shadow-lg dark:bg-gray-900">
-      <h1 className="text-4xl font-bold mb-6 text-center text-green-700 dark:text-indigo-600">Top C++ Open Source Projects</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-green-700 dark:text-indigo-600 mt-16">Top C++ Open Source Projects</h1>
       <ul className="space-y-6">
         {repos.map(repo => (
           <motion.li
