@@ -14,7 +14,6 @@ const staticJobs = [
   { title: "Human Resources Manager", company: "Lineo", location: "California", type: "Remote", category: "Management",content:"We are looking for a project manager to be responsible for handling our company's ongoing projects. You will be working closely with your team members to ensure that all project requirements, deadlines, and schedules are on track. Responsibilities include submitting project deliverables, preparing status reports, and establishing effective project communication plans as well as the proper execution of said plans." }
 ];
 
-
 async function fetchData() {
   try {
     const result = await axios.get('http://localhost:3001/getjob',{
@@ -31,9 +30,10 @@ async function fetchData() {
     return [];
   }
 }
+
 export default function JobListings() {
   
-  const [selectedCategory, setSelectedCategory] = useState("Web Developer");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [jobs, setJobs] = useState([]);
 
@@ -47,14 +47,10 @@ export default function JobListings() {
     loadJobs();
   }, []);
 
-  const filteredJobsCategory = jobs.filter( (job) =>{
-    return job.position === selectedCategory 
+  const filteredJobs = jobs.filter((job) => {
+    return (selectedCategory === "" || job.position === selectedCategory) 
+      && job.title.toLowerCase().includes(searchTerm.toLowerCase());
   })
-  const filteredJobsSearch = jobs.filter((job) =>{ 
-    console.log(searchTerm)
-    return job.title.toLowerCase().includes(searchTerm.toLowerCase())
-  })
-
 
   return (
     <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
@@ -83,24 +79,19 @@ export default function JobListings() {
               <button
                 key={category}
                 className={`px-4 py-2 rounded-lg flex items-center gap-2 ${selectedCategory === category ? "bg-black text-white" : "bg-white text-black border border-gray-400"}`}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => setSelectedCategory(category === selectedCategory ? "" : category)}
               >
                 {category}
               </button>
             ))}
           </div>
-          {filteredJobsCategory.length > 0 ? (
-            filteredJobsCategory.map((job, index) => <JobCard key={index} job={job} />)
-          ) : (
-            <p className="text-center col-span-3 text-gray-500 dark:text-gray-300">No jobs found.</p>
-          )}
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {filteredJobsSearch.length > 0 ? (
-            filteredJobsSearch.map((job, index) => <JobCard key={index} job={job} />)
-          ) : (
-            <p className="text-center col-span-3 text-gray-500 dark:text-gray-300">No jobs found.</p>
-          )}
+          <div className="grid md:grid-cols-3 gap-6">
+            {filteredJobs.length > 0 ? (
+              filteredJobs.map((job, index) => <JobCard key={index} job={job} />)
+            ) : (
+              <p className="text-center col-span-3 text-gray-500 dark:text-gray-300">No jobs found.</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
