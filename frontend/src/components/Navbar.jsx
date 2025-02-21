@@ -8,14 +8,14 @@ import LoginIcon from '@mui/icons-material/Login';
 import WorkIcon from '@mui/icons-material/Work';
 import PeopleIcon from '@mui/icons-material/People';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-<<<<<<< HEAD
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-const Navbar =  () =>{ 
-=======
 import classnames from 'classnames';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
+
+
+
 
 const Navbar =  ({customClasses}) =>{ 
->>>>>>> 2946ad5af260a2ed0f104c886f2b7a69d68c2924
+    
     const [showMenu, setShowMenu] = useState(false);
     const MenuRef =useRef(null);
     const handleShowMenu = () => {

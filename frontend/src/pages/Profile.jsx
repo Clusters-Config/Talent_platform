@@ -172,8 +172,8 @@ const Profile = () => {
             alt="Profile"
             style={styles.profileImage}
           />
-<<<<<<< HEAD
-=======
+
+
           <div className="ml-4">
             <h2 className="text-3xl font-bold">{localStorage.getItem("username")}</h2>
             <p className="text-gray-600">{user.headline}</p>
