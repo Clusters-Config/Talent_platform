@@ -86,8 +86,8 @@ const NetworkCard = ({ name, domain, onAddFriend }) => {
     }, []);
 
     return (
-        <div className="w-[14rem]  h-[16rem] sm:w-44 sm:h-fit sm:p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div className="flex justify-end px-4 pt-4 sm:pt-0">
+        <div className="w-[14rem]  h-[17rem] sm:w-44 sm:h-fit sm:p-2  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex justify-end px-2 pt-4 sm:pt-0">
                 <button
                     id="dropdownButton"
                     data-dropdown-toggle="dropdown"

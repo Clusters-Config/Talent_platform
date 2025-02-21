@@ -47,7 +47,7 @@ const CommunityChat = () => {
 
   return (
     <motion.div
-      className="p-6 bg-gray-100 rounded-lg shadow-lg max-w-md mx-auto sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
+      className="p-6 dark:bg-gray-700 rounded-lg shadow-lg mt-[-119px] max-w-md mx-auto sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

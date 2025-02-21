@@ -41,9 +41,10 @@ const Network = () => {
 
   return (
     <>
-      <div className="container px- sm:px-5 flex sm:flex sm:justify-start gap-5 flex-wrap dark:bg-gray-900 ">
-      <h2 className="text-2xl font-semibold mb-4 text-center mt-[60px] dark:bg-gray-900">Connect with Talents</h2>
-        <div className="network-cards-container w-[750px] bg-gray-100 dark:bg-gray-600 rounded-lg shadow-md p-5 grid grid-cols-2 gap-4 mt-[200px] ml-[-200px]">
+      <div className="container px- sm:px-5 flex sm:flex sm:justify-start gap-5 flex-wrap dark:bg-gray-900  ">
+      <h2 className="text-2xl font-semibold mb-4 text-center mt-[60px] ml-[390px] dark:bg-gray-900 dark:text-white  ">Connect with Talents</h2>\t
+      <p className="text-xl font-semibold mb-4 text-center mt-[-20px] ml-[320px] dark:bg-gray-900 dark:text-white"><h4>The only way to have a friend is to be one</h4></p>
+        <div className="network-cards-container w-[750px] h-fit bg-gray-100 mt-[80px] ml-[-590px] dark:bg-gray-600 rounded-lg shadow-md p-5 grid grid-cols-3 gap-4 ">
           
           {networkData && networkData.map((person, index) => (
             <NetworkCard 
@@ -54,11 +55,10 @@ const Network = () => {
             />
           ))}
         </div>
-        <div className="chat-container border rounded-lg bg-white w-96">
+        <div className="chat-container  rounded-lg   dark:bg-gray-900 w-90 h-[600px] mt-[200px]  shadow-md">
           <CommunityChat />
         </div>
         </div>
-      </div>
     </>
   );
 }
