@@ -18,6 +18,7 @@ const Joblist  = z.object({
     content: z.string(),
     name: z.string(),
     position: z.string(),
+    location: z.string()
 })
 
 const Networklist = z.object({

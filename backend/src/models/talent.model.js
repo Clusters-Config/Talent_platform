@@ -8,7 +8,7 @@ const TalentSchema = new mongo({
         type: String,
         required:true
     },
-    label: { 
+    skills: { 
         type: Array,
         required:true,
     },
@@ -20,11 +20,15 @@ const TalentSchema = new mongo({
         type: String,
         required:true,
     },
-    avail:{ 
+    experience:{ 
         type: String,
         required:true,
     },
-    location:{ 
+    availability:{ 
+        type: String,
+        required:true,
+    },
+    description:{ 
         type: String,
         required:true,
     },

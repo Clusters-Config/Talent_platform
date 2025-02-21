@@ -1,109 +1,307 @@
-import React from 'react';
+import React, { useState ,useEffect } from "react";
+import axios from "axios";
 
-const Profile = () => {
-  const user = {
-    name: "John Doe",
-    headline: "Software Developer | JavaScript Enthusiast",
-    email: "john.doe@example.com",
-    bio: "Passionate software developer with experience in building scalable web applications. Always eager to learn new technologies and improve my skills.",
-    location: "San Francisco, CA",
-    experience: [
-      {
-        title: "Frontend Developer",
-        company: "Tech Solutions Inc.",
-        duration: "Jan 2021 - Present",
-        description: "Developing user-friendly web applications using React and Tailwind CSS."
-      },
-      {
-        title: "Web Developer Intern",
-        company: "Startup Co.",
-        duration: "Jun 2020 - Dec 2020",
-        description: "Assisted in the development of various web projects and learned best practices in coding."
+
+async function fetchData(name) {
+  try {
+    const result = await axios.get(`http://localhost:3001/getProfile/${name}`)
+    const profileData = result.data.profile;
+    console.log(profileData);
+    return profileData;
+  }
+  catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+const ProfilePage = () => {
+   
+  const [data, setData] = useState([]);
+  console.log(data)
+  useEffect(()=>{ 
+    async function loadProfile() {
+      const data = await fetchData(localStorage.getItem('username'));
+      if (data) {
+        console.log(data);
+        
+        setData(data);
       }
-    ],
-    education: [
-      {
-        degree: "Bachelor of Science in Computer Science",
-        institution: "University of California, Berkeley",
-        graduationYear: 2020
-      }
-    ],
-    skills: ["JavaScript", "React", "Node.js", "CSS", "Tailwind CSS"],
-    socialLinks: {
-      twitter: "#",
-      linkedin: "#",
-      github: "#"
+    }
+    loadProfile();
+  },[])
+  const [basicInfo, setBasicInfo] = useState({
+    name: "",
+    title: "",
+    languages: "",
+    age: "",
+    currentSalary: "",
+    expectedSalary: "",
+  });
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setBasicInfo({
+        name: data[0].name,
+        title: data[0].title,
+        languages: data[0].languages,
+        age: data[0].age,
+        currentSalary: data[0].currentSalary,
+        expectedSalary: data[0].expectedSalary,
+      });
+      setDescription(data[0].description);
+    }
+  }, [data]); 
+  
+  const [description, setDescription] = useState(``);
+
+  const [contactInfo, setContactInfo] = useState({
+    phone: "+91 1234567890",
+    email: "haridev@gmail.com",
+    country: "India",
+    postcode: "636008",
+    city: "Salem",
+    address: "34, Example Street, Salem",
+  });
+
+  const [isEditing, setIsEditing] = useState({
+    basicInfo: false,
+    description: false,
+    contactInfo: false,
+  });
+
+  const handleChange = (section, field, value) => {
+    if (section === "basicInfo") {
+      setBasicInfo({ ...basicInfo, [field]: value });
+    } else if (section === "contactInfo") {
+      setContactInfo({ ...contactInfo, [field]: value });
+    } else if (section === "description") {
+      setDescription(value);
     }
   };
 
+
+  const toggleEdit = (section) => {
+    setIsEditing({ ...isEditing, [section]: !isEditing[section] });
+  };
+
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-4xl w-full mx-4">
-        {/* Profile Header */}
-        <div className="flex items-center mb-6">
-          <img 
-            src="https://randomuser.me/api/portraits/men/10.jpg" 
-            alt="Profile" 
-            className="rounded-full w-32 h-32 border-2 border-gray-300"
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex">
+      {/* Fixed Left Sidebar */}
+      <div className="w-64 bg-gradient-to-r from-blue-600 to-purple-600 dark:bg-none dark:bg-gray-800 text-white fixed h-full p-6 shadow-2xl">
+        {/* Profile Photo */}
+        <div className="text-center mb-8">
+          <div className="w-24 h-24 bg-gray-200 dark:bg-gray-700 rounded-full mx-auto mb-4 overflow-hidden">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <h2 className="text-xl font-bold">{data.name}</h2>
+          <p className="text-sm text-blue-200 dark:text-indigo-400">Web Designer</p>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="space-y-4">
+          <NavLink href="#" label="Profile" />
+          <NavLink href="#" label="My Resume" />
+          <NavLink href="#" label="Change Password" />
+        </nav>
+      </div>
+
+    
+      <div className="ml-64 flex-1 p-8">
+    
+        <EditableSection
+          title="Basic Information"
+          isEditing={isEditing.basicInfo}
+          onEdit={() => toggleEdit("basicInfo")}
+          onSave={() => toggleEdit("basicInfo")}
+          section="basicInfo"
+          basicInfo={basicInfo}
+          description={description}
+          contactInfo={contactInfo}
+        >
+          <EditableField
+            label="Your Name"
+            value={basicInfo.name}
+            isEditing={isEditing.basicInfo}
+            onChange={(e) => handleChange("basicInfo", "name", e.target.value)}
           />
-          <div className="ml-4">
-            <h2 className="text-3xl font-bold">{localStorage.getItem("username")}</h2>
-            <p className="text-gray-600">{user.headline}</p>
-            <p className="text-gray-600">{user.location}</p>
-          </div>
-        </div>
+          <EditableField
+            label="Professional Title"
+            value={basicInfo.title}
+            isEditing={isEditing.basicInfo}
+            onChange={(e) => handleChange("basicInfo", "title", e.target.value)}
+          />
+          <EditableField
+            label="Languages"
+            value={basicInfo.languages}
+            isEditing={isEditing.basicInfo}
+            onChange={(e) => handleChange("basicInfo", "languages", e.target.value)}
+          />
+          <EditableField
+            label="Age"
+            value={basicInfo.age}
+            isEditing={isEditing.basicInfo}
+            onChange={(e) => handleChange("basicInfo", "age", e.target.value)}
+          />
+          <EditableField
+            label="Current Salary ($)"
+            value={basicInfo.currentSalary}
+            isEditing={isEditing.basicInfo}
+            onChange={(e) => handleChange("basicInfo", "currentSalary", e.target.value)}
+          />
+          <EditableField
+            label="Expected Salary"
+            value={basicInfo.expectedSalary}
+            isEditing={isEditing.basicInfo}
+            onChange={(e) => handleChange("basicInfo", "expectedSalary", e.target.value)}
+          />
+        </EditableSection>
 
-        {/* About Section */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold">About</h3>
-          <p className="text-gray-700 mt-2">{user.bio}</p>
-        </div>
+        {/* Description Section */}
+        <EditableSection
+          title="Description"
+          isEditing={isEditing.description}
+          onEdit={() => toggleEdit("description")}
+          onSave={() => toggleEdit("description")}
+          section="description"
+          basicInfo={basicInfo}
+          description={description}
+          contactInfo={contactInfo}
+        >
+          <EditableField
+            label="Description"
+            value={description}
+            isEditing={isEditing.description}
+            onChange={(e) => handleChange("description", "description", e.target.value)}
+            isTextArea
+          />
+        </EditableSection>
 
-        {/* Experience Section */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold">Experience</h3>
-          {user.experience.map((job, index) => (
-            <div key={index} className="mt-2">
-              <h4 className="font-semibold">{job.title} at {job.company}</h4>
-              <p className="text-gray-600">{job.duration}</p>
-              <p className="text-gray-700">{job.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Education Section */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold">Education</h3>
-          {user.education.map((edu, index) => (
-            <div key={index} className="mt-2">
-              <h4 className="font-semibold">{edu.degree} from {edu.institution}</h4>
-              <p className="text-gray-600">Graduated in {edu.graduationYear}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Skills Section */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold">Skills</h3>
-          <ul className="list-disc list-inside mt-2 text-gray-700">
-            {user.skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Social Links Section */}
-        <div>
-          <h3 className="text-lg font-semibold">Connect with me</h3>
-          <div className="flex space-x-4 mt-2">
-            <a href={user.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">Twitter</a>
-            <a href={user.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">LinkedIn</a>
-            <a href={user.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">GitHub</a>
-          </div>
-        </div>
+        {/* Contact Information Section */}
+        <EditableSection
+          title="Contact Information"
+          isEditing={isEditing.contactInfo}
+          onEdit={() => toggleEdit("contactInfo")}
+          onSave={() => toggleEdit("contactInfo")}
+          section="contactInfo"
+          basicInfo={basicInfo}
+          description={description}
+          contactInfo={contactInfo}
+        >
+          <EditableField
+            label="Phone"
+            value={contactInfo.phone}
+            isEditing={isEditing.contactInfo}
+            onChange={(e) => handleChange("contactInfo", "phone", e.target.value)}
+          />
+          <EditableField
+            label="Email Address"
+            value={contactInfo.email}
+            isEditing={isEditing.contactInfo}
+            onChange={(e) => handleChange("contactInfo", "email", e.target.value)}
+          />
+          <EditableField
+            label="Country"
+            value={contactInfo.country}
+            isEditing={isEditing.contactInfo}
+            onChange={(e) => handleChange("contactInfo", "country", e.target.value)}
+          />
+          <EditableField
+            label="Postcode"
+            value={contactInfo.postcode}
+            isEditing={isEditing.contactInfo}
+            onChange={(e) => handleChange("contactInfo", "postcode", e.target.value)}
+          />
+          <EditableField
+            label="City"
+            value={contactInfo.city}
+            isEditing={isEditing.contactInfo}
+            onChange={(e) => handleChange("contactInfo", "city", e.target.value)}
+          />
+          <EditableField
+            label="Full Address"
+            value={contactInfo.address}
+            isEditing={isEditing.contactInfo}
+            onChange={(e) => handleChange("contactInfo", "address", e.target.value)}
+          />
+        </EditableSection>
       </div>
     </div>
   );
-}
+};
 
-export default Profile;
+
+const EditableSection = ({ title, isEditing, onEdit, onSave, children, section, basicInfo, description, contactInfo }) => {
+  const handleSave = async () => {
+    try {
+      await axios.patch(`http://localhost:3001/updateprofile/${localStorage.getItem('username')}`, {
+        ...basicInfo,
+        description,
+        ...contactInfo,
+        skills: data[0].skills,
+        level: data[0].level,
+        experience: data[0].experience,
+        education: data[0].education,
+      });
+      console.log("Profile updated successfully");
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+    onSave();
+  };
+
+  return (
+    <div className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
+        <button
+          onClick={isEditing ? handleSave : onEdit}
+          className="bg-blue-500 dark:bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 dark:hover:bg-indigo-700 transition-all duration-300"
+        >
+          {isEditing ? "Save" : "Edit"}
+        </button>
+      </div>
+      {children}
+    </div>
+  );
+};
+
+const EditableField = ({ label, value, isEditing, onChange, isTextArea }) => (
+  <div className="mb-4">
+    <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1">{label}</label>
+    {isEditing ? (
+      isTextArea ? (
+        <textarea
+          value={value}
+          onChange={onChange}
+          className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+        />
+      ) : (
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+          className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+        />
+      )
+    ) : (
+      <p className="text-lg text-gray-900 dark:text-gray-100">{value}</p>
+    )}
+    </div>
+  );
+  
+
+const NavLink = ({ href, label }) => (
+  <a
+    href={href}
+    className="block text-lg text-blue-500 dark:text-indigo-600 font-medium hover:text-blue-600 dark:hover:bg-blue-50 dark:hover:bg-indigo-700 p-2 rounded-lg transition-all duration-300"
+  >
+    {label}
+  </a>
+);
+
+export default ProfilePage;

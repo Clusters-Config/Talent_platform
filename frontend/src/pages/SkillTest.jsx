@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // Import axios for API calls
+import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -54,7 +54,7 @@ const SkillTest = ({ selectedJob }) => {
     return () => clearInterval(timer);
   }, [timeLeft, navigate]);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const correctAnswer = questions[currentQuestion].options[
       questions[currentQuestion].answer.replace("answer_", "").charCodeAt(0) - 97
     ];
@@ -67,7 +67,20 @@ const SkillTest = ({ selectedJob }) => {
       setProgress(((currentQuestion + 1) / questions.length) * 100);
     } else {
       setShowResult(true);
-      setTimeLeft(0)
+      setTimeLeft(0);
+
+      // Send skill test results to the backend
+      try {
+        const username = localStorage.getItem('username');
+        await axios.post('http://localhost:3001/skilltestresult', {
+          username,
+          score,
+          testBehaviors: {}, 
+        });
+        console.log('Skill test result posted successfully');
+      } catch (error) {
+        console.error('Error posting skill test result:', error);
+      }
     }
   };
 
