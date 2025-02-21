@@ -1,5 +1,5 @@
 import React from 'react'
-import { Search, Business, LocationOn, Work, FilterList } from "@mui/icons-material";
+import {  Business, LocationOn, Work  } from "@mui/icons-material";
 import JobImg from "../assets/user.jpg"
 import { useNavigate } from "react-router-dom";
 

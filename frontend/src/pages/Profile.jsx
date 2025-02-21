@@ -1,6 +1,7 @@
 import React, { useState ,useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 async function fetchData(name) {
   try {
     const result = await axios.get(`http://localhost:3001/getProfile/${name}`)
@@ -15,7 +16,7 @@ async function fetchData(name) {
 }
 
 const ProfilePage = () => {
-
+   const navigate = useNavigate();
   const [data, setData] = useState([]);
   console.log(data)
   useEffect(()=>{ 
@@ -55,12 +56,12 @@ const ProfilePage = () => {
   const [description, setDescription] = useState(``);
 
   const [contactInfo, setContactInfo] = useState({
-    phone: "",
-    email: "",
-    country: "",
-    postcode: "",
-    city: "",
-    address: "",
+    phone: "+91 1234567890",
+    email: "haridev@gmail.com",
+    country: "India",
+    postcode: "636008",
+    city: "Salem",
+    address: "34, Example Street, Salem",
   });
 
   const [isEditing, setIsEditing] = useState({
@@ -106,7 +107,6 @@ const ProfilePage = () => {
           <NavLink href="#" label="Profile" />
           <NavLink href="#" label="My Resume" />
           <NavLink href="#" label="Change Password" />
-          <NavLink href="#" label="Log Out" />
         </nav>
       </div>
 
@@ -291,20 +291,15 @@ const EditableField = ({ label, value, isEditing, onChange, isTextArea }) => (
     ) : (
       <p className="text-lg text-gray-900 dark:text-gray-100">{value}</p>
     )}
-  </div>
-);
-
-const handleLogout = () => {
-  localStorage.removeItem("token");
-  const navigate = useNavigate();
-  navigate("/login");
-};
+    </div>
+  );
+  
 
 const NavLink = ({ href, label }) => (
   <a
     href={href}
     className="block text-lg text-blue-500 dark:text-indigo-600 font-medium hover:text-blue-600 dark:hover:bg-blue-50 dark:hover:bg-indigo-700 p-2 rounded-lg transition-all duration-300"
-  onClick={handleLogout}>
+  >
     {label}
   </a>
 );
