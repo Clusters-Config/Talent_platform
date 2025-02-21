@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Button from "./Button";
-
+import Formback from "./Formback";
 
 const FormLogin = ({children}) => {
     const [username, setUsername] = useState("");
@@ -70,7 +70,7 @@ const FormLogin = ({children}) => {
                 <Button
                  title='Login'
                     onClick={loginUser}
-                    className="bg-blue-500 text-white  p-4 px-4 rounded w-44 h-16 hover:bg-blue-600"
+                    className="bg-blue-500 text-white  p-4 px-4 rounded-xl w-[8rem] h-16 hover:bg-blue-600"
                 />
                  
                  {children}
