@@ -1,6 +1,6 @@
 import React, { useState ,useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 
 async function fetchData(name) {
   try {
@@ -16,7 +16,7 @@ async function fetchData(name) {
 }
 
 const ProfilePage = () => {
-   const navigate = useNavigate();
+   
   const [data, setData] = useState([]);
   console.log(data)
   useEffect(()=>{ 
