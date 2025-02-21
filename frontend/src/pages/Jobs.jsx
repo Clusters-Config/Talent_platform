@@ -3,22 +3,13 @@ import { Search } from "@mui/icons-material";
 import JobCard from "../components/JobCard";
 import axios from "axios";
 import useDebounce from "../hooks/useDebounce";
-
-const categories = [
-  "Web Developer", "Devops", "Cloud"
-];
-
-const staticJobs = [
-  { title: "Project Manager", company: "Gradient", location: "Las Vegas", type: "Full Time", category: "Finance",content:"We are looking for a project manager to be responsible for handling our company's ongoing projects. You will be working closely with your team members to ensure that all project requirements, deadlines, and schedules are on track. Responsibilities include submitting project deliverables, preparing status reports, and establishing effective project communication plans as well as the proper execution of said plans." },
-  { title: "Operations Manager", company: "Pipe", location: "London", type: "Remote", category: "Management",content:"We are looking for a project manager to be responsible for handling our company's ongoing projects. You will be working closely with your team members to ensure that all project requirements, deadlines, and schedules are on track. Responsibilities include submitting project deliverables, preparing status reports, and establishing effective project communication plans as well as the proper execution of said plans." },
-  { title: "Human Resources Manager", company: "Lineo", location: "California", type: "Remote", category: "Management",content:"We are looking for a project manager to be responsible for handling our company's ongoing projects. You will be working closely with your team members to ensure that all project requirements, deadlines, and schedules are on track. Responsibilities include submitting project deliverables, preparing status reports, and establishing effective project communication plans as well as the proper execution of said plans." }
-];
+import FilterAside from "../components/FilterAside";
 
 async function fetchData() {
   try {
-    const result = await axios.get('http://localhost:3001/getjob',{
-      headers:{ 
-        'Authorization':`Bearer ${localStorage.getItem('token')}`
+    const result = await axios.get('http://localhost:3001/getjob', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     });
     const jobData = result.data.msg;
@@ -32,25 +23,53 @@ async function fetchData() {
 }
 
 export default function JobListings() {
-  
-  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const [selectedPositions, setSelectedPositions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [jobs, setJobs] = useState([]);
+  const [experienceFilters, setExperienceFilters] = useState([]);
+  const [availabilityFilters, setAvailabilityFilters] = useState([]);
+  const [availablePositions, setAvailablePositions] = useState([]);
 
   useEffect(() => {
     async function loadJobs() {
       const data = await fetchData();
       if (data) {
         setJobs(data);
+        // Extract available positions from the job data
+        const positions = [...new Set(data.map(job => job.position))];
+        setAvailablePositions(positions);
       }
     }
     loadJobs();
   }, []);
 
+  const handleExperienceChange = (exp) => {
+    setExperienceFilters((prev) =>
+      prev.includes(exp) ? prev.filter((e) => e !== exp) : [...prev, exp]
+    );
+  };
+
+  const handleAvailabilityChange = (avail) => {
+    setAvailabilityFilters((prev) =>
+      prev.includes(avail) ? prev.filter((a) => a !== avail) : [...prev, avail]
+    );
+  };
+
+  const handlePositionChange = (position) => {
+    setSelectedPositions((prev) =>
+      prev.includes(position) ? prev.filter((p) => p !== position) : [...prev, position]
+    );
+  };
+
   const filteredJobs = jobs.filter((job) => {
-    return (selectedCategory === "" || job.position === selectedCategory) 
-      && job.title.toLowerCase().includes(searchTerm.toLowerCase());
-  })
+    const positionMatch = selectedPositions.length === 0 || selectedPositions.includes(job.position);
+    const searchTermMatch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const experienceMatch = experienceFilters.length === 0 || experienceFilters.includes(job.experience);
+    const availabilityMatch = availabilityFilters.length === 0 || availabilityFilters.includes(job.type);
+
+    return positionMatch && searchTermMatch && experienceMatch && availabilityMatch;
+  });
 
   return (
     <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
@@ -58,7 +77,7 @@ export default function JobListings() {
         <div className="">
           <h1 className="text-4xl font-bold">Extensive Job Listings</h1>
           <p className="text-gray-600 dark:text-gray-300 mb-4">A seamless, efficient, and user-friendly platform for both job seekers and employers.</p>
-          
+
           <div className="mb-6 flex flex-wrap gap-4 items-center">
             <div className="relative w-full ">
               <div className="relative w-full">
@@ -73,24 +92,32 @@ export default function JobListings() {
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-wrap gap-4 mb-6">
-            {categories.map((category) => (
+            {availablePositions.map((position) => (
               <button
-                key={category}
-                className={`px-4 py-2 rounded-lg flex items-center gap-2 ${selectedCategory === category ? "bg-black text-white" : "bg-white text-black border border-gray-400"}`}
-                onClick={() => setSelectedCategory(category === selectedCategory ? "" : category)}
+                key={position}
+                className={`px-4 py-2 rounded-lg flex items-center gap-2 ${selectedPositions.includes(position) ? "bg-black text-white" : "bg-white text-black border border-gray-400"}`}
+                onClick={() => handlePositionChange(position)}
               >
-                {category}
+                {position}
               </button>
             ))}
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {filteredJobs.length > 0 ? (
-              filteredJobs.map((job, index) => <JobCard key={index} job={job} />)
-            ) : (
-              <p className="text-center col-span-3 text-gray-500 dark:text-gray-300">No jobs found.</p>
-            )}
+          <div className="flex">
+            <FilterAside
+              experienceFilters={experienceFilters}
+              availabilityFilters={availabilityFilters}
+              handleExperienceChange={handleExperienceChange}
+              handleAvailabilityChange={handleAvailabilityChange}
+            />
+            <div className="grid md:grid-cols-3 gap-6">
+              {filteredJobs.length > 0 ? (
+                filteredJobs.map((job, index) => <JobCard key={index} job={job} />)
+              ) : (
+                <p className="text-center col-span-3 text-gray-500 dark:text-gray-300">No jobs found.</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
