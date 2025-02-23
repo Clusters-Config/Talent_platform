@@ -4,7 +4,7 @@ import JobCard from "../components/JobCard";
 import axios from "axios";
 import useDebounce from "../hooks/useDebounce";
 import FilterAside from "../components/FilterAside";
-
+import Loading from '../components/Loading';
 async function fetchData() {
   try {
     const result = await axios.get('http://localhost:3001/getjob', {
@@ -30,6 +30,7 @@ export default function JobListings() {
   const [experienceFilters, setExperienceFilters] = useState([]);
   const [availabilityFilters, setAvailabilityFilters] = useState([]);
   const [availablePositions, setAvailablePositions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadJobs() {
@@ -42,6 +43,12 @@ export default function JobListings() {
       }
     }
     loadJobs();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
 
   const handleExperienceChange = (exp) => {
@@ -70,6 +77,14 @@ export default function JobListings() {
 
     return positionMatch && searchTermMatch && experienceMatch && availabilityMatch;
   });
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 via-green-200 to-yellow-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
+        <Loading type="balls" color="green" />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">

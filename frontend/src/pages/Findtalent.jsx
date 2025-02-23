@@ -5,6 +5,7 @@ import FilterList from '../components/FilterList';
 import SearchBar from '../components/SearchBar';
 import FilterAside from '../components/FilterAside';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Loading from '../components/Loading';
 
 const candidates =[
   {
@@ -250,6 +251,7 @@ const Findtalent = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [filteredCandidates, setFilteredCandidates] = useState(data);
   const [showFilters, setShowFilters] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     filterCandidates();
@@ -258,6 +260,9 @@ const Findtalent = () => {
   useEffect(() => {
     filterCandidates();
     fetchTalent();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
 
   const toggleFilters = () => {
@@ -361,16 +366,13 @@ const Findtalent = () => {
     handleFilterSelect('availability', value);
   };
 
-  // const fetchTalent = async () => {
-  //   try {
-  //     const response = await axios.get('http://localhost:3001/gettalent');
-  //     const talentData = response.data.msg;
-  //     console.log(talentData);
-  //     return talentData;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 via-green-200 to-yellow-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
+        <Loading type="balls" color="green" />
+      </div>
+    );
+  }
 
   return (
     <div className="container h-full my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row dark:bg-gray-900 dark:text-gray-100">

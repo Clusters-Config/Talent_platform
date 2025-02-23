@@ -3,6 +3,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import EditableField from '../components/EditableField';
 import EditableSection from '../components/EditableSection';
+import Loading from '../components/Loading';
 
 async function fetchData(name) {
   try {
@@ -12,11 +13,11 @@ async function fetchData(name) {
     return profileData;
   } catch (error) {
     console.error(error);
-    return [];
   }
 }
 
 const ProfilePage = () => {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [basicInfo, setBasicInfo] = useState({
     name: "",
@@ -73,6 +74,12 @@ const ProfilePage = () => {
   const toggleEdit = (section) => {
     setIsEditing({ ...isEditing, [section]: !isEditing[section] });
   };
+
+  if (loading) return (
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 via-green-200 to-yellow-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
+      <Loading />
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex">

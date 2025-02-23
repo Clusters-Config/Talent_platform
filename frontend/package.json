@@ -28,7 +28,7 @@
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^7.0.2",
     "react-toastify": "^11.0.2",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

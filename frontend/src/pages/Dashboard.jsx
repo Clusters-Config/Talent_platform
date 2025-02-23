@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Chart } from 'chart.js/auto';
 import Leaderboard from './../components/Leaderboard';
+import Loading from '../components/Loading';
 
 const Dashboard = () => {
   const [skillTestResults, setSkillTestResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSkillTestResults = async () => {
@@ -13,6 +15,8 @@ const Dashboard = () => {
         setSkillTestResults(response.data.msg);
       } catch (error) {
         console.error('Error fetching skill test results:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -129,6 +133,12 @@ const Dashboard = () => {
       });
     }
   }, [skillTestResults]);
+
+  if (loading) return (
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 via-green-200 to-yellow-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
+      <Loading type="balls" color="green" />
+    </div>
+  );
 
   return (
     <div className="flex flex-col h-screen bg-white dark:bg-gray-900">

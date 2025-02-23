@@ -36,7 +36,7 @@ const Navbar =  ({customClasses}) =>{
         <>
         <nav className={classnames(customClasses || "fixed text-black top-0 left-0 right-0 bg-white shadow-md aleo-regular z-50 select-none")}>
             {/* Navbar for sm screen */}
-            <div className="container mx-0 px-6 py-3 dark:bg-gray-900 dark:text-white flex justify-between items-center">
+            <div className=" mx-0 px-6 py-3 dark:bg-gray-900 dark:text-white flex justify-between items-center">
                 <Link to="/" className="text-4xl font-bold hover:text-indigo-600">HIREZONE</Link>
                 <span className="lg:hidden" onClick={handleShowMenu}>
                     <MenuRoundedIcon className="sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />

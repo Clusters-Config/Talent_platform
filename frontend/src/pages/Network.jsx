@@ -4,11 +4,13 @@ import useNet from '../hooks/useNet';
 import NetworkCard from '../components/NetworkCard';
 import CommunityChat from '../components/ChatModule';
 import axios from 'axios';
+import Loading from '../components/Loading';
 
 const Network = () => {
   const data = useNet();
   const [connections, setConnections] = useState([]);
   const [networkData, setNetworkData] = useState(data);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchConnections = async () => {
@@ -32,12 +34,26 @@ const Network = () => {
     }
   }, [data, connections]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   const handleAddFriend = (friendName) => {
     setNetworkData((prevData) => {
       const filtered = prevData.filter(person => person.title !== friendName)
       return filtered;
     });
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 via-green-200 to-yellow-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
+        <Loading type="balls" color="green" />
+      </div>
+    );
+  }
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Loading from '../components/Loading';
 
 const SkillTest = ({ selectedJob }) => {
   const [questions, setQuestions] = useState([]);
@@ -13,6 +14,7 @@ const SkillTest = ({ selectedJob }) => {
   const [showResult, setShowResult] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -54,6 +56,12 @@ const SkillTest = ({ selectedJob }) => {
     return () => clearInterval(timer);
   }, [timeLeft, navigate]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   const handleNext = async () => {
     const correctAnswer = questions[currentQuestion].options[
       questions[currentQuestion].answer.replace("answer_", "").charCodeAt(0) - 97
@@ -83,6 +91,14 @@ const SkillTest = ({ selectedJob }) => {
       }
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 via-green-200 to-yellow-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
+        <Loading type="balls" color="green" />
+      </div>
+    );
+  }
 
   if (showResult) {
     return (
