@@ -266,7 +266,8 @@ const Findtalent = () => {
   }, []);
 
   const toggleFilters = () => {
-    setShowFilters((prev) => !prev);
+    setShowFilters(showFilters);
+    console.log("showFilters", showFilters);
   };
 
   const handleOutsideClick = (event) => {
@@ -375,8 +376,8 @@ const Findtalent = () => {
   }
 
   return (
-    <div className="container h-full my-5 mx-auto px-4 lg:px-8 flex flex-col lg:flex-row dark:bg-gray-900 dark:text-gray-100">
-      <aside className="w-max sm:w-[200px] sm:hidden lg:w-1/6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6 lg:mb-0 lg:mr-6 fixed lg:h-[calc(100vh-5rem)] overflow-y-auto">
+    <div className=" h-full mx-auto px-4 lg:px-12 flex flex-col lg:flex-row dark:bg-gray-900 dark:text-gray-100">
+      <aside className="w-max sm:w-[200px] sm:hidden lg:w-1/6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md lg:mb-0 lg:mr-6 fixed lg:mt-10 lg:h-[calc(100vh-8rem)] overflow-y-auto">
         <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">Filters</h2>
         <div className="mb-4">
           <h3 className="text-md font-medium mb-2 text-gray-700 dark:text-gray-300">Experience</h3>
@@ -422,8 +423,9 @@ const Findtalent = () => {
               handleSearch={handleSearch}
               handleClearSearch={() => setSearchTerm('')}
             />
-            <span className="hidden sm:block" onClick={() => setShowFilters(true)}>
-              <FilterListIcon className="text-gray-700 dark:text-gray-300" />
+            <span className="hidden sm:block" >
+
+              <FilterListIcon className="text-gray-700 dark:text-gray-300" onClick={toggleFilters} />
             </span>
             <FilterList
               filters={selectedFilters}
@@ -443,7 +445,7 @@ const Findtalent = () => {
           />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2  lg:grid-cols-3 gap-5 mt-[15%] sm:mt-[25%] sm:pr-4 lg:pr-20">
+        <div className="grid grid-cols-2 md:grid-cols-2  lg:grid-cols-3 gap-5 mt-[12%] sm:mt-[35%] sm:pr-4 lg:pr-20">
           {filteredCandidates.map((candidate) => (
             <CandidateCard key={candidate.id} candidate={candidate} />
           ))}
