@@ -83,8 +83,8 @@ export default function JobListings() {
 
   return (
     <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
-      <div className=" p-10 ">
-        <div className="">
+      <div className=" p-16 ">
+        <div className="p-5">
           <h1 className="text-4xl font-bold">Extensive Job Listings</h1>
           <p className="text-gray-600 dark:text-gray-300 mb-4">A seamless, efficient, and user-friendly platform for both job seekers and employers.</p>
 
