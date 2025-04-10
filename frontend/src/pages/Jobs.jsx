@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Search } from "@mui/icons-material";
 import JobCard from "../components/JobCard";
 import axios from "axios";
-import useDebounce from "../hooks/useDebounce";
 import FilterAside from "../components/FilterAside";
-import Loading from '../components/Loading';
+import Loading from '../components/Loading'
+
+
 async function fetchData() {
   try {
     const result = await axios.get('http://localhost:3001/getjob', {
@@ -32,22 +33,16 @@ export default function JobListings() {
   const [availablePositions, setAvailablePositions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function loadJobs() {
-      const data = await fetchData();
-      if (data) {
-        setJobs(data);
-        // Extract available positions from the job data
-        const positions = [...new Set(data.map(job => job.position))];
-        setAvailablePositions(positions);
-      }
-    }
-    loadJobs();
-  }, []);
+
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
+      fetchData().then((data) => {
+        setJobs(data);
+        const positions = [...new Set(data.map((job) => job.position))];
+        setAvailablePositions(positions);
+      });
     }, 1000);
   }, []);
 
