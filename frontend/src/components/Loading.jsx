@@ -4,106 +4,148 @@ import styled from 'styled-components';
 const Loader = () => {
   return (
     <StyledWrapper>
-      <div className="wrapper">
-        <div className="circle" />
-        <div className="circle" />
-        <div className="circle" />
-        <div className="shadow" />
-        <div className="shadow" />
-        <div className="shadow" />
-      </div>
+      <main>
+        <svg height="128px" width="128px" viewBox="0 0 128 128" className="pl1">
+          <defs>
+            <linearGradient y2={1} x2={1} y1={0} x1={0} id="pl-grad">
+              <stop stopColor="#000" offset="0%" />
+              <stop stopColor="#fff" offset="100%" />
+            </linearGradient>
+            <mask id="pl-mask">
+              <rect fill="url(#pl-grad)" height={128} width={128} y={0} x={0} />
+            </mask>
+          </defs>
+          <g fill="var(--primary)">
+            <g className="pl1__g">
+              <g transform="translate(20,20) rotate(0,44,44)">
+                <g className="pl1__rect-g">
+                  <rect height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                  <rect transform="translate(0,48)" height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                </g>
+                <g transform="rotate(180,44,44)" className="pl1__rect-g">
+                  <rect height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                  <rect transform="translate(0,48)" height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                </g>
+              </g>
+            </g>
+          </g>
+          <g mask="url(#pl-mask)" fill="hsl(343,90%,50%)">
+            <g className="pl1__g">
+              <g transform="translate(20,20) rotate(0,44,44)">
+                <g className="pl1__rect-g">
+                  <rect height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                  <rect transform="translate(0,48)" height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                </g>
+                <g transform="rotate(180,44,44)" className="pl1__rect-g">
+                  <rect height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                  <rect transform="translate(0,48)" height={40} width={40} ry={8} rx={8} className="pl1__rect" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </main>
     </StyledWrapper>
   );
 }
 
 const StyledWrapper = styled.div`
-  .wrapper {
-    width: 200px;
-    height: 60px;
-    position: relative;
-    z-index: 1;
+  .pl1 {
+    display: block;
+    width: 8em;
+    height: 8em;
   }
 
-  .circle {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #fff;
-    left: 15%;
-    transform-origin: 50%;
-    animation: circle7124 .5s alternate infinite ease;
+  .pl1__g,
+    .pl1__rect {
+    animation: pl1-a 1.5s cubic-bezier(0.65,0,0.35,1) infinite;
   }
 
-  @keyframes circle7124 {
-    0% {
-      top: 60px;
-      height: 5px;
-      border-radius: 50px 50px 25px 25px;
-      transform: scaleX(1.7);
+  .pl1__g {
+    transform-origin: 64px 64px;
+  }
+
+  .pl1__rect:first-child {
+    animation-name: pl1-b;
+  }
+
+  .pl1__rect:nth-child(2) {
+    animation-name: pl1-c;
+  }
+
+  @keyframes pl1-a {
+    from {
+      transform: rotate(0);
+    }
+
+    80%,
+        to {
+      animation-timing-function: steps(1,start);
+      transform: rotate(90deg);
+    }
+  }
+
+  @keyframes pl1-b {
+    from {
+      animation-timing-function: cubic-bezier(0.33,0,0.67,0);
+      width: 40px;
+      height: 40px;
+    }
+
+    20% {
+      animation-timing-function: steps(1,start);
+      width: 40px;
+      height: 0;
+    }
+
+    60% {
+      animation-timing-function: cubic-bezier(0.65,0,0.35,1);
+      width: 0;
+      height: 40px;
+    }
+
+    80%,
+        to {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @keyframes pl1-c {
+    from {
+      animation-timing-function: cubic-bezier(0.33,0,0.67,0);
+      width: 40px;
+      height: 40px;
+      transform: translate(0,48px);
+    }
+
+    20% {
+      animation-timing-function: cubic-bezier(0.33,1,0.67,1);
+      width: 40px;
+      height: 88px;
+      transform: translate(0,0);
     }
 
     40% {
-      height: 20px;
-      border-radius: 50%;
-      transform: scaleX(1);
+      animation-timing-function: cubic-bezier(0.33,0,0.67,0);
+      width: 40px;
+      height: 40px;
+      transform: translate(0,0);
     }
 
-    100% {
-      top: 0%;
-    }
-  }
-
-  .circle:nth-child(2) {
-    left: 45%;
-    animation-delay: .2s;
-  }
-
-  .circle:nth-child(3) {
-    left: auto;
-    right: 15%;
-    animation-delay: .3s;
-  }
-
-  .shadow {
-    width: 20px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,0.9);
-    position: absolute;
-    top: 62px;
-    transform-origin: 50%;
-    z-index: -1;
-    left: 15%;
-    filter: blur(1px);
-    animation: shadow046 .5s alternate infinite ease;
-  }
-
-  @keyframes shadow046 {
-    0% {
-      transform: scaleX(1.5);
+    60% {
+      animation-timing-function: cubic-bezier(0.33,1,0.67,1);
+      width: 88px;
+      height: 40px;
+      transform: translate(0,0);
     }
 
-    40% {
-      transform: scaleX(1);
-      opacity: .7;
+    80%,
+        to {
+      width: 40px;
+      height: 40px;
+      transform: translate(48px,0);
     }
-
-    100% {
-      transform: scaleX(.2);
-      opacity: .4;
-    }
-  }
-
-  .shadow:nth-child(4) {
-    left: 45%;
-    animation-delay: .2s
-  }
-
-  .shadow:nth-child(5) {
-    left: auto;
-    right: 15%;
-    animation-delay: .3s;
   }`;
 
 export default Loader;

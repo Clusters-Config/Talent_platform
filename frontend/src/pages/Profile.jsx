@@ -76,7 +76,7 @@ const ProfilePage = () => {
   };
 
   if (loading) return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 via-green-200 to-yellow-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
+    <div className="flex items-center justify-center min-h-screen  dark:from-gray-700 dark:via-gray-800 dark:to-gray-900">
       <Loading />
     </div>
   );
