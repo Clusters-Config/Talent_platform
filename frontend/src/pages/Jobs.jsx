@@ -3,7 +3,8 @@ import { Search } from "@mui/icons-material";
 import JobCard from "../components/JobCard";
 import axios from "axios";
 import FilterAside from "../components/FilterAside";
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
+
 
 
 async function fetchData() {
