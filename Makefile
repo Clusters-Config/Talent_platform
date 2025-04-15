@@ -11,7 +11,7 @@ backend:
 	cd backend && npm test
 	echo "Backend build complete."
 
-all: frontend backend
+all: 
 	echo "Building all components..."
 	cd frontend && npm install && npm run build 
 	cd backend && npm test
