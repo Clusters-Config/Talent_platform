@@ -13,7 +13,7 @@ backend:
 
 all: frontend backend
 	echo "Building all components..."
-	cd frontend && npm install && npm run dev 
+	cd frontend && npm install && npm run build 
 	cd backend && npm test
 	echo "All components built successfully."
 
