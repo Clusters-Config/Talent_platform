@@ -2,7 +2,23 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import SectionChat from "./SectionChat";
 
-
+const defaultChats = [
+    {
+        id: 1,
+        community: "React Js",
+        members: "2332"
+    },
+    {
+        id: 2,
+        community: "Vue Js",
+        members: "1234"
+    },
+    {
+        id: 3,
+        community: "Angular",
+        members: "4321"
+    }
+]
 const ChatModule = () => {
     
     const [msg, setMsg] = useState(null)
@@ -31,7 +47,7 @@ const ChatModule = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-        >
+            >
             <div className="mb-4">
                 <input 
                     type="text" 
@@ -52,7 +68,9 @@ const ChatModule = () => {
             >
                 Send
             </button>
-            <SectionChat community='React Js' members='2332'/>
+            {defaultChats.map((chat) => (
+                <SectionChat key={chat.id} community={chat.community} members={chat.members} />
+            ))}
             <div className="mt-6 space-y-4">
                 {messages.map((message, index) => (
                     <motion.div 
