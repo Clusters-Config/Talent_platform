@@ -4,7 +4,7 @@ import  Register from '../src/models/register.model.js'
 import  Network from './models/network.model.js'
 import Talent from '../src/models/talent.model.js'
 import Profile from '../src/models/profile.model.js'
-
+import Candidate from './models/candiate.model.js';
 
 export  { 
     Talent,
@@ -12,5 +12,6 @@ export  {
     Skill,
     Register,
     Network,
-    Profile
+    Profile,
+    Candidate
 }
