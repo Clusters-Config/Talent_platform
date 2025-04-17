@@ -1,4 +1,4 @@
-FROM node:alpine AS  build-backend 
+FROM node:alpine-slim AS  build-backend 
 
 WORKDIR /app 
 
