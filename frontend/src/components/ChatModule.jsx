@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import SectionChat from "./SectionChat";
 
 
 const ChatModule = () => {
