@@ -8,6 +8,8 @@ import Loading from '../components/Loading';
 async function fetchData(name) {
   try {
     const result = await axios.get(`http://localhost:3001/getProfile/${name}`);
+    console.log(result.data);
+    console.log(name);
     const profileData = result.data.profile;
     console.log(profileData);
     return profileData;
