@@ -17,6 +17,13 @@ all:
 	cd backend && npm test
 	echo "All components built successfully."
 
+docker:
+	echo "Building Docker image..."
+	docker build -t myapp:latest .
+	echo "Docker image built successfully."
+	docker run -p 3000:3000 myapp:latest
+	echo "D	docker container running on port 3000."
+	echo "Docker container started."
 
 clean:
 	echo "Cleaning up..."
