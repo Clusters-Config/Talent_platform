@@ -52,6 +52,7 @@ const ChatModule = () => {
             >
                 Send
             </button>
+            <SectionChat community='React Js' members='2332'/>
             <div className="mt-6 space-y-4">
                 {messages.map((message, index) => (
                     <motion.div 
