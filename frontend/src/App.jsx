@@ -5,6 +5,8 @@ import Main from './pages/Main'
 import Layout from './wrappers/Layout';
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 import { DarkThemeToggle } from "flowbite-react";
 
@@ -30,7 +32,7 @@ const App = () => {
           {location.pathname !== '/profile' && location.pathname !== "/login" && location.pathname !== "/register" &&
           location.pathname !== "/skilltest" && location.pathname !=="/home" && <Navbar />}
          
-
+          <Provider store={store}>
           <Layout>
             {/* Routing between pages */}
             <Routes>
@@ -50,6 +52,7 @@ const App = () => {
             </Routes>
             
           </Layout>
+          </Provider>
           <div className="fixed top-[37rem] right-20 sm:right-4 z-50">
             <DarkThemeToggle 
               style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)' }}

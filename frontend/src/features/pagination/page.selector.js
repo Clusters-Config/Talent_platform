@@ -1,0 +1,1 @@
+export {nextPage, prevPage} from "./page.action"

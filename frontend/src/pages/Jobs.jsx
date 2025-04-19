@@ -4,6 +4,7 @@ import JobCard from "../components/JobCard";
 import axios from "axios";
 import FilterAside from "../components/FilterAside";
 import Loading from '../components/Loading';
+import Pages from "../components/Pagination";
 
 
 
@@ -131,6 +132,8 @@ export default function JobListings() {
             </div>
           </div>
         </div>
+              <Pages/>
+
       </div>
     </div>
   );

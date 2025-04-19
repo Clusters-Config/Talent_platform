@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
+import pageReducer from "../features/pagination/page.reducer";
 
 
 const rootReducer = combineReducers({
-    // pizza: pizzaReducer,
-    // burger: burgerReducer
+    pages: pageReducer
 });
 
 export default rootReducer;
