@@ -30,6 +30,7 @@
     "react-router-dom": "^7.0.2",
     "react-toastify": "^11.0.2",
     "redux": "^5.0.1",
+    "redux-logger": "^3.0.6",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {
