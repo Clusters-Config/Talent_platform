@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  labels:
+    app: backend
+data:
+  PORT: "3001"
+  DOCKER_URL: "mongodb://mongodb:27017/talent_match"
+  JWT_SECRET: "server"

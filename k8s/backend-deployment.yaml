@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: backend-config
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3001
+          initialDelaySeconds: 10
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  type: ClusterIP
+  ports:
+  - name: api
+    port: 3001
+    targetPort: 3001
+    protocol: TCP
+  - name: websocket
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: backend
